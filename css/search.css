@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+*{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-family: 'Noto Sans TC',sans-serif;
+}
+
+
+.banner {
+  height: 100vh;
+}
+.font-set {
+  color:#241571;
+  font-size: 12
+}
+.slogan{
+  color:slategray;
+  font-size: 32pt;
+}
+.name{
+  color:slategray;
+  font-size: 18pt;
+}
+.nav-item{
+  margin-right: 10px;
+}
+
+.list-group-horizontal{
+  padding-left:0pt;
+}
