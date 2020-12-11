@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.banner {
+  height: 100vh;
+  background: url(./pic/aircraft-wing.jpg) center top / cover;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+body {
+  background-color: #fff;
+}
+
+.navbar-trans {
+  background: rgba(255, 255, 255, 0);
+}
+
+.bl {
+  background: rgb(114, 198, 212);
+}
+
+.wh {
+  background: white;
+}
+
+.link-top {
+  width: 50%;
+  height: 1px;
+  border-top: solid #acc0d8 1px;
+}
+
+.top_container {
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.container2
+{
+  height: 1200px;
+  margin: auto;
+  display: flex;
+}
+
+.wrap
+{
+  display: flex;
+}
+.item{
+  width: 370px;
+  margin: 0 0px;
+}
+.container3
+{
+
+}
+.order{
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.order .line{
+  display: inline-block;
+  width: 380px;
+  border-top: 1px solid rgb(2, 63, 78);
+}
+.order .txt {
+  font-size: 30px;
+  color: rgb(2, 63, 78);
+  letter-spacing: 3px;
+  vertical-align: middle;
+}
+
+.info_label{
+  color: #acc0d8;
+  letter-spacing: 4px;
+}
+
+.card{
+  margin: 1px;
+  padding: 3px;
+}
+
+
+.passport_font
+{
+  text-align: center;
+  margin: 3px;
+  color: white;
+  letter-spacing: 2px;
+}
+.passport .form_font
+{
+  margin: 3px;
+  color: white;
+}
+.passport .form_standard
+{
+  margin: 3px;
+  padding: 3px;
+}
+
+.passport .item
+{
+
+}
+.info h2
+{
+  text-align: center;
+  margin: 10px;
+  padding: 10px;
+  color: black;
+  letter-spacing: 5px;
+}
+
+
+.info .form_font
+{
+  margin: 3px;
+  padding: 3px;
+  color: black;
+}
+
+.info .form_standard
+{
+  margin: 3px;
+  padding: 3px;
+}
