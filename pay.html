@@ -134,7 +134,7 @@
         
         .inform {
             text-align: center;
-            color: white;
+            color: #c0c5bf;
             justify-content: center;
             margin: 0 auto;
             font-weight: 200;
@@ -155,10 +155,10 @@
             padding-right: 0;
             /* padding-top: 90px; */
             margin: 0 auto;
-            height: 60vh;
-            width: 56vw;
+            height: 65vh;
+            width: 54vw;
             background-color: #ffffff;
-            opacity: 80%;
+            opacity: 82%;
             align-items: center;
             display: flex;
             text-align: center;
@@ -167,6 +167,133 @@
         
         .jumbotron-fluid {
             box-shadow: 6px 6px 0px 0px rgba(126, 129, 129, 0.335) !important;
+        }
+        
+        [class^="griditem"] {
+            color: #6E6E6E;
+            /* text-align: center; */
+            font-size: 1.2rem;
+            font-family: Segoe UI;
+            letter-spacing: 2px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 3fr);
+            grid-template-rows: 20px, repeat(4, 50px), 20px;
+            grid-template-areas: "header header header""cardnum cardnum sidebar " "input input sidebar" "time vertify sidebar" "time_in vertify_in cost" "footer footer cost";
+            grid-auto-flow: dense;
+            grid-gap: 30px;
+        }
+        
+        .griditem0 {
+            grid-area: header;
+        }
+        
+        .griditem1 {
+            grid-area: cardnum;
+            text-align: left;
+        }
+        
+        .radio[type=checked]+span {
+            display: inline-block;
+            border-radius: .01rem;
+            width: .28rem;
+            height: .28rem;
+            border: 0px;
+            /* border: .02rem solid #707070; */
+            color: #707070;
+            position: absolute;
+            top: 0;
+            left: -.5rem;
+        }
+        
+        .radio[type=checked]:checked+span:after {
+            position: absolute;
+            font-size: 0.28rem;
+            left: 0.05rem;
+        }
+        
+        .card1 {
+            height: 2.293rem;
+            width: 3.75rem;
+        }
+        
+        .card2 {
+            height: 2.293rem;
+            width: 3.5475rem;
+        }
+        
+        .card3 {
+            height: 2.293rem;
+            width: 2.7255rem;
+        }
+        
+        .griditem2 {
+            grid-area: input;
+            text-align: left;
+            font-size: 1.2rem;
+            margin-right: 60px;
+        }
+        
+        .griditem2 .input-group .form-control {
+            border-radius: 10px!important;
+            color: #707070;
+        }
+        
+        .form-control {
+            border-radius: 10px!important;
+            color: #707070;
+        }
+        
+        .griditem3 {
+            grid-area: time;
+            text-align: left;
+        }
+        
+        .griditem4 {
+            grid-area: time_in;
+        }
+        
+        input[type="text"] {
+            font-size: 14px;
+        }
+        
+        .griditem5 {
+            grid-area: vertify;
+            text-align: left;
+        }
+        
+        .griditem6 {
+            grid-area: vertify_in;
+        }
+        
+        .griditem7 {
+            grid-area: footer;
+        }
+        
+        .griditem8 {
+            grid-area: sidebar;
+        }
+        
+        .griditem9 {
+            grid-area: cost;
+            text-align: left;
+            padding-left: 30px;
+        }
+        
+        .griditem9 span {
+            font-weight: 730;
+            font-size: 28px;
+        }
+        
+        .headerDivider {
+            border-left: 1px solid #707070;
+            height: 360px;
+            opacity: 40%;
+            position: absolute;
+            right: 610px;
+            top: 200px;
         }
         
         .main-footer {
@@ -411,29 +538,93 @@
         </nav>
         <div class="top">
             <div class="title">
-                <HR width=300 SIZE=3 color=white> &emsp;付款資料填寫&emsp;
-                <HR width=300 SIZE=3 color=white>
+                <HR width=290 SIZE=3 color=white> &emsp;付款資料填寫&emsp;
+                <HR width=290 SIZE=3 color=white>
                 </br>
             </div>
             <div class="inform">&nbsp;information</div>
         </div>
         <div class="big-container">
             <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                    <h1 class="display-4">Fluid jumbotron</h1>
-                    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                <div class="grid">
+                    <div class="griditem"></div>
+                    <div class="griditem1">
+                        <div class="options">信用卡號&emsp;
+                            <label for="card1">
+                            <input class="radio" type="checkbox" name="radio" id="card1"><span></span>
+                            <img src="./pic/card1.png" class="card1">
+                        </label>&emsp;
+                            <label for="card2">
+                            <input class="radio" type="checkbox" name="radio" id="card2"><span></span>
+                            <img src="./pic/card2.png" class="card2">
+                        </label>&emsp;
+                            <label for="card3">
+                            <input class="radio" type="checkbox" name="radio" id="card3"><span></span>
+                            <img src="./pic/card3.png" class="card3">
+                        </label>
+                        </div>
+                    </div>
+                    <div class="griditem2">
+                        <div class="input-group input-group-sm mb-3">
+                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;"> &nbsp;-&nbsp;
+                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">&nbsp;-&nbsp;
+                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">&nbsp; -&nbsp;
+                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">
+                        </div>
+                    </div>
+                    <div class="griditem3">有效年月</div>
+                    <div class="griditem4">
+                        <div class="input-group input-group-sm mb-3 input4">
+                            <form>
+                                <input type="text" list="month" maxlength="2" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
+                                <datalist id="month">
+                                    <select name="month">
+                                    <option value="01"></option>
+                                    <option value="02"></option>
+                                    <option value="03"></option>
+                                    <option value="04"></option>
+                                    <option value="05"></option>
+                                    <option value="06"></option>
+                                    <option value="07"></option>
+                                    <option value="08"></option>
+                                    <option value="09"></option>
+                                    <option value="10"></option>
+                                    <option value="11"></option>
+                                    <option value="12"></option>
+                                </select>
+                                </datalist>
+                            </form>&nbsp;/&nbsp;
+                            <form>
+                                <input type="text" list="year" maxlength="4" size="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
+                                <datalist id="year"><select name="year">
+                                    <option value="2021"></option>
+                                    <option value="2022"></option>
+                                    <option value="2023"></option>
+                                    <option value="2024"></option>
+                                    <option value="2025"></option>
+                                    <option value="2026"></option>
+                                </select>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="griditem5">背面末三碼</div>
+                    <div class="griditem6">
+                        <input type="text" maxlength="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px; width:90px;">
+                    </div>
+                    <div class="griditem7"></div>
+                    <div class="griditem8"></div>
+                    <div class="griditem9">待付款金額<br><span>TWD 49,220</span></div>
                 </div>
-            </div>
-            <div class="button">
-                <div class="back">
-                    <button class="btn" style="color:#f68f00"><i class="fas fa-chevron-circle-left"></i>&nbsp;上一步 </button>
-                </div>
-                <div class="next">
-                    <button class="btn" style="color:#f68f00">&nbsp;完成&nbsp;&nbsp;<i class="fas fa-chevron-circle-right"></i></button>
+                <div class="button">
+                    <div class="back">
+                        <button class="btn" style="color:#f68f00"><i class="fas fa-chevron-circle-left"></i>&nbsp;上一步 </button>
+                    </div>
+                    <div class="next">
+                        <button class="btn" style="color:#f68f00">&nbsp;完成&nbsp;&nbsp;<i class="fas fa-chevron-circle-right"></i></button>
+                    </div>
                 </div>
             </div>
         </div>
-
         <div class="main-footer">
             <div class="container2">
                 <div class="footer-contact">
@@ -451,6 +642,7 @@
                         <i class="fa fa-google fa-2x" aria-hidden="true"></i>
                         <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
                     </div>
+                    <div class="headerDivider"></div>
                 </div>
                 <div class="footer-item">
                     <h4>會員</h4>
