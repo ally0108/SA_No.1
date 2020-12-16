@@ -16,6 +16,61 @@
         crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" type="text/css" href="member.css">
+    <style>
+        .content .wrap {
+            display: flex;
+        }
+
+        .content .container {
+            width: 100%;
+            margin-top: 4rem;
+            padding: 0;
+        }
+
+        .content .label-container {
+            display: flex;
+            width: 100%;
+            color: gainsboro;
+            background-color: #627885;
+            margin: auto;
+        }
+
+        .content .label-container .label {
+            width: 20%;
+            height: 50px;
+            padding: 15px;
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .vl {
+            border-left: 2px solid gainsboro;
+            height: 50px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            height: 75px;
+            background-color: white;
+            margin-top: auto;
+        }
+
+        .card .label {
+            display: flex;
+            flex-direction: row;
+            color: black;
+            width: auto;
+            font-size: 15px;
+            margin: auto;
+            justify-content: center;
+        }
+
+        .card .label .btn-gap{
+            margin:5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,7 +91,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav mr-auto">
                     <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">會員專區</a>
+                        <a style="color: gainsboro;" class="nav-link" href="member_home.html">會員專區</a>
                     </div>
                     <div class="nav-item">
                         <a style="color: gainsboro;" class="nav-link" href="#">最新消息</a>
@@ -66,14 +121,14 @@
                     <div class="wrap">
                         <div class="container3">
                             <div class="item">
-                                <a href="#"><i class="fas fa-home"></i>首頁</a>
+                                <a href="member_home.html"><i class="fas fa-home"></i>首頁</a>
                             </div>
                             <div class="item">
-                                <a href="#">我的訂單</a>
+                                <a href="member_order.html">我的訂單</a>
                                 <hr>
                             </div>
                             <div class="item">
-                                <a href="#">帳戶資訊</a>
+                                <a href="member_info.html">帳戶資訊</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +136,41 @@
             </div>
         </div>
     </div>
-    <div class="content"></div>
+    <div class="content">
+        <div class="wrap">
+            <div class="container">
+                <div class="label-container">
+                    <div class="label">班機時間</div>
+                    <div class="vl"></div>
+                    <div class="label">班機</div>
+                    <div class="vl"></div>
+                    <div class="label">起訖點</div>
+                    <div class="vl"></div>
+                    <div class="label">艙等</div>
+                    <div class="vl"></div>
+                    <div class="label">人數</div>
+                    <div class="vl"></div>
+                    <div class="label">訂單操作</div>
+                </div>
+                <div class="card">
+                    <div class="label">2020-12-25</div>
+                    <div class="label">SA 123</div>
+                    <div class="label">台北-紐約</div>
+                    <div class="label">頭等艙</div>
+                    <div class="label">2大人2小孩</div>
+                    <div class="label">
+                        <div class="btn-gap">
+                            <button type="button" class="btn btn-outline-warning waves-effect">修改訂單</button>
+                        </div>
+                        <div class="btn-gap">
+                            <button type="button" class="btn btn-outline-warning waves-effect">刪除訂單</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="footer">
         <div class="main-footer">
             <div class="container2">

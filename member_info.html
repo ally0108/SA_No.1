@@ -16,6 +16,69 @@
         crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" type="text/css" href="member.css">
+    <style>
+        .wh {
+            background-color: white;
+        }
+
+        .content .container1 {
+            padding-top: 5rem;
+        }
+
+        .content .wrap {
+            display: flex;
+        }
+
+        .content .container2 {
+            width: 100%;
+            height: 490px;
+            margin: auto;
+        }
+
+        .content .item {
+            height: 220px;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .content .c {
+            font-size: 30px;
+        }
+
+        .content .e {
+            font-size: 25px;
+        }
+
+        .content .item .info {
+            margin-top: 50px;
+            font-size: 35px;
+            text-align: center;
+        }
+
+        .content .container3 {
+            display: flex;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .content .err {
+            margin-left: 50px;
+            color: red;
+            font-size: 20px;
+            opacity: 0.0;
+        }
+
+        .content .edit_btn {
+            margin-left: 72%;
+            margin-right: 2%;
+        }
+
+        .content .btn-edit
+        {
+            color: white;
+            background-color: #FFA932;
+        }
+    </style>
 </head>
 
 <body>
@@ -36,7 +99,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav mr-auto">
                     <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">會員專區</a>
+                        <a style="color: gainsboro;" class="nav-link" href="member_home.html">會員專區</a>
                     </div>
                     <div class="nav-item">
                         <a style="color: gainsboro;" class="nav-link" href="#">最新消息</a>
@@ -66,13 +129,13 @@
                     <div class="wrap">
                         <div class="container3">
                             <div class="item">
-                                <a href="#"><i class="fas fa-home"></i>首頁</a>
+                                <a href="member_home.html"><i class="fas fa-home"></i>首頁</a>
                             </div>
                             <div class="item">
-                                <a href="#">我的訂單</a>
+                                <a href="member_order.html">我的訂單</a>
                             </div>
                             <div class="item">
-                                <a href="#">帳戶資訊</a>
+                                <a href="member_order.html">帳戶資訊</a>
                                 <hr>
                             </div>
                         </div>
@@ -81,7 +144,80 @@
             </div>
         </div>
     </div>
-    <div class="content"></div>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row container1">
+                <div class="col-12 col-md-4">
+                    <div class="wrap">
+                        <div class="container2">
+                            <div class="item wh">
+                                <div style="display:inline;" class="c">名子</div>
+                                <div style="display: inline;" class="e">First name</div>
+                                <div class="info">
+                                    <p>Howhow</p>
+                                </div>
+                            </div>
+                            <div class="item wh">
+                                <div style="display:inline;" class="c">電子郵件</div>
+                                <div style="display: inline;" class="e">Email</div>
+                                <div class="info">
+                                    <p>howhow@gmail</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="wrap">
+                        <div class="container2">
+                            <div class="item wh">
+                                <div style="display:inline;" class="c">姓氏</div>
+                                <div style="display: inline;" class="e">Last name</div>
+                                <div class="info">
+                                    <p>Chen</p>
+                                </div>
+                            </div>
+                            <div class="item wh">
+                                <div style="display:inline;" class="c">密碼</div>
+                                <div style="display: inline;" class="e">Passport</div>
+                                <div class="info">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="wrap">
+                        <div class="container2">
+                            <div class="item wh">
+                                <div style="display:inline;" class="c">生日</div>
+                                <div style="display: inline;" class="e">Birthday</div>
+                                <div class="info">
+                                    <p>2000/03/17</p>
+                                </div>
+                            </div>
+                            <div class="item wh">
+                                <div style="display:inline;" class="c">電話號碼</div>
+                                <div style="display: inline;" class="e">Phone</div>
+                                <div class="info">
+                                    <p>0910233456</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container3">
+            <div class="err">
+                <p>*選擇欲修改的欄位</p>
+            </div>
+            <div class="edit_btn">
+                <button type="button" class="btn btn-lg btn-edit">修改帳戶資訊</button>
+            </div>
+        </div>
+    </div>
     <div class="footer">
         <div class="main-footer">
             <div class="container2">
