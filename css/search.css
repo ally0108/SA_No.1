@@ -26,6 +26,26 @@
   margin-right: 10px;
 }
 
+.list-group-item{
+  border-color: white;
+}
 .list-group-horizontal{
   padding-left:0pt;
+}
+.place-name{
+  font-size: 14pt;
+}
+.btn{
+  margin-right:20px;
+}
+.container-fluid{
+  margin: 0 auto;
+}
+.content-left{
+  float: left;
+}
+.cloud-picture{
+  height:100vh;
+  float:right;
+  opacity:0.6;
 }
