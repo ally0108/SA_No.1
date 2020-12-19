@@ -11,8 +11,8 @@
     <style type="text/css"></style>
   </head>
   <body>
-    <div class="container-fluid">
-      <div class="content-left">
+    <div class="row">
+      <div class="col-sm-8">
         <nav class="navbar navbar-expand-lg navbar-light navbar-trans">
           <a class="navbar-brand" href="#">
               <img src="pic/SA_mark.jpg" alt="Logo" style="width: 200px" />
@@ -39,7 +39,7 @@
           </div>
         </nav>
 
-        <div class="card border-white mt-10 mb-3" style="width:50rem;margin-left:30px;margin-top:30px">
+        <div class="card border-white mt-10 mb-3" style="width:45rem;margin-left:30px;margin-top:30px">
           <ul class="list-group list-group-horizontal" style="border-color:white">
             <li class="list-group-item">
               <!--Variable-->
@@ -55,66 +55,109 @@
             </li>
           </ul>
         </div>
-        <div class="card border-white mt-10 mb-3" style="width:50rem;margin-left:30px;margin-top:30px">
-          <ul class="list-group list-group-horizontal" style="border-color:white">
-            <li class="list-group-item" >
-              <div class="btn-group"  role="group" aria-label="Basic example">
-                <div class="dropdown"style="margin-left:2px margin-right:20px">
-                  <button class="btn shadow rounded dropdown-toggle" style="background-color:orange;width:8rem" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    排序依據
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li><a class="dropdown-item" href="#">價錢</a></li>
-                    <li><a class="dropdown-item" href="#">時間</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn shadow rounded" style="width:8rem;background-color:orange">篩選</button>
-                <button type="button" class="btn shadow rounded" style="width:8rem;color:white;background-color:rgb(125, 171, 202)">經濟艙</button>
-                <button type="button" class="btn shadow rounded" style="width:8rem;color:white;background-color:rgb(24, 56, 71)">商務艙</button>
-                <button type="button" class="btn shadow rounded" style="width:8rem;color:white;background-color:rgb(20, 41, 59)">頭等艙</button>
+
+        <div class="row border-white" style="margin-left:50px;">
+          <div class="btn-group"  role="group" aria-label="Basic example">
+            <div class="dropdown"style="margin-left:2px ">
+              <button class="btn shadow rounded dropdown-toggle" style="width:10rem;background-color:orange;" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                排序依據
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">價錢</a></li>
+                <li><a class="dropdown-item" href="#">時間</a></li>
+              </ul>
+            </div>
+            <button type="button" class="btn shadow rounded" style="margin-left:12px;margin-right:12px;width:10rem;background-color:orange">篩選</button>
+            <button type="button" class="btn shadow rounded" style="margin-left:12px;margin-right:12px;width:10rem;color:white;background-color:rgb(125, 171, 202)">經濟艙</button>
+            <button type="button" class="btn shadow rounded" style="margin-left:12px;margin-right:12px;width:10rem;color:white;background-color:rgb(24, 56, 71)">商務艙</button>
+            <button type="button" class="btn shadow rounded" style="margin-left:12px;margin-right:12px;width:10rem;color:white;background-color:rgb(20, 41, 59)">頭等艙</button>
+          </div>
+        </div>
+
+        <div class="overflow-auto" style="width:62rem;height:450px;margin-top:30px;padding-right:10px ;">
+        <!--這裡應該要寫成迴圈print班機:-->
+          <div class="card" style="padding-bottom:20px;margin-top:30px;margin-left:50px;width:57rem;background-color:rgb(146, 204, 231)">
+            <div class="row" style="height:150px;padding-top:20px;padding-bottom:20px;padding-left:30px;padding-right:30px">
+              <div class="col-sm-5">
+                <h5><span style="color:white;">18:40&emsp; </span><span style="color:secondary ">桃園國際機場 (TPE)</span><br/>
+                &emsp;<i class="fas fa-sm fa-caret-down" style="color:white"></i><br/>
+                <span style="color:white">04:50&emsp; </span><span style="color:secondary ">約翰甘迺迪國際機場 (JFK)</span>
+                <h5>飛行時間：14hr50m</h5>
+                <p>BR511</p>
               </div>
-            </li>
-          </ul>
-          <!--這裡應該要寫成迴圈print班機-->
-          <div class="card-group">
-            <div class="card cardmt-10 mb-3" style="width:50rem;background-color:rgb(124, 201, 236)">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-1">
-                    <div class="row">
-                      <div class="col-sm-4" style="color:white">
-                        <h4>ㄔㄛ</h4>6:40</h4>
-                      </div>
-                      <div class="col" style="color:black">
-                        <p>桃園國際機場 (TPE)</p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-8">
-                        &nbsp;&nbsp;<i class="fas fa-caret-down fa-lg" style="color:white"></i>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-4" style="color:white">
-                        <h4>17:50</h4>
-                      </div>
-                      <div class="col-sm-8" style="color:secondary">
-                        <p>約翰甘迺迪國際機場 (JFK)</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-2"></div>
-                  <div class="col-sm-3" style="background-color: white;"></div>
-                  <div class="col-sm-3" style="background-color: white;"></div>
-                  <div class="col-sm-3" style="background-color: white;"></div>
-                </div>
+              <div class="col-sm money-card">
+                <p>TWD</p>
+                <h4>56000</h4>
+              </div>
+              <div class="col-sm money-card" >
+                <p>TWD</p>
+                <h4>23330</h4>
+              </div>
+              <div class="col-sm money-card" >
+                <p>TWD</p>
+                <h4>13800</h4>
               </div>
             </div>
           </div>
-
+          <div class="card" style="padding-bottom:20px;margin-top:30px;margin-left:50px;width:57rem;background-color:rgb(146, 204, 231)">
+            <div class="row" style="height:150px;padding-top:20px;padding-bottom:20px;padding-left:30px;padding-right:30px">
+              <div class="col-sm-5">
+                <h5><span style="color:white;">18:40&emsp; </span><span style="color:secondary ">桃園國際機場 (TPE)</span><br/>
+                &emsp;<i class="fas fa-sm fa-caret-down" style="color:white"></i><br/>
+                <span style="color:white">04:50&emsp; </span><span style="color:secondary ">約翰甘迺迪國際機場 (JFK)</span>
+                <h5>飛行時間：14hr50m</h5>
+                <p>BR511</p>
+              </div>
+              <div class="col-sm money-card">
+                <p>TWD</p>
+                <h4>56000</h4>
+              </div>
+              <div class="col-sm money-card" >
+                <p>TWD</p>
+                <h4>23330</h4>
+              </div>
+              <div class="col-sm money-card" >
+                <p>TWD</p>
+                <h4>13800</h4>
+              </div>
+            </div>
+          </div>
+          <div class="card" style="padding-bottom:20px;margin-top:30px;margin-left:50px;width:57rem;background-color:rgb(146, 204, 231)">
+            <div class="row" style="height:150px;padding-top:20px;padding-bottom:20px;padding-left:30px;padding-right:30px">
+              <div class="col-sm-5">
+                <h5><span style="color:white;">18:40&emsp; </span><span style="color:secondary ">桃園國際機場 (TPE)</span><br/>
+                &emsp;<i class="fas fa-sm fa-caret-down" style="color:white"></i><br/>
+                <span style="color:white">04:50&emsp; </span><span style="color:secondary ">約翰甘迺迪國際機場 (JFK)</span>
+                <h5>飛行時間：14hr50m</h5>
+                <p>BR511</p>
+              </div>
+              <div class="col-sm money-card">
+                <p>TWD</p>
+                <h4>56000</h4>
+              </div>
+              <div class="col-sm money-card" >
+                <p>TWD</p>
+                <h4>23330</h4>
+              </div>
+              <div class="col-sm money-card" >
+                <p>TWD</p>
+                <h4>13800</h4>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>  
-      <img class="cloud-picture" src="pic/cloud background.png" >
+        <div class="row justify-content-between" style="padding-left: 70px;padding-top:40px">
+          <div class="col-sm-4" style="padding-left:50px">
+            <button type="button" class="btn shadow rounded" style="width:10rem;border-color:orange;color:orange;background-color:white">上一步</button>
+          </div>
+          <div class="col-sm-4" style="padding-left:50px">
+            <button type="button" class="btn shadow rounded" style="width:10rem;color:white;background-color:orange">下一步</button>
+          </div>
+        </div>
+      </div> 
+      <div class="col-sm-4">
+        <img class="cloud-picture"src="pic/cloud background.png" >
+      </div>
     </div>
   </body>
 </html>
