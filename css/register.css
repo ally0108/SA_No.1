@@ -1,0 +1,29 @@
+.background{
+    position: relative;
+    height: 100vh;
+    background:url(../pic/modified_bg.png)center top;
+    background-size:cover;
+}
+.nav-link{
+    font-size:15pt;
+    color:rgb(27, 43, 114);
+}
+.left-container{
+    background:linear-gradient(rgb(122, 181, 230),white);
+    height:30rem;
+}
+.register-container{
+    width:50rem;
+    height:31rem;
+}
+.input{
+    width:12rem;
+    height:30px;
+    border-radius: 5px;
+}
+.col-sm{
+    margin-top: 25px;
+    margin-bottom:15px;
+    margin-left:10px;
+    margin-right:5px;
+}
