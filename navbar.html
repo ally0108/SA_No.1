@@ -125,65 +125,41 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
-        <a class="navbar-brand" href="#">
-            <div class="navbar-contact">
-                <div class="ti">
-                    <h1 style="display:inline;" class="s">Super</h1>
-                    <h1 style="display:inline;" class="a">Airline</h1>
-                </div>
+            <a class="navbar-brand" href="#">Super Airline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="member_home.html">會員專區</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">最新消息</a>
+                  </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    訂票專區
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="search.html">查詢班機</a>
+                    <a class="dropdown-item" href="#">搜尋班機</a>
+                    
+                </li>
+                
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <span class="navbar-text mr-sm-2">
+                    訪客，你好！
+                  </span>
+                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">登入</button>
+              </form>
             </div>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav mr-auto">
-                <div class="nav-item">
-                    <a style="color: gainsboro;" class="nav-link" href="#">會員專區</a>
-                </div>
-                <div class="nav-item">
-                    <a style="color: gainsboro;" class="nav-link" href="#">最新消息</a>
-                </div>
-                <div class="nav-item">
-                    <a style="color: gainsboro;" class="nav-link" href="#">查詢班機</a>
-                </div>
-            </div>
-            <div class="nav-item dropdown navbar-user">
-                <a class="nav-link dropdown-toggle a1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user"></i>Hi, Howhow
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-    <div class="main-navbar">
-        <div class="container2">
-            <div class="title">
-                <p style="display:inline;" class="s">會員專區</p>
-                <p style="display:inline;" class="a">Member</p>
-                <div class="wrap">
-                    <div class="container3">
-                        <div class="item">
-                            <a href="#"><i class="fas fa-home"></i>首頁</a>
-                            <hr>
-                        </div>
-                        <div class="item">
-                            <a href="#">我的訂單</a>
-                        </div>
-                        <div class="item">
-                            <a href="#">帳戶資訊</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+          </nav>
 </body>
 
 </html>
