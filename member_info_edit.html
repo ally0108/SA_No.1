@@ -78,6 +78,58 @@
             color: white;
             background-color: #FFA932;
         }
+
+        .modal-title-ch {
+            padding-left: 30px;
+            display: inline;
+            font-size: 30px;
+        }
+
+        .modal-title-en {
+            display: inline;
+            font-size: 25px;
+            line-height: 2;
+        }
+
+        .input_control {
+            padding-left: 30px;
+            padding-top: 30px;
+        }
+
+        .input {
+            border: 2px;
+            border-bottom-style: solid;
+            border-top-style: none;
+            border-left-style: none;
+            border-right-style: none;
+            border-color: #FFA932;
+            font-size: 20px;
+            outline: 0;
+        }
+
+        .confirm {
+            padding-top: 35px;
+            text-align: right;
+            padding-right: 30px;
+        }
+
+        .btn-primary {
+            font-weight: bold;
+            font-size: 20px;
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+            background-color: transparent;
+            border-color: #FFA932;
+            color: #FFA932;
+        }
+
+            .btn-primary:hover{
+                background-color: #FFA932;
+                border-color: #FFA932;
+                color: white;
+            }
+
     </style>
 </head>
 
@@ -151,7 +203,7 @@
                     <div class="wrap">
                         <div class="container2">
                             <div class="item wh" data-toggle="modal" data-target="#modify_fname_model">
-                                <div style="display:inline;" class="c">名子</div>
+                                <div style="display:inline;" class="c">名字</div>
                                 <div style="display: inline;" class="e">First name</div>
                                 <div class="info">
                                     <p>Howhow</p>
@@ -179,7 +231,7 @@
                             </div>
                             <div class="item wh" data-toggle="modal" data-target="#modify_password_model">
                                 <div style="display:inline;" class="c">密碼</div>
-                                <div style="display: inline;" class="e">Passport</div>
+                                <div style="display: inline;" class="e">Password</div>
                                 <div class="info">
                                     <p></p>
                                 </div>
@@ -270,18 +322,19 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modify_fname_label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <br>
+                    <div class="modal-title-ch" id="modify_fname_label">名字</div>
+                    <div class="modal-title-en" id="modify_fname_label">First name</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10006;</span>
+                    </button>
+                    <div class="input_control">
+                        <input class="input" type="text" name="modify_fname" size="30px">
+                    </div>
+                    <div class="confirm">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -291,18 +344,19 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modify_lname_label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <br>
+                    <div class="modal-title-ch" id="modify_lname_label">姓氏</div>
+                    <div class="modal-title-en" id="modify_lname_label">Last name</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10006;</span>
+                    </button>
+                    <div class="input_control">
+                        <input class="input" type="text" name="modify_lname" size="30px">
+                    </div>
+                    <div class="confirm">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -312,18 +366,19 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modify_birth_label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <br>
+                    <div class="modal-title-ch" id="modify_birth_label">生日</div>
+                    <div class="modal-title-en" id="modify_birth_label">Birthday</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10006;</span>
+                    </button>
+                    <div class="input_control">
+                        <input class="input" type="text" name="modify_birth" size="30px">
+                    </div>
+                    <div class="confirm">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -333,18 +388,19 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modify_email_label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <br>
+                    <div class="modal-title-ch" id="modify_email_label">電子郵件</div>
+                    <div class="modal-title-en" id="modify_email_label">Email</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10006;</span>
+                    </button>
+                    <div class="input_control">
+                        <input class="input" type="text" name="modify_email" size="30px">
+                    </div>
+                    <div class="confirm">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -354,18 +410,19 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modify_password_label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <br>
+                    <div class="modal-title-ch" id="modify_password_label">密碼</div>
+                    <div class="modal-title-en" id="modify_password_label">Password</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10006;</span>
+                    </button>
+                    <div class="input_control">
+                        <input class="input" type="text" name="modify_password" size="30px">
+                    </div>
+                    <div class="confirm">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -375,18 +432,19 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modify_phone_label">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <br>
+                    <div class="modal-title-ch" id="modify_phone_label">電話號碼</div>
+                    <div class="modal-title-en" id="modify_phone_label">Phone</div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&#10006;</span>
+                    </button>
+                    <div class="input_control">
+                        <input class="input" type="text" name="modify_phone" size="30px">
+                    </div>
+                    <div class="confirm">
+                        <button type="button" class="btn btn-primary">確認</button>
+                    </div>
                 </div>
             </div>
         </div>
