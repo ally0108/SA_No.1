@@ -196,7 +196,11 @@
        
         margin-bottom: 20px;
         color:#13A9C1;
-        border-bottom: 1px dotted #13A9C1 ;
+        
+    }
+    .container3 hr{
+        border-top:1px solid #13A9C1;
+        margin-bottom: 20px;
     }
     .news-cards{
         display: flex;
@@ -210,7 +214,41 @@
     .card-title{
         color:#425c6b;
         font-family: Arial, Helvetica, sans-serif ;
-        border-bottom: 1px dotted #425c6b;
+        border-bottom: 1px solid #425c6b;
+    }
+    .container4{
+        display: flex;
+        height: 40vh;
+        width: 93%;
+        justify-content: center;
+        margin-bottom: 30px;
+        
+    }
+    .image-holder{
+        margin-left: 7%;
+        margin-right: 50px;
+        margin-top: 0px;
+        
+    }
+    .image-holder img{
+        width: 30vw;
+        height: 35vh;
+        border-radius: 20px;
+    }
+    .about{
+        width: 70%;
+    }
+    .about h1{
+        color :#13A9C1;
+
+    }
+    .about hr{
+        border-top:1px solid #13A9C1;
+    }
+
+    .about h5{
+        color: #425c6b;
+        line-height: 1.4;
     }
     </style>
 </head>
@@ -226,10 +264,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">首頁 <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="home.html">首頁 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="member_home.html">會員專區</a>
+                  <a class="nav-link" href="#">會員專區</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">最新消息</a>
@@ -239,18 +277,18 @@
                     訂票專區
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="search.html">查詢班機</a>
+                    <a class="dropdown-item" href="#">查詢班機</a>
                     <a class="dropdown-item" href="#">搜尋班機</a>
                     
                 </li>
                 
               </ul>
-              <form class="form-inline my-2 my-lg-0">
+              
                 <span class="navbar-text mr-sm-2">
                     訪客，你好！
                   </span>
-                <button class="btn btn-outline-light my-2 my-sm-0" type="submit">登入</button>
-              </form>
+                <button class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
+              
             </div>
           </nav>
         <div class="container">
@@ -314,6 +352,7 @@
 </div>
 <div class="container3">
     <h1 ><i class="fa fa-arrow-circle-right " aria-hidden="true"></i> 最新消息</h1>
+    <hr>
     <div class="news-cards">
         <div class="card" style="width: 18rem;">
             <img src="./pic/白舍咖啡廳-14.jpg" class="card-img-top" alt="...">
@@ -339,6 +378,16 @@
               <a href="#" class="btn btn-outline-info mr-auto">查看更多</a>
             </div>
           </div>
+    </div>
+</div>
+<div class="container4">
+    <div class="image-holder">
+        <img src="pic/白舍咖啡廳-14.jpg" alt="">
+    </div>
+    <div class="about">
+        <h1><i class="fa fa-arrow-circle-right " aria-hidden="true"></i> 關於我們</h1>
+        <hr>
+        <h5>介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹介紹紹介紹介紹介紹介紹介紹紹介紹介紹介紹介紹介紹紹介紹介紹介紹介紹介紹紹介紹介紹介紹介紹介紹紹介紹介紹介紹紹介紹介紹介紹介紹介紹紹介紹介紹介紹介紹介紹紹介紹介紹介紹介紹介紹</h5>
     </div>
 </div>
     <div class="main-footer">
