@@ -1,4 +1,4 @@
-package java.db;
+package ncu.im3069.demo.util;
 
 import java.sql.*;
 import java.util.Properties;
@@ -23,7 +23,7 @@ public class DBMgr {
 
     /** DB_URL常數，指定資料庫所在之IP或網域、Port號碼與指定所要使用資料庫 */
 //    static final String DB_URL = "jdbc:mysql://localhost:3306/missa?allowPublicKeyRetrieval=true&useSSL=false";
-    static final String DB_URL = "jdbc:mysql://sa.c6gus8ir2ubi.us-east-1.rds.amazonaws.com:3306/sa_database";
+    static final String DB_URL = "jdbc:mysql://sa.c6gus8ir2ubi.us-east-1.rds.amazonaws.com:3306/missa";
 
     /** USER常數，所要使用之資料庫使用者帳號 */
     static final String USER = "root";
