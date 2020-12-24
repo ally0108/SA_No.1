@@ -71,11 +71,43 @@
         .label .btn-gap {
             margin: 5px;
         }
+        
+        .modal-header .title {
+            margin: auto;
+            color: #FFA932;
+        }
 
-        .container4 .container4_top
-        {
-            display: flex;
-            flex-direction: row;
+        .modal-body .container-border {
+            border-style: solid;
+            margin: 4px;
+            padding: 5px;
+        }
+
+        .modal-body .container-border .i_pos {
+            margin-left: 50%;
+        }
+
+        .modal-body .container-border b {
+            margin-right: 8px;
+        }
+
+        .modal-body .container-border .label {
+            margin: auto;
+        }
+
+        .modal-body .container-border .pos {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+        .modal-body .container-border .item{
+            font-weight: bold;
+            margin: 5px 35px;
+        }
+        .modal-footer .btn_pos{
+            margin: auto;
+            background-color: #FFA932;
+            color: white;
         }
     </style>
 </head>
@@ -235,57 +267,79 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="getOrderLabel">您的訂單</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <h3 class="modal-title title" id="getOrderLabel"><b>您的訂單</b></h3>
                 </div>
                 <div class="modal-body">
-                    <h5>旅程詳情</h5>
-                    <div class="wrap">
-                        <div class="container4">
-                            <div class="container4_top">
-                                <div class="item">航班</div>
-                                <div class="item">航班</div>
-                                <div class="item">航班</div>
+                    <h5><b>旅程詳情</b></h5>
+                    <div class="container-border">
+                        <table class="table table-borderless">
+                            <tbody>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td><b>航班</b> Super Airline</td>
+                                    <td><b>機型</b> SA103</td>
+                                    <td><b>艙等</b>經濟艙 5座位</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>
+                                        <div class="pos">台北-台灣桃園機場(TPE)</div>
+                                    </td>
+                                    <td>
+                                        <div class="i_pos">
+                                            <i class="fas fa-arrow-right"></i>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="pos">紐約-約翰.甘迺迪國際機場(JFK)</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>
+                                        <div class="label">起點</div>
+                                        <div class="label">2020-02-22 06:18</div>
+                                    </td>
+                                    <td>
+                                        <div class="label">飛行時間</div>
+                                        <div class="label">14hr45min</div>
+                                    </td>
+                                    <td>
+                                        <div class="label">終點</div>
+                                        <div class="label">2020-02-22 16:20</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h5><b>訂單詳情</b></h5>
+                    <div class="container-border">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="item">
+                                    訂單成立: 2020年 12月12日
+                                </div>
                             </div>
-                            <div class="container4_body">
+                            <div class="col-12 col-md-6">
                                 <div class="item">
-                                    <div class="port">
-                                        台北-台灣桃園機場(TPE)
-                                    </div>
-                                </div>
-                                <div class="item">
-
-                                </div>
-                                <div class="item">
-                                    <div class="port">
-                                        台北-台灣桃園機場(TPE)
-                                    </div>
+                                    機票詳細資訊: 5張(3成人2小孩)
                                 </div>
                             </div>
-                            <div class="container4_bottom">
-                                <div class="item">起點
-                                    <p>2021-12-03 12:00</p>
-                                </div>
-                                <div class="item">飛行時間
-                                    <p>2021-12-03 12:00</p>
-                                </div>
-                                <div class="item">終點
-                                    <p>2021-12-03 12:00</p>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="item">
+                                    訂單金額: NTD100000
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <h5>訂單詳情</h5>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn button4 btn_pos" data-dismiss="modal">返回清單</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>
