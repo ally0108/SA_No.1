@@ -44,7 +44,7 @@
             background-color: #627885;
         }
 
-        .outer thead th{
+        .outer thead th {
             color: gainsboro;
             border: solid 2px gainsboro;
             padding: 16px 8px;
@@ -52,13 +52,13 @@
             text-align: center;
         }
 
-        .outer tbody td{
+        .outer tbody td {
             font-size: 20px;
             color: black;
             text-align: center;
         }
 
-        .ware{
+        .ware {
             color: purple;
         }
 
@@ -70,6 +70,12 @@
 
         .label .btn-gap {
             margin: 5px;
+        }
+
+        .container4 .container4_top
+        {
+            display: flex;
+            flex-direction: row;
         }
     </style>
 </head>
@@ -157,11 +163,14 @@
                                 <td scope="row">2020-12-25</td>
                                 <td>SA 123</td>
                                 <td>台北-紐約</td>
-                                <td><div class="ware">頭等艙</div></td>
+                                <td>
+                                    <div class="ware">頭等艙</div>
+                                </td>
                                 <td>2大人2小孩</td>
                                 <td class="label">
                                     <div class="btn-gap">
-                                        <button type="button" class="btn btn-outline-warning waves-effect">修改訂單</button>
+                                        <button type="button" class="btn btn-outline-warning waves-effect"
+                                            data-toggle="modal" data-target="#getOrder">修改訂單</button>
                                     </div>
                                     <div class="btn-gap">
                                         <button type="button" class="btn btn-outline-warning waves-effect">刪除訂單</button>
@@ -217,6 +226,63 @@
             </div>
             <div class="copyright">
                 Copyright &copy; 2020 superairline開發團隊 All Rights Reserved. 隱私權政策 使用條款
+            </div>
+        </div>
+    </div>
+    <!--Model getOrder-->
+    <div class="modal fade" id="getOrder" tabindex="-1" role="dialog" aria-labelledby="getOrderLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="getOrderLabel">您的訂單</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h5>旅程詳情</h5>
+                    <div class="wrap">
+                        <div class="container4">
+                            <div class="container4_top">
+                                <div class="item">航班</div>
+                                <div class="item">航班</div>
+                                <div class="item">航班</div>
+                            </div>
+                            <div class="container4_body">
+                                <div class="item">
+                                    <div class="port">
+                                        台北-台灣桃園機場(TPE)
+                                    </div>
+                                </div>
+                                <div class="item">
+
+                                </div>
+                                <div class="item">
+                                    <div class="port">
+                                        台北-台灣桃園機場(TPE)
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container4_bottom">
+                                <div class="item">起點
+                                    <p>2021-12-03 12:00</p>
+                                </div>
+                                <div class="item">飛行時間
+                                    <p>2021-12-03 12:00</p>
+                                </div>
+                                <div class="item">終點
+                                    <p>2021-12-03 12:00</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h5>訂單詳情</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
             </div>
         </div>
     </div>
