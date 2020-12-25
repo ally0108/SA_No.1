@@ -3,6 +3,7 @@
 	<name>Servers</name>
 	<comment></comment>
 	<projects>
+		<project>NCU_MIS_SA</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
