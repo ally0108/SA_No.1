@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>搜尋班機</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/search.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+    <style type="text/css"></style>
+  </head>
+
+  <body>
+    <div class ="row">
+      <div class="col-sm-8">
+        <nav class="navbar navbar-expand-lg navbar-light navbar-trans">
+          <a class="navbar-brand" href="#">
+              <img src="pic/SA_mark.jpg" alt="Logo" style="width: 200px" />
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">最新消息</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">會員專區</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">查詢班機</a>
+              </li>
+              <form class="form-inline my-2 my-lg-0">
+                <i class="fas fa-user"> </i>
+                <span class="navbar-text mr-sm-2">  Hi,**會員姓名！ </span>
+              </form>
+            </ul>
+          </div>
+        </nav>
+        
+        <div style="margin-left:150px;margin-top: 60px;" style="background-color: aqua;">
+          <p class="fs-2 slogan">床 以 外 的 地 方，</p>
+          <p class="fs-2 slogan"> &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;都 是 遠 方</p>
+          <p class="name" style="text-align: center;">- SA 創辦人 Sarah Chang</span>
+        </div>
+
+        <div class="card border-secondary mb-3" style="margin-left:70px;margin-top:110px;width: 30rem;">
+          <ul class="list-group list-group-flush" style="border-color:white">
+            <li class="list-group-item">
+              <p>出 發 地</p>
+              <div class="dropdown" >
+                <a class="btn dropdown-toggle border-secondary mb-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width:23rem;text-align: left;">
+                  台北 - 桃園國際機場 (TPE)
+                </a>
+              <p>目 的 地
+              <div class="dropdown">
+                <a class="btn dropdown-toggle border-secondary mb-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false" style="width:23rem;text-align: left;">
+                  紐約 - 約翰甘迺迪國際機場 (JFK)
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+          </ul>
+          <div class="containter">
+            <div class="row">
+              <div class="col-sm-4">
+                <li class="list-group-item"style="border-color:white;width" >
+                  出發日期<br/>
+                  <input type="text" class="form-control" value="2020-12-10">
+                </li>
+              </div>
+              <div class="col-sm-4">
+                <li class="list-group-item"style="border-color:white;width" >
+                  <div class="dropdown" style="margin-left:10px;">乘客人數<br/>
+                    <a class="btn dropdown-toggle border-secondary mb-3" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="true">
+                      請選擇
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <li><a class="dropdown-item" href="#">1</a></li>
+                      <li><a class="dropdown-item" href="#">2</a></li>
+                      <li><a class="dropdown-item" href="#">3</a></li>
+                      <li><a class="dropdown-item" href="#">4</a></li>
+                    </ul>
+                  </div>
+                 </li> 
+              </div>
+              <div class="col-sm-4">
+                <li class="list-group-item" style="margin-right:3px;border-color:white">
+                  來回<br/>
+                  <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                  </label>
+                </li>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <li class="list-group-item"style="border-color:white;width" >
+                  回程日期<br/>
+                  <input type="text" class="form-control" value="2020-12-17">
+                </li>
+              </div>
+              <div class="col-sm-7 text-center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn" style="margin-top:15px;margin-left:30px;font-size: 18pt; color:orange;">查詢
+                    <i class="fas fa-arrow-circle-right fa-lg" style="color:orange"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <div class="col-sm-4">
+        <img class="cloud-picture"src="pic/cloud background.png" >
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>頁尾</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <style type="text/css">
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+       *{
+           margin: 0;
+           padding: 0;
+           list-style: none;
+           font-family: 'Noto Sans TC',sans-serif;
+       }
+       body{
+           background-color: black;
+       }
+       .main-footer{
+           padding: 30px 0 0 0;
+           /* background: linear-gradient(-20deg,#3f5494,#08c7a5); */
+           background: #627885;
+       }
+       .main-footer .container2{
+           display: flex;
+           width: 80%;
+           margin:  0 20px;
+       }
+
+       .footer-contact{
+        display: block;
+        line-height: 24px;
+           padding: 0 200px 0 0;
+       }
+       .footer-contact .linker{
+           width: 200px;
+           margin: 20px;
+           letter-spacing: 5px;
+           color: #FFF;
+       }
+       .footer-contact .linker:hover{
+           
+           color: #fa0;
+
+       }
+       .footer-contact .ti{
+        margin:  0 0 40px;
+       }
+       .footer-contact .s{
+            color: #fa0;
+            margin-bottom: 10px;
+
+       }
+       .footer-contact .a{
+            color: gainsboro;
+            margin-bottom: .5em;
+       }
+       .footer-contact .c{
+            color: #fFF;
+            margin-bottom: .5em;
+       }
+       .footer-contact h4{
+            color: rgb(206, 206, 206);
+            margin-bottom: .5em;
+       }
+
+       .footer-item{
+           width: 0;
+           flex-grow: 1;
+           margin:  0 20px;
+  
+       }
+       .footer-item h4{
+           font-size: 24px;
+           color:#fa0;
+           border-bottom: 1px dotted #fff;
+           margin-bottom: .5em;
+           padding-bottom: .5em;
+       }
+       .footer-item nav{
+           display: flex;
+           flex-direction: column;
+       }
+       .footer-item nav a{
+           color: #fff;
+            line-height:  1.4;
+            text-decoration: none;
+            padding: 5px 0;
+       }
+       .footer-item nav a:hover{
+           color :#fa0;
+       }
+       .copyright{
+           text-align: right;
+           padding: 10px 200px;
+          color: rgb(206, 206, 206);
+           
+       }
+    </style>
+</head>
+<body>
+    
+    <div class="main-footer">
+        <div class="container2">
+            <div class="footer-contact">
+                <div class="ti"><h1 style="display:inline;" class="s">Super</h1>
+                    <h1 style="display:inline;" class="a">Air</h1>
+                    <h1 style="display:inline;" class="c">開發團隊</h1></div>
+                
+                <h4>連絡電話: 09-12852254</h4>
+                <h4>E-mail: superair@gmail.com</h4>
+                <div class="linker">
+                    <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-google fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="footer-item"> 
+                <h4>會員</h4>
+                <nav>
+                    <a href="#">會員專區</a>
+                    <a href="#">會員登入</a>                  
+                </nav>
+            </div>
+            <div class="footer-item"> 
+                <h4>訂票</h4>           
+                <nav>
+                    <a href="#">查詢班機</a>
+                    <a href="#">搜尋班機</a>
+                </nav>
+            </div>
+            <div class="footer-item"> 
+                <h4>資訊</h4>
+                <nav>                    
+                    <a href="#">最新消息</a>
+                </nav>
+            </div>      
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2020 superairline開發團隊 All Rights Reserved. 隱私權政策 使用條款
+        </div>
+    </div>
+
+</body>
+</html>
