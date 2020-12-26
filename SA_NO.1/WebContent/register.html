@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>註冊會員</title>
+        <link rel="stylesheet" href="statics/font-awesome-4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="./statics/css/register.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
+        <script src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+        <style type="text/css"></style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+      </head>
+<body>
+    <div class="background">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
+            <a class="navbar-brand" href="#">
+                <img src="statics/img/removebg-mark.png" alt="Logo" style="width: 200px" />
+            </a>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">最新消息</a>
+                  </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="member_home.html">會員專區</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="search.html">查詢班機</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+        <div class="register-container text-secondary" >
+            
+                <div class=" left-container" >
+                    <span style="font-weight:lighter;font-size: 20pt;"> 會 員 註 冊<br/> Sign Up</span>
+                </div>
+                <div class="input-container" >
+                    <form class="input-area">
+                        <div class="row g-3 inputer">
+                            <div class="col-md-6">
+                                <label for="last_name" class="form-label">姓氏</label>
+                                <input type="text" class="form-control" id="last_name">
+                              </div>
+                              <div class="col-md-6">
+                                  <label for="first_name" class="form-label">名字</label>
+                                  <input type="text" class="form-control test" id="first_name">
+                                </div>
+                        </div>
+                        <div class="row g-3 inputer">
+                            <div class="col-md-12">
+                                <label for="email" class="form-label">電子郵件 (作為使用者帳號)</label>
+                                <input type="email" class="form-control" id="email">
+                              </div>
+                        </div>
+                        <div class="row g-3 inputer">
+                            <div class="col-md-6">
+                                <label for="password" class="form-label">密碼</label>
+                                <input type="password" class="form-control" id="password">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="confirm_password" class="form-label">確認密碼</label>
+                                <input type="password" class="form-control" id="confirm_password">
+                              </div>
+                        </div>
+
+                        <div class="row g-3 inputer">
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">連絡電話</label>
+                                <input type="text" class="form-control" id="phone">
+                              </div>
+                              <div class="col-md-6">
+                                <label for="birthday" class="form-label">生日</label>
+                                <input type="text" class="form-control" id="birthday">
+                              
+                            </div>
+                            
+                            
+                        </div>
+                        <div class="row g-3 inputer">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="admin">會員權限</label>
+                                    <select class="form-control" id="auth">
+                                      <option value="0" selected>工讀生</option>
+                                      <option value="1">管理員</option>
+                                    </select>
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="btn-area">
+                            <button type="button" class="btn btn-info btn-block" id="submit">確認註冊</button>
+                        </div>
+     
+                    </form>
+                    
+                </div>
+            
+        </div>
+        
+    </div>
+    
+</body> 
+<script type="text/javascript">
+    $(document).ready(function() {
+        // 處理表單點擊事件
+        var $form = $('#submit');
+        $form.click(function() {
+            alert("hi");
+            submit();
+        });
+
+        function submit() {
+            var fname = $('#first_name').val();
+            var lname = $('#last_name').val();
+            var email = $('#email').val();
+            var password = $('#password').val();
+            var confirm_password = $('#confirm_password').val();
+            var phone = $('#phone').val();
+            var birthday = $('#birthday').val();
+            var auth = $('#auth').val();
+
+            var email_rule = /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+            var password_rule = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+            if (!email_rule.test(email)) {
+                alert("Email格式不符！");
+            }
+            else if(!password_rule.test(password)) {
+                alert("密碼格式不符，長度至少8，且至少包含一個數字和英文字母！");
+            }
+            else if(password!=confirm_password){
+                alert("確認密碼不相同");
+            }
+            else {
+                // 將資料組成JSON格式
+                var data_object = {
+                    "last_name": lname,
+                    "first_name": fname,
+                    "email": email,
+                    "password": password,
+                    "birthday": birthday,
+                    "phone" : phone,
+                    "auth" : auth
+                };
+
+                // 將JSON格式轉換成字串
+                var data_string = JSON.stringify(data_object);
+
+                // 發出POST的AJAX請求
+                $.ajax({
+                        type: "POST",
+                        url: "api/member.do",
+                        data: data_string,
+                        crossDomain: true,
+                        cache: false,
+                        dataType: 'json',
+                        timeout: 5000,
+                        success: function (response) {
+                            if(response.status == 200){
+                                alert("成功連線到伺服器！");
+                            }
+                        },
+                        error: function () {
+                            alert("無法連線到伺服器！");
+                        }
+                });
+            }
+        }
+
+        
+    });
+</script>
