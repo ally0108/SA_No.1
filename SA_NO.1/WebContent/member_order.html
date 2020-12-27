@@ -71,7 +71,7 @@
         .label .btn-gap {
             margin: 5px;
         }
-        
+
         .modal-header .title {
             margin: auto;
             color: #FFA932;
@@ -100,11 +100,13 @@
             font-weight: bold;
             letter-spacing: 3px;
         }
-        .modal-body .container-border .item{
+
+        .modal-body .container-border .item {
             font-weight: bold;
             margin: 5px 35px;
         }
-        .modal-footer .btn_pos{
+
+        .modal-footer .btn_pos {
             margin: auto;
             background-color: #FFA932;
             color: white;
@@ -341,5 +343,82 @@
             </div>
         </div>
 </body>
+<script type="text/javascript">
+    // 全域變數紀錄SQL指令下的次數
+    var sql_num = 0;
+    function deleteMember(id) {
+        var check = window.confirm("確認刪除訂單？");
+        if (check == true) {
+            console.log("You pressed OK!");
+            var request = { 'id': id };
+            var data_string = JSON.stringify(request);
+            $.ajax({
+                type: "DELETE",
+                url: "api/order.do",
+                crossDomain: true,
+                data: data_string,
+                cache: false,
+                dataType: 'json',
+                timeout: 5000,
+                success: function (response) {
+                    if (response.status == 200) {
+                        $("#flashMessage").html("成功! 已經成功刪除訂單...");
+                        $("#flashMessage").show();
+                        getAllOrder();
+                    }
+                    console.log(response);
+                },
+                error: function () {
+                    alert("無法連線到伺服器！");
+                }
+            });
+        }
+        else {
+            console.log("You pressed Cancel!");
+        }
+    }
+
+    function getAllOrder() {
+        // 發出POST的GET請求取得所有會員列表
+        $.ajax({
+            type: "GET",
+            url: "api/order.do",
+            crossDomain: true,
+            cache: false,
+            dataType: 'json',
+            timeout: 5000,
+            success: function (response) {
+                if (response.status == 200) {
+                    updateTable(response.response.data);
+                    updateSQLTable(response.response);
+                }
+                console.log(response);
+            },
+            error: function () {
+                alert("無法連線到伺服器！");
+            }
+        });
+    }
+
+    // 更新會員列表表格
+    function updateTable(data) {
+        $("#table > tbody").empty();
+        var table_html = '';
+        $.each(data, function (index, value) {
+            table_html = '<tr><td scope="row">' + 2020 - 12 - 25 + '</td>';
+            table_html = '<td>' + SA 123 + '</td>';
+            table_html = '<td>' + 台北 - 紐約 + '</td>';
+            table_html = '<td><div class="ware">' + 頭等艙 + '</div></td>';
+            table_html = '<td>' + 2大人2小孩 + '</td>';
+            table_html = '<td class="label">';
+            table_html = '<div class="btn-gap"><button type="button" class="btn btn-outline-warning waves-effect"'+
+            	'data-toggle="modal" data-target="#getOrder">' + 修改訂單 + '</button></div>';
+            table_html = '<div class="btn-gap"><button type="button" class="btn btn-outline-warning waves-effect">' 
+            	+ 刪除訂單 + '</button></div></td></tr>';
+        })
+
+        $("#table > tbody").append(table_html);
+    }
+</script>
 
 </html>

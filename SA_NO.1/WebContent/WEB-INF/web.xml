@@ -4,10 +4,15 @@
     <servlet>
         <servlet-name>member</servlet-name>
         <servlet-class>ncu.im3069.controller.MemberController</servlet-class>
+        <servlet-name>order</servlet-name>
+        <servlet-class>ncu.im3069.controller.OrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>member</servlet-name>
         <url-pattern>/api/member.do</url-pattern>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/api/order.do</url-pattern>
     </servlet-mapping>
+    
 </web-app>
