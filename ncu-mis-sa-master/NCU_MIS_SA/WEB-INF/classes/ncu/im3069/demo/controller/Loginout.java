@@ -47,9 +47,7 @@ public class Loginout extends HttpServlet {
        
         String email = jso.getString("email");
         String password = jso.getString("password");
-        
-       
-        
+
 	  /** 後端檢查是否有欄位為空值，若有則回傳錯誤訊息 */
 	  if (email.isEmpty() || password.isEmpty()) {
 	   /** 以字串組出JSON格式之資料 */
@@ -62,6 +60,7 @@ public class Loginout extends HttpServlet {
 		 
 
 		  Member member = mh. valPassword(email,password);
+		  
 		 
 		 
 
@@ -89,6 +88,10 @@ public class Loginout extends HttpServlet {
 	    cookie2.setPath("/");
 	    response.addCookie(cookie2);
 	    
+	    Cookie cookie3 = new Cookie("memberID",String.valueOf(member.getID()));
+	    cookie3.setMaxAge(60 * 60 * 24);
+	    cookie3.setPath("/");
+	    response.addCookie(cookie3);
 	    String resp = "{status: '200', " + "message: '登入成功', " + "data: {email:" + member.getEmail() + "}}";
 	    jsr.response(resp, response);
 	   }

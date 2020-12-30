@@ -13,14 +13,14 @@
 $(document).ready(function () {
  if ($.cookie('memberName')===undefined) {
                 // 尚未登入
-                alert("logouted")
+              
                 $('#message').hide();
                 $('#login-form').show();
                 $('#logout-button').hide();
                 $('#logout-message').show();
             } else {
                 // 已登入
-                alert("logined")
+               
                 $('#message').show();
                 $('#login-form').hide();
                 $('#logout-button').show();
@@ -81,11 +81,12 @@ $(document).ready(function () {
         }
         .welcome button{
             text-decoration: none;
+            background:linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%);
             opacity: 50%;
             padding: 8px 28px;
             border-radius: 40px;
-            color:black;
-            border-color: #FFF;
+            color:#fff;
+            border: 0px ;
             
         }
         .welcome button:hover{
