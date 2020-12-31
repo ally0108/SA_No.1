@@ -15,49 +15,83 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+     <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+  <script type="text/javascript">
+$(document).ready(function () {
+ if ($.cookie('memberName')===undefined) {
+                // 尚未登入
+              
+                $('#message').hide();
+                $('#login-form').show();
+                $('#logout-button').hide();
+                $('#logout-message').show();
+            } else {
+                // 已登入
+               
+                $('#message').show();
+                $('#login-form').hide();
+                $('#logout-button').show();
+                $('#logout-message').hide();
+
+                showWelcomeMessage($.cookie('memberName'), $.cookie('memberIsAdmin') === "1")
+            }
+	function showWelcomeMessage(name, isAdmin) {
+                $('#message').text('歡迎回來！' + (isAdmin ? "管理員" : "會員") + " " + name);
+            }
+	$('#logout-button').click(function () {
+		$.removeCookie('memberName', { path: '/' });
+		$.removeCookie('memberEmail', { path: '/' });
+		$.removeCookie('memberIsAdmin', { path: '/' });
+		$.removeCookie('memberName', { path: '/NCU_MIS_SA' });
+		$.removeCookie('memberEmail', { path: '/NCU_MIS_SA' });
+		$.removeCookie('memberIsAdmin', { path: '/NCU_MIS_SA' });
+
+        alert('已登出');
+        location.reload();
+    })
+ });
+ </script >
     <link rel="stylesheet" type="text/css" href="statics/css/member.css">
 </head>
 
 <body>
     <div class="head">
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
-            <a class="navbar-brand" href="#">
-                <div class="navbar-contact">
-                    <div class="ti">
-                        <h1 style="display:inline;" class="s">Super</h1>
-                        <h1 style="display:inline;" class="a">Airline</h1>
-                    </div>
-                </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
+            <a class="navbar-brand" href="#">Super Airline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
             </button>
+          
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav mr-auto">
-                    <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="member_home.html">會員專區</a>
-                    </div>
-                    <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">最新消息</a>
-                    </div>
-                    <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">查詢班機</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown navbar-user">
-                    <a class="nav-link dropdown-toggle a1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>Hi, Howhow
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">首頁 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="member_home.html">會員專區</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="#">最新消息</a>
+                  </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="search.html">查詢班機</a>
+                  </li>
+                
+              </ul>
+              
+                <span id="logout-message"class="navbar-text mr-sm-2">
+                    訪客，你好！
+                  </span>
+                  <span id="message"  class="navbar-text mr-sm-2">
+                   
+                  </span>
+                <button id="login-form" class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
+                <button id="logout-button" class="btn btn-outline-light my-2 my-sm-0" >登出</button>
+                
+              
             </div>
-        </nav>
+          </nav>
         <div class="main-navbar">
             <div class="container2">
                 <div class="title">
