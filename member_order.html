@@ -15,48 +15,172 @@
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
         crossorigin="anonymous"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-    <link rel="stylesheet" type="text/css" href="member.css">
+    <script src="statics/js/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="statics/css/member.css">
+    <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+  <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+  <script type="text/javascript">
+	$(document).ready(function () {
+	 if ($.cookie('memberName')===undefined) {
+	                // 尚未登入
+	              
+	                $('#message').hide();
+	                $('#login-form').show();
+	                $('#logout-button').hide();
+	                $('#logout-message').show();
+	            } else {
+	                // 已登入
+	               
+	                $('#message').show();
+	                $('#login-form').hide();
+	                $('#logout-button').show();
+	                $('#logout-message').hide();
+	
+	                showWelcomeMessage($.cookie('memberName'), $.cookie('memberIsAdmin') === "1")
+	            }
+		function showWelcomeMessage(name, isAdmin) {
+	                $('#message').text('歡迎回來！' + (isAdmin ? "管理員" : "會員") + " " + name);
+	            }
+		$('#logout-button').click(function () {
+			$.removeCookie('memberName', { path: '/' });
+			$.removeCookie('memberEmail', { path: '/' });
+			$.removeCookie('memberIsAdmin', { path: '/' });
+			$.removeCookie('memberName', { path: '/NCU_MIS_SA' });
+			$.removeCookie('memberEmail', { path: '/NCU_MIS_SA' });
+			$.removeCookie('memberIsAdmin', { path: '/NCU_MIS_SA' });
+	
+	        alert('已登出');
+	        location.reload();
+	    })
+	 });
+	</script >
+    <style>
+        .content .wrap {
+            display: flex;
+        }
+
+        .content .container {
+            width: 100%;
+            margin-top: 4rem;
+            padding: 0;
+        }
+
+        .outer {
+            overflow-y: auto;
+            height: 600px;
+        }
+
+        .outer {
+            width: 100%;
+            -layout: fixed;
+        }
+
+        .outer th {
+            text-align: left;
+            top: 0;
+            position: sticky;
+            background-color: #627885;
+        }
+
+        .outer thead th {
+            color: gainsboro;
+            border: solid 2px gainsboro;
+            padding: 16px 8px;
+            height: 50px;
+            text-align: center;
+        }
+
+        .outer tbody td {
+            font-size: 20px;
+            color: black;
+            text-align: center;
+        }
+
+        .ware {
+            color: purple;
+        }
+
+        .label {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+
+        .label .btn-gap {
+            margin: 5px;
+        }
+        
+        .modal-header .title {
+            margin: auto;
+            color: #FFA932;
+        }
+
+        .modal-body .container-border {
+            border-style: solid;
+            margin: 4px;
+            padding: 5px;
+        }
+
+        .modal-body .container-border .i_pos {
+            margin-left: 50%;
+        }
+
+        .modal-body .container-border b {
+            margin-right: 8px;
+        }
+
+        .modal-body .container-border .label {
+            margin: auto;
+        }
+
+        .modal-body .container-border .pos {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+        .modal-body .container-border .item{
+            font-weight: bold;
+            margin: 5px 35px;
+        }
+        .modal-footer .btn_pos{
+            margin: auto;
+            background-color: #FFA932;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
     <div class="head">
         <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
-            <a class="navbar-brand" href="#">
-                <div class="navbar-contact">
-                    <div class="ti">
-                        <h1 style="display:inline;" class="s">Super</h1>
-                        <h1 style="display:inline;" class="a">Airline</h1>
-                    </div>
-                </div>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <a class="navbar-brand" href="#">Super Airline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            	<span class="navbar-toggler-icon"></span>
             </button>
+          
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="navbar-nav mr-auto">
-                    <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">會員專區</a>
-                    </div>
-                    <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">最新消息</a>
-                    </div>
-                    <div class="nav-item">
-                        <a style="color: gainsboro;" class="nav-link" href="#">查詢班機</a>
-                    </div>
-                </div>
-                <div class="nav-item dropdown navbar-user">
-                    <a class="nav-link dropdown-toggle a1" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i>Hi, Howhow
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>
-            </div>
+            	<ul class="navbar-nav mr-auto">
+	                <li class="nav-item active">
+	                	<a class="nav-link" href="index.html">首頁 <span class="sr-only">(current)</span></a>
+	                </li>
+	                <li class="nav-item active">
+	                	<a class="nav-link" href="member_home.html">會員專區</a>
+	                </li>
+	                <li class="nav-item active">
+	                	<a class="nav-link " href="#">最新消息</a>
+	                </li>
+	                <li class="nav-item active">
+	                	<a class="nav-link " href="search.html">查詢班機</a>
+	                </li>
+               	</ul>
+              
+                <span id="logout-message"class="navbar-text mr-sm-2">
+                    訪客，你好！
+                </span>
+                <span id="message"  class="navbar-text mr-sm-2"></span>
+                <button id="login-form" class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
+                <button id="logout-button" class="btn btn-outline-light my-2 my-sm-0" >登出</button>
+          	</div>
         </nav>
         <div class="main-navbar">
             <div class="container2">
@@ -66,14 +190,14 @@
                     <div class="wrap">
                         <div class="container3">
                             <div class="item">
-                                <a href="#"><i class="fas fa-home"></i>首頁</a>
+                                <a href="member_home.html"><i class="fas fa-home"></i>首頁</a>
                             </div>
                             <div class="item">
-                                <a href="#">我的訂單</a>
+                                <a href="member_order.html">我的訂單</a>
                                 <hr>
                             </div>
                             <div class="item">
-                                <a href="#">帳戶資訊</a>
+                                <a href="member_info.html">帳戶資訊</a>
                             </div>
                         </div>
                     </div>
@@ -81,7 +205,47 @@
             </div>
         </div>
     </div>
-    <div class="content"></div>
+    <div class="content">
+        <div class="wrap">
+            <div class="container">
+                <div class="outer">
+                    <table class="table table-hover bg-light">
+                        <thead>
+                            <tr>
+                                <th scope="col">班機時間</th>
+                                <th scope="col">班機</th>
+                                <th scope="col">起訖點</th>
+                                <th scope="col">艙等</th>
+                                <th scope="col">人數</th>
+                                <th scope="col">訂單操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td scope="row">2020-12-25</td>
+                                <td>SA 123</td>
+                                <td>台北-紐約</td>
+                                <td>
+                                    <div class="ware">頭等艙</div>
+                                </td>
+                                <td>2大人2小孩</td>
+                                <td class="label">
+                                    <div class="btn-gap">
+                                        <button type="button" class="btn btn-outline-warning waves-effect"
+                                            data-toggle="modal" data-target="#getOrder">修改訂單</button>
+                                    </div>
+                                    <div class="btn-gap">
+                                        <button type="button" class="btn btn-outline-warning waves-effect">刪除訂單</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <div class="footer">
         <div class="main-footer">
             <div class="container2">
@@ -127,6 +291,173 @@
             </div>
         </div>
     </div>
+    <!--Model getOrder-->
+    <div class="modal fade" id="getOrder" tabindex="-1" role="dialog" aria-labelledby="getOrderLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title title" id="getOrderLabel"><b>您的訂單</b></h3>
+                </div>
+                <div class="modal-body" >
+                    <h5 ><b>旅程詳情</b></h5>
+                   <div id="outer">
+                    </div>
+                    <h5><b>訂單詳情</b></h5>
+                    <div id="outer2">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn button4 btn_pos" data-dismiss="modal">返回清單</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 </body>
-
+<script>
+	$(document).ready(function() {
+		var data_object = {
+		    	"order_id":"2"
+	         	};
+	   callTourData(data_object);
+	}
+	    
+	);
+	function seatClass(seat_class){
+		if(seat_class==1){
+			seat_class="頭等艙";
+		}
+		else if (seat_class==2){
+			seat_class="商務艙";
+		}
+		else{
+			seat_class="經濟艙艙";
+		}
+		return seat_class;
+	}
+	
+	function callTourData(data_object){
+		 var data_string = JSON.stringify(data_object);
+		    console.log(data_string);
+		   	  // 發出POST的AJAX請求
+		         $.ajax({
+		                 type: "POST",
+		                 url: "api/ticket.do",
+		                 data: data_string,
+		                 crossDomain: true,
+		                 cache: false,
+		                 dataType: 'json',
+		                 timeout: 200000,
+		                 success: function (response) {
+		                     if(response.status == 200){
+		                    	 
+								data=JSON.parse(JSON.stringify(response.response.data));
+								plane_info=JSON.parse(JSON.stringify(response.response.plane_info));
+								seat_info=JSON.parse(JSON.stringify(response.response.seat_info));
+								seat_class=seatClass(seat_info[0].seat_class);
+								adult=response.response.num_adult;
+								kid=response.response.num_kid;
+								
+								inner='';
+								var outer='';
+								time='不知到';
+								outer=addTourHTML(inner,plane_info[0].plane_no,seat_class,response.response.row,plane_info[0].departure_airport,plane_info[0].arrive_airport,plane_info[0].departure_date,plane_info[0].departure_time,time,plane_info[0].arrive_date,plane_info[0].arrive_time);
+						      	$("#outer").append(outer);
+						      	callOrderData(data_object,adult,kid);
+		                     }
+		                 },
+		                 error: function (jqXHR,textStatus,errorThrown) {
+		                     alert("無法連線到伺服器！");
+		                     console.log(jqXHR);
+		                     console.log(textStatus);
+		                     console.log(errorThrown);
+		                 }
+		  	});
+		    
+		 	 }
+	
+	function callOrderData(data_object,adult,kid){
+		 var data_string = JSON.stringify(data_object);
+		    console.log(data_string);
+		   	  // 發出POST的AJAX請求
+		         $.ajax({
+		                 type: "POST",
+		                 url: "api/order.do",
+		                 data: data_string,
+		                 crossDomain: true,
+		                 cache: false,
+		                 dataType: 'json',
+		                 timeout: 200000,
+		                 success: function (response) {
+		                     if(response.status == 200){
+	
+		                        data=JSON.parse(JSON.stringify(response.response.data));
+		                        inner='';
+		                        var string='';
+		                        outer = addOrderHTML(inner,data[0].create_time,data[0].total_price,adult,kid);
+		                        console.log(outer);
+						      	$("#outer2").append(outer);
+		            	 	
+		                     }
+		                 },
+		                 error: function (jqXHR,textStatus,errorThrown) {
+		                     alert("無法連線到伺服器！");
+		                     console.log(jqXHR);
+		                     console.log(textStatus);
+		                     console.log(errorThrown);
+		                 }
+		  	});
+		   	  }
+	
+	function addTourHTML(inner,plane_no,seat_class,num_ticket,d_airport,a_airport,d_date,d_time,time,a_date,a_time){
+		 inner+='<div class="container-border">';
+	     inner+='<table class="table table-borderless">';
+	     inner+='<tbody>';
+	     inner+='<tr>';
+	     inner+='<th scope="row"></th>';
+	     inner+='<td><b>航班</b> Super Airline</td>';
+	     inner+='<td><b>機型</b>'+plane_no+'</td>';
+	     inner+='<td><b>艙等</b>'+seat_class+num_ticket+'座位</td></tr><tr>';
+	     inner+='<th scope="row"></th><td>';
+	     inner+='<div class="pos">'+d_airport+'</div></td>';
+	     inner+='<td>';
+	     inner+='<div class="i_pos">';
+	     inner+='<i class="fas fa-arrow-right"></i></div></td>';
+	     inner+='<td>';
+	     inner+='<div class="pos">'+a_airport+'</div></td></tr>';
+	     inner+='<tr>';
+	     inner+='<th scope="row"></th>';
+	     inner+='<td>';
+	     inner+='<div class="label">起點</div>';
+	     inner+='<div class="label">'+d_date+' '+d_time+'</div></td>';
+	     inner+='<td>';
+	     inner+='<div class="label">飛行時間</div>';
+	     inner+=' <div class="label">'+time+'</div></td>';
+	     inner+='<td>';
+	     inner+='<div class="label">終點</div>';
+	     inner+='<div class="label">'+a_date+' '+a_time+'</div></td></tr></tbody></table>';
+	     
+	     return inner;
+	}
+	
+	function addOrderHTML(inner,create_time,price,adult,kid){
+		total=adult+kid;
+		inner+='<div class="container-border">';
+		inner+='<div class="row">';
+	    inner+='<div class="col-12 col-md-6">';
+		inner+='<div class="item">';
+	    inner+='訂單成立:'+create_time;
+		inner+='</div></div>';
+		inner+='<div class="col-12 col-md-6">';
+	  	inner+='<div class="item">';
+		inner+='機票詳細資訊:'+total+'張('+adult+'成人'+kid+'小孩)';
+		inner+='</div></div></div>';
+		inner+='<div class="row">';
+		inner+=' <div class="col-12 col-md-6">';
+		inner+='<div class="item">';
+		inner+='單金額: NTD '+price;
+		inner+='</div></div></div>';
+		
+		return inner;
+	}
+</script>
 </html>
