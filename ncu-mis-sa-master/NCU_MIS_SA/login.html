@@ -75,14 +75,18 @@
                         	$("#login-button-loading").hide();
                             $("#login-button").show();
                             alert('登入成功');
-                            location.reload();
+                            console.log(response);
+                            alert('跳轉中...');
+                            window.location.replace("index.html");
                         } else if (response.status = 401) {
                             alert('帳號密碼錯誤');
                             $('#email').text('');
                             $('#password').text('');
+                            console.log(response);
+                            location.reload();
                         }
-                        console.log(response);
-                        window.location.replace("home.html");
+                        
+                        
                     },
                     error: function (jqXHR, exception) {
                         var msg = '';
