@@ -274,6 +274,8 @@ $(document).ready(function () {
 			var firstSeatLabel = 1;
 			
 			$(document).ready(function() {
+				
+				var pas1,pas2,pas3,pas4;
 				var chooser;
 				getAllMember();
 				$('input[type=radio][name=options]').change(function() {
@@ -408,6 +410,7 @@ $(document).ready(function () {
 								
 								$('#msg4').text('('+this.settings.label+')');
 								p4Choose='#'+this.settings.id;
+								
 					}
 							/*
 							 * Lets update the counter and total
