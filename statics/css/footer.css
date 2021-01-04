@@ -1,0 +1,77 @@
+.footer {
+  height: 2rem;
+}
+.main-footer {
+  /* background: linear-gradient(-20deg,#3f5494,#08c7a5); */
+  padding: 30px 0 0 0;
+  background: #627885;
+}
+.main-footer .container2 {
+  display: flex;
+  width: 80%;
+  margin: 0 20px;
+}
+.footer-contact {
+  display: block;
+  line-height: 24px;
+  padding: 0 200px 0 0;
+}
+.footer-contact .linker {
+  width: 200px;
+  margin: 20px;
+  letter-spacing: 5px;
+  color: #fff;
+}
+.footer-contact .linker:hover {
+  color: #fa0;
+}
+.footer-contact .ti {
+  margin: 0 0 40px;
+}
+.footer-contact .s {
+  color: #fa0;
+  margin-bottom: 10px;
+}
+.footer-contact .a {
+  color: gainsboro;
+  margin-bottom: 0.5em;
+}
+.footer-contact .c {
+  color: #fff;
+  margin-bottom: 0.5em;
+}
+.footer-contact h4 {
+  color: rgb(206, 206, 206);
+  margin-bottom: 0.5em;
+}
+
+.footer-item {
+  width: 0;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+.footer-item h4 {
+  font-size: 24px;
+  color: #fa0;
+  border-bottom: 1px dotted #fff;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+}
+.footer-item nav {
+  display: flex;
+  flex-direction: column;
+}
+.footer-item nav a {
+  color: #fff;
+  line-height: 1.4;
+  text-decoration: none;
+  padding: 5px 0;
+}
+.footer-item nav a:hover {
+  color: #fa0;
+}
+.copyright {
+  text-align: right;
+  padding: 10px 200px;
+  color: rgb(206, 206, 206);
+}

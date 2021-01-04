@@ -1,0 +1,199 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.banner {
+  height: 100vh;
+  background-color: #d4d4d4;
+}
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: "Noto Sans TC", sans-serif;
+}
+body {
+  background-color: black;
+}
+
+.head {
+  position: relative;
+  height: 13rem;
+}
+
+.content {
+  min-height: 100vh;
+  background-color: #d4d4d4;
+}
+
+.footer {
+  height: 2rem;
+}
+
+.main-navbar {
+  /* background: linear-gradient(-20deg,#3f5494,#08c7a5); */
+  background: #445b6b;
+}
+
+.main-navbar .container2 {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.navbar-trans {
+  background: #445b6b;
+}
+
+.main-navbar .container2 .title {
+  color: gainsboro;
+  text-align: center;
+  margin: auto;
+  padding: 0 5px 0 0;
+}
+
+.main-navbar a {
+  color: gainsboro;
+}
+
+.main-navbar .container2 .title .s {
+  font-size: 32px;
+  letter-spacing: 5px;
+}
+
+.main-navbar .container2 .title .a {
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
+.main-navbar .wrap {
+  display: flex;
+}
+
+.main-navbar .container3 {
+  position: relative;
+  height: 40px;
+  margin: auto;
+  display: flex;
+}
+
+.main-navbar .item {
+  position: relative;
+  right: 30px;
+  margin-top: 5px;
+  margin-left: 60px;
+}
+
+.main-navbar .item hr {
+  margin-top: 0;
+  border-color: #fa0;
+  border-width: 0.3rem;
+}
+
+.navbar-contact {
+  display: block;
+  line-height: 24px;
+  margin: 5px;
+  padding: 10px 50px 0 0;
+}
+
+.navbar-contact .ti {
+  margin: 0 0 35px;
+}
+
+.navbar-contact .s {
+  color: #fa0;
+  margin-bottom: 10px;
+}
+
+.navbar-contact .a {
+  color: gainsboro;
+  margin-bottom: 0.5em;
+}
+
+.navbar-user .a1 {
+  color: gainsboro;
+  float: right;
+  margin: 20px;
+}
+
+.navbar-user i {
+  margin: 10px;
+}
+.main-footer {
+  /* background: linear-gradient(-20deg,#3f5494,#08c7a5); */
+  padding: 30px 0 0 0;
+  background: #627885;
+}
+.main-footer .container2 {
+  display: flex;
+  width: 80%;
+  margin: 0 20px;
+}
+.footer-contact {
+  display: block;
+  line-height: 24px;
+  padding: 0 200px 0 0;
+}
+.footer-contact .linker {
+  width: 200px;
+  margin: 20px;
+  letter-spacing: 5px;
+  color: #fff;
+}
+.footer-contact .linker:hover {
+  color: #fa0;
+}
+.footer-contact .ti {
+  margin: 0 0 40px;
+}
+.footer-contact .s {
+  color: #fa0;
+  margin-bottom: 10px;
+}
+.footer-contact .a {
+  color: gainsboro;
+  margin-bottom: 0.5em;
+}
+.footer-contact .c {
+  color: #fff;
+  margin-bottom: 0.5em;
+}
+.footer-contact h4 {
+  color: rgb(206, 206, 206);
+  margin-bottom: 0.5em;
+}
+
+.footer-item {
+  width: 0;
+  flex-grow: 1;
+  margin: 0 20px;
+}
+.footer-item h4 {
+  font-size: 24px;
+  color: #fa0;
+  border-bottom: 1px dotted #fff;
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+}
+.footer-item nav {
+  display: flex;
+  flex-direction: column;
+}
+.footer-item nav a {
+  color: #fff;
+  line-height: 1.4;
+  text-decoration: none;
+  padding: 5px 0;
+}
+.footer-item nav a:hover {
+  color: #fa0;
+}
+.copyright {
+  text-align: right;
+  padding: 10px 200px;
+  color: rgb(206, 206, 206);
+}
