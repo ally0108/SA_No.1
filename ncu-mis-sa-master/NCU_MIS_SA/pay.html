@@ -11,20 +11,20 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/01a332431c.js" crossorigin="anonymous"></script>
-     <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
-  <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
-  <script type="text/javascript">
-$(document).ready(function () {
- if ($.cookie('memberName')===undefined) {
+    <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            if ($.cookie('memberName') === undefined) {
                 // 尚未登入
-              
+
                 $('#message').hide();
                 $('#login-form').show();
                 $('#logout-button').hide();
                 $('#logout-message').show();
             } else {
                 // 已登入
-               
+
                 $('#message').show();
                 $('#login-form').hide();
                 $('#logout-button').show();
@@ -32,22 +32,35 @@ $(document).ready(function () {
 
                 showWelcomeMessage($.cookie('memberName'), $.cookie('memberIsAdmin') === "1")
             }
-	function showWelcomeMessage(name, isAdmin) {
+
+            function showWelcomeMessage(name, isAdmin) {
                 $('#message').text('歡迎回來！' + (isAdmin ? "管理員" : "會員") + " " + name);
             }
-	$('#logout-button').click(function () {
-		$.removeCookie('memberName', { path: '/' });
-		$.removeCookie('memberEmail', { path: '/' });
-		$.removeCookie('memberIsAdmin', { path: '/' });
-		$.removeCookie('memberName', { path: '/NCU_MIS_SA' });
-		$.removeCookie('memberEmail', { path: '/NCU_MIS_SA' });
-		$.removeCookie('memberIsAdmin', { path: '/NCU_MIS_SA' });
+            $('#logout-button').click(function() {
+                $.removeCookie('memberName', {
+                    path: '/'
+                });
+                $.removeCookie('memberEmail', {
+                    path: '/'
+                });
+                $.removeCookie('memberIsAdmin', {
+                    path: '/'
+                });
+                $.removeCookie('memberName', {
+                    path: '/NCU_MIS_SA'
+                });
+                $.removeCookie('memberEmail', {
+                    path: '/NCU_MIS_SA'
+                });
+                $.removeCookie('memberIsAdmin', {
+                    path: '/NCU_MIS_SA'
+                });
 
-        alert('已登出');
-        location.reload();
-    })
- });
- </script >
+                alert('已登出');
+                location.reload();
+            })
+        });
+    </script>
     <style type="text/css">
         * {
             margin: 0;
@@ -528,43 +541,41 @@ $(document).ready(function () {
 
     <div class="banner">
         <div id="navbar">
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
-            <a class="navbar-brand" href="#">Super Airline</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
+                <a class="navbar-brand" href="#">Super Airline</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">首頁 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="member_home.html">會員專區</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link " href="#">最新消息</a>
-                  </li>
-                <li class="nav-item active">
-                    <a class="nav-link " href="search.html">查詢班機</a>
-                  </li>
-                
-              </ul>
-              
-                <span id="logout-message"class="navbar-text mr-sm-2">
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">首頁 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="member_home.html">會員專區</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="#">最新消息</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="search.html">查詢班機</a>
+                        </li>
+
+                    </ul>
+
+                    <span id="logout-message" class="navbar-text mr-sm-2">
                     訪客，你好！
                   </span>
-                  <span id="message"  class="navbar-text mr-sm-2">
+                    <span id="message" class="navbar-text mr-sm-2">
                    
                   </span>
-                <button id="login-form" class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
-                <button id="logout-button" class="btn btn-outline-light my-2 my-sm-0" >登出</button>
-                
-              
-            </div>
-          </nav>
+                    <button id="login-form" class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
+                    <button id="logout-button" class="btn btn-outline-light my-2 my-sm-0">登出</button>
+                </div>
+            </nav>
         </div>
-        
+
 
         <div class="top">
             <div class="title">
@@ -595,20 +606,23 @@ $(document).ready(function () {
                         </div>
                     </div>
                     <div class="griditem2">
-                        <div class="input-group input-group-sm mb-3">
-                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;"> &nbsp;-&nbsp;
-                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">&nbsp;-&nbsp;
-                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">&nbsp; -&nbsp;
-                            <input type="text" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">
-                        </div>
+                        <form name="credit_info" action="" method="post">
+                            <div class="input-group input-group-sm mb-3">
+                                <input type="text" name="credit_no1" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;"> &nbsp;-&nbsp;
+                                <input type="text" name="credit_no2" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">&nbsp;-&nbsp;
+                                <input type="text" name="credit_no3" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">&nbsp; -&nbsp;
+                                <input type="text" name="credit_no4" maxlength="4" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="width:6px;">
+                            </div>
+                        </form>
                     </div>
                     <div class="griditem3">有效年月</div>
                     <div class="griditem4">
                         <div class="input-group input-group-sm mb-3 input4">
-                            <form>
-                                <input type="text" list="month" maxlength="2" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
-                                <datalist id="month">
-                                    <select name="month">
+                            <form name="valid_month" action="" method="post">
+                                <!-- <input type="text" name="month" list="month" for="month" maxlength="2" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;"> -->
+                                <input type="text" name="month" maxlength="2" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
+                                <!-- <datalist id="month" name="month">
+                                <select id="month" name="month">
                                     <option value="01"></option>
                                     <option value="02"></option>
                                     <option value="03"></option>
@@ -622,39 +636,274 @@ $(document).ready(function () {
                                     <option value="11"></option>
                                     <option value="12"></option>
                                 </select>
-                                </datalist>
+                                </datalist> -->
                             </form>&nbsp;/&nbsp;
-                            <form>
-                                <input type="text" list="year" maxlength="4" size="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
-                                <datalist id="year"><select name="year">
-                                    <option value="2021"></option>
-                                    <option value="2022"></option>
-                                    <option value="2023"></option>
-                                    <option value="2024"></option>
-                                    <option value="2025"></option>
-                                    <option value="2026"></option>
+                            <form name="valid_year" action="" method="post">
+                                <input type="text" name="year" maxlength="4" size="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
+                                <!-- <input type="text" name="year" list="year" id="year" maxlength="4" size="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;"> -->
+                                <!-- <datalist id="year" name="year">
+                                <select id="year" name="year">
+                                    <option value="2021" name="year"></option>
+                                    <option value="2022" name="year"></option>
+                                    <option value="2023" name="year"></option>
+                                    <option value="2024" name="year"></option>
+                                    <option value="2025" name="year"></option>
+                                    <option value="2026" name="year"></option>
                                 </select>
-                            </datalist>
+                            	</datalist> -->
+                            </form>
                         </div>
                     </div>
                     <div class="griditem5">背面末三碼</div>
                     <div class="griditem6">
-                        <input type="text" maxlength="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px; width:90px;">
+                        <form name="certification" action="" method="post">
+                            <input type="text" name="last3" maxlength="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px; width:90px;">
+                        </form>
                     </div>
                     <div class="griditem7"></div>
                     <div class="griditem8"></div>
-                    <div class="griditem9">待付款金額<br><span>TWD 49,220</span></div>
+                    <div class="griditem9">待付款金額<br><span>TWD &nbsp;<div class="price" id="price" style="display:inline"></div></span></div>
                 </div>
                 <div class="button">
                     <div class="back">
-                        <button class="btn" style="color:#f68f00"><i class="fas fa-chevron-circle-left"></i>&nbsp;上一步 </button>
+                        <button class="btn" onclick="location.href='order_confirm.html';" style="color:#f68f00"><i class="fas fa-chevron-circle-left"></i>&nbsp;上一步 </button>
                     </div>
                     <div class="next">
-                        <button class="btn" style="color:#f68f00">&nbsp;完成&nbsp;&nbsp;<i class="fas fa-chevron-circle-right"></i></button>
+                        <button class="btn" id="check" onclick="location.href='pay.html';" data-action="finish" style="color:#f68f00">&nbsp;完成&nbsp;&nbsp;<i class="fas fa-chevron-circle-right"></i></button>
                     </div>
                 </div>
+                <script type="text/javascript">
+                    //價錢部分
+                    if (localStorage.getItem("num_of_passenger") > 3)
+                        document.getElementById("price").innerHTML = localStorage.getItem("price") * 4;
+                    else if (localStorage.getItem("num_of_passenger") > 2)
+                        document.getElementById("price").innerHTML = localStorage.getItem("price") * 3;
+                    else if (localStorage.getItem("num_of_passenger") > 1)
+                        document.getElementById("price").innerHTML = localStorage.getItem("price") * 2;
+                    else
+                        document.getElementById("price").innerHTML = localStorage.getItem("price");
+
+
+                    const submitBtn = document.querySelector('[data-action="finish"]');
+                    submitBtn.addEventListener("click", processFormData);
+
+                    function processFormData(e) {
+
+                        const form = document.forms['credit_info'];
+                        const credit_info = {
+                            credit_no1: form.elements.credit_no1.value,
+                            credit_no2: form.elements.credit_no2.value,
+                            credit_no3: form.elements.credit_no3.value,
+                            credit_no4: form.elements.credit_no4.value,
+
+                        }
+                        window.localStorage.setItem('credit_info', JSON.stringify(credit_info));
+
+                        const form2 = document.forms['valid_month'];
+                        const valid_month = {
+                            month: form2.elements.month.value,
+                        }
+                        window.localStorage.setItem('valid_month', JSON.stringify(valid_month));
+
+                        const form3 = document.forms['valid_year'];
+                        const valid_year = {
+                            year: form3.elements.year.value,
+                        }
+                        window.localStorage.setItem('valid_year', JSON.stringify(valid_year));
+
+                        const form4 = document.forms['certification'];
+                        const certification = {
+                            last3: form4.elements.last3.value,
+                        }
+                        window.localStorage.setItem('certification', JSON.stringify(certification));
+
+                    }
+                </script>
             </div>
         </div>
+        <script type="text/javascript">
+            //order部分
+            $("#check").click(function() {
+                var credit_no = JSON.parse(localStorage.getItem('credit_info')).credit_no1 + JSON.parse(localStorage.getItem('credit_info')).credit_no2 + JSON.parse(localStorage.getItem('credit_info')).credit_no3 + JSON.parse(localStorage.getItem('credit_info')).credit_no4;
+                var valid_time = JSON.parse(localStorage.getItem("valid_year")).year + "-" + JSON.parse(localStorage.getItem("valid_month")).month;
+
+                var data = {
+                    "member_id": $.cookie("memberID"),
+                    "credit_no": credit_no,
+                    "valid_time": valid_time,
+                    "certification": JSON.parse(localStorage.getItem("certification")).last3,
+                    "price": JSON.parse(localStorage.getItem("price")),
+                }
+
+                // 驗證輸入的資料
+                //pass_vaild = vaildData(data);
+                //if (pass_vaild) {
+                var data_string = JSON.stringify(data);
+
+                // 發出POST的AJAX請求
+                $.ajax({
+                    type: "POST",
+                    url: "api/order2.do",
+                    data: data_string,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    timeout: 5000,
+                    success: function(response) {
+                        if (response.status == 200) {
+                            $.confirm({
+                                theme: 'modern',
+                                icon: 'fa fa-check-circle-o',
+                                type: 'green',
+                                animation: 'scale',
+                                title: '系統提醒',
+                                content: "「訂購機票」，已完成新增訂單！",
+                                buttons: {
+                                    確定: {
+                                        text: '確定',
+                                        btnClass: 'btn-blue',
+                                        action: null
+                                            //action: function () {
+                                            //cleanAllData();
+                                            //document.location.href = "order.html";
+                                            //}
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    error: function() {
+                        alert("Order無法連線到伺服器！");
+                    }
+                });
+
+            });
+
+            function getAllOrderData() {
+                $.ajax({
+                    type: "GET",
+                    url: "api/order2.do",
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    timeout: 5000,
+                    success: function(response) {
+                        if (response.status == 200) {
+                            updateHTML(response.response.data);
+                        }
+                        console.log(response);
+                    },
+                    error: function() {
+                        alert("getOrder無法連線到伺服器！");
+                    }
+                });
+            }
+
+            getAllOrderData();
+
+            //ticket部分
+            $("#check").click(function() {
+                
+            	//班機座位部分
+            	var plane_seat_id = 2;
+                localStorage.setItem('plane_seat_id', plane_seat_id);
+                
+                /*order_id, plane_no, seat_no是我先亂加的
+                var order_id = 1;
+                localStorage.setItem('order_id', order_id);
+                var plane_no = BR043;
+                localStorage.setItem('plane_no', plane_no);
+                var seat_no = A2;
+                localStorage.setItem('seat_no', seat_no);*/
+                
+                
+                var birthday = JSON.parse(localStorage.getItem("passenger1")).bir_year + "-" + JSON.parse(localStorage.getItem("passenger1")).bir_month + "-" + JSON.parse(localStorage.getItem("passenger1")).bir_day;
+                if (JSON.parse(localStorage.getItem("passenger1")).gender == "female")
+                    var gender = 0;
+                else
+                    var gender = 1;
+                var saluation = "成人"; //有要這個嗎? 前面沒有用到
+				
+                //order_id, plane_no, seat_no是我先亂加的
+                var data1 = {
+                    //"order_id":localStorage.getItem("order_id"),
+                    "plane_seat_id": localStorage.getItem("plane_seat_id"),
+                    //"plane_no":localStorage.getItem("plane_no"),
+                    //"seat_no":localStorage.getItem("seat_no"),
+                    "passport": JSON.parse(localStorage.getItem("passport1")).passport,
+                    "birthday": birthday,
+                    "gender": gender,
+                    "saluation": saluation,
+                    "first_name": JSON.parse(localStorage.getItem("passenger1")).first_name,
+                    "last_name": JSON.parse(localStorage.getItem("passenger1")).last_name,
+                }
+
+                // 驗證輸入的資料
+                //pass_vaild = vaildData(data);
+                //if (pass_vaild) {
+                var data_string1 = JSON.stringify(data1);
+
+                // 發出POST的AJAX請求
+                $.ajax({
+                    type: "POST",
+                    url: "api/ticket.do",
+                    data: data_string1,
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    timeout: 5000,
+                    success: function(response) {
+                        if (response.status == 200) {
+                            $.confirm({
+                                theme: 'modern',
+                                icon: 'fa fa-check-circle-o',
+                                type: 'green',
+                                animation: 'scale',
+                                title: '系統提醒',
+                                content: "「訂購機票」，已完成新增機票！",
+                                buttons: {
+                                    確定: {
+                                        text: '確定',
+                                        btnClass: 'btn-blue',
+                                        action: null
+                                            //action: function () {
+                                            //cleanAllData();
+                                            //document.location.href = "order.html";
+                                            //}
+                                    }
+                                }
+                            });
+                        }
+                    },
+                    error: function() {
+                        alert("Ticket無法連線到伺服器！");
+                    }
+                });
+
+            });
+
+            function getAllTicketData() {
+                $.ajax({
+                    type: "GET",
+                    url: "api/ticket.do",
+                    crossDomain: true,
+                    cache: false,
+                    dataType: 'json',
+                    timeout: 5000,
+                    success: function(response) {
+                        if (response.status == 200) {
+                            updateHTML(response.response.data);
+                        }
+                        console.log(response);
+                    },
+                    error: function() {
+                        alert("無法連線到伺服器！");
+                    }
+                });
+            }
+
+            getAllTicketData();
+        </script>
         <div class="main-footer">
             <div class="container2">
                 <div class="footer-contact">
