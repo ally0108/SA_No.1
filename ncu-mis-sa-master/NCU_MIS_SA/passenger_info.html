@@ -15,21 +15,6 @@
     <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
     <script type="text/javascript">
-        var plane_no = 'BR375';
-        var num_of_adult = 1;
-        var num_of_child = 2;
-        var num_of_passenger = 2;
-        localStorage.setItem('plane_no', plane_no);
-        localStorage.setItem('num_of_adult', num_of_adult);
-        localStorage.setItem('num_of_child', num_of_child);
-        localStorage.setItem('num_of_passenger', num_of_passenger);
-
-        var raw_num_of_adult = localStorage.getItem('num_of_adult');
-        var num_of_adult2 = JSON.parse(raw_num_of_adult);
-        var raw_num_of_child = localStorage.getItem('num_of_child');
-        var num_of_child2 = JSON.parse(raw_num_of_child);
-        var raw_num_of_passenger = localStorage.getItem('num_of_passenger');
-        var num_of_passenger2 = JSON.parse(raw_num_of_passenger);
 
         $(document).ready(
             function() {
@@ -717,6 +702,13 @@
                 </div>
             </div>
             <script type="text/javascript">
+            	var num_of_passenger2 = JSON.parse(localStorage.getItem('num_of_passenger'));
+            	if (num_of_passenger2 > 0) {
+            		$("#pas1").show();
+               		$("#pas2").hide();
+               		$("#pas3").hide();
+               		$("#pas4").hide();
+            	}
                 if (num_of_passenger2 > 1) {
                     $("#pas2").show();
                     $("#pas3").hide();
@@ -1202,12 +1194,12 @@
 
             <div class="button ">
                 <div class="back ">
-                    <button class="btn " id="back" style="color: #f68f00">
+                    <button class="btn " onclick="location.href='search_result.html'" id="back" style="color: #f68f00">
 						<i class="fas fa-chevron-circle-left "></i>&nbsp;上一步
 					</button>
                 </div>
                 <div class="next ">
-                    <button class="btn " id="next" style="color: #f68f00">
+                    <button class="btn " onclick="location.href='seat.html'" id="next" style="color: #f68f00">
 						下一步&nbsp;<i class="fas fa-chevron-circle-right "></i>
 					</button>
                 </div>

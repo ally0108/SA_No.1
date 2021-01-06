@@ -14,6 +14,7 @@
     <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
     <script type="text/javascript">
+    ////////25984294924949
         $(document).ready(function() {
             if ($.cookie('memberName') === undefined) {
                 // 尚未登入
@@ -621,36 +622,11 @@
                             <form name="valid_month" action="" method="post">
                                 <!-- <input type="text" name="month" list="month" for="month" maxlength="2" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;"> -->
                                 <input type="text" name="month" maxlength="2" size="1" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
-                                <!-- <datalist id="month" name="month">
-                                <select id="month" name="month">
-                                    <option value="01"></option>
-                                    <option value="02"></option>
-                                    <option value="03"></option>
-                                    <option value="04"></option>
-                                    <option value="05"></option>
-                                    <option value="06"></option>
-                                    <option value="07"></option>
-                                    <option value="08"></option>
-                                    <option value="09"></option>
-                                    <option value="10"></option>
-                                    <option value="11"></option>
-                                    <option value="12"></option>
-                                </select>
-                                </datalist> -->
+
                             </form>&nbsp;/&nbsp;
                             <form name="valid_year" action="" method="post">
                                 <input type="text" name="year" maxlength="4" size="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;">
-                                <!-- <input type="text" name="year" list="year" id="year" maxlength="4" size="3" color="#707070" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" style="height: 30px;"> -->
-                                <!-- <datalist id="year" name="year">
-                                <select id="year" name="year">
-                                    <option value="2021" name="year"></option>
-                                    <option value="2022" name="year"></option>
-                                    <option value="2023" name="year"></option>
-                                    <option value="2024" name="year"></option>
-                                    <option value="2025" name="year"></option>
-                                    <option value="2026" name="year"></option>
-                                </select>
-                            	</datalist> -->
+
                             </form>
                         </div>
                     </div>
@@ -732,7 +708,7 @@
                     "credit_no": credit_no,
                     "valid_time": valid_time,
                     "certification": JSON.parse(localStorage.getItem("certification")).last3,
-                    "price": JSON.parse(localStorage.getItem("price")),
+                    "price": JSON.parse(localStorage.getItem("price")) * num_of_passenger,
                 }
 
                 // 驗證輸入的資料
@@ -776,64 +752,71 @@
                         alert("Order無法連線到伺服器！");
                     }
                 });
+                console.log("doPostOrder");
 
             });
 
-            function getAllOrderData() {
+            //getOrderId部分
+            $("#check").click(function() {
+                // 發出GET的AJAX請求
                 $.ajax({
                     type: "GET",
                     url: "api/order2.do",
+                    data: null,
                     crossDomain: true,
                     cache: false,
                     dataType: 'json',
-                    timeout: 5000,
+                    timeout: 200000,
                     success: function(response) {
                         if (response.status == 200) {
-                            updateHTML(response.response.data);
+                            localStorage.setItem("order_id", JSON.stringify(response.response.order_id));
                         }
-                        console.log(response);
                     },
-                    error: function() {
-                        alert("getOrder無法連線到伺服器！");
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        alert("cannot get order_id！");
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
                     }
                 });
-            }
-
-            getAllOrderData();
-
+            });
+          	//getOrderId部分
+            
+            
             //ticket部分
             $("#check").click(function() {
-                
+
             	//班機座位部分
             	var plane_seat_id = 2;
                 localStorage.setItem('plane_seat_id', plane_seat_id);
-                
-                /*order_id, plane_no, seat_no是我先亂加的
-                var order_id = 1;
-                localStorage.setItem('order_id', order_id);
-                var plane_no = BR043;
-                localStorage.setItem('plane_no', plane_no);
-                var seat_no = A2;
-                localStorage.setItem('seat_no', seat_no);*/
-                
                 
                 var birthday = JSON.parse(localStorage.getItem("passenger1")).bir_year + "-" + JSON.parse(localStorage.getItem("passenger1")).bir_month + "-" + JSON.parse(localStorage.getItem("passenger1")).bir_day;
                 if (JSON.parse(localStorage.getItem("passenger1")).gender == "female")
                     var gender = 0;
                 else
                     var gender = 1;
-                var saluation = "成人"; //有要這個嗎? 前面沒有用到
-				
+
+                if ((2020 - JSON.parse(localStorage.getItem("passenger1")).bir_year) > 18)
+                    var salutation = "成人";
+                else if ((2020 - JSON.parse(localStorage.getItem("passenger1")).bir_year) > 12)
+                    var salutation = "青年";
+                else if ((2020 - JSON.parse(localStorage.getItem("passenger1")).bir_year) > 2)
+                    var salutation = "兒童";
+                else
+                    var salutation = "嬰兒";
+
                 //order_id, plane_no, seat_no是我先亂加的
                 var data1 = {
                     //"order_id":localStorage.getItem("order_id"),
+                    "order_id": localStorage.getItem("order_id") + 1,
+                    //"plane_seat_id": localStorage.getItem("plane_seat_id"),
                     "plane_seat_id": localStorage.getItem("plane_seat_id"),
-                    //"plane_no":localStorage.getItem("plane_no"),
-                    //"seat_no":localStorage.getItem("seat_no"),
+                    "plane_no": localStorage.getItem("plane_no"),
+                    "seat_no": JSON.parse(localStorage.getItem("seat_id")).pas1,
                     "passport": JSON.parse(localStorage.getItem("passport1")).passport,
                     "birthday": birthday,
                     "gender": gender,
-                    "saluation": saluation,
+                    "salutation": salutation,
                     "first_name": JSON.parse(localStorage.getItem("passenger1")).first_name,
                     "last_name": JSON.parse(localStorage.getItem("passenger1")).last_name,
                 }
@@ -846,7 +829,7 @@
                 // 發出POST的AJAX請求
                 $.ajax({
                     type: "POST",
-                    url: "api/ticket.do",
+                    url: "api/ticket2.do",
                     data: data_string1,
                     crossDomain: true,
                     cache: false,
@@ -879,30 +862,8 @@
                         alert("Ticket無法連線到伺服器！");
                     }
                 });
-
+                localStorage.clear(); //訂票完後清空localStorage
             });
-
-            function getAllTicketData() {
-                $.ajax({
-                    type: "GET",
-                    url: "api/ticket.do",
-                    crossDomain: true,
-                    cache: false,
-                    dataType: 'json',
-                    timeout: 5000,
-                    success: function(response) {
-                        if (response.status == 200) {
-                            updateHTML(response.response.data);
-                        }
-                        console.log(response);
-                    },
-                    error: function() {
-                        alert("無法連線到伺服器！");
-                    }
-                });
-            }
-
-            getAllTicketData();
         </script>
         <div class="main-footer">
             <div class="container2">

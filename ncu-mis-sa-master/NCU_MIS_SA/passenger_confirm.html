@@ -14,55 +14,8 @@
     <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
     <script type="text/javascript">
-
-        //console.log(JSON.parse(localStorage.getItem('passenger1')));
-        //passenger = JSON.parse(localStorage.getItem('passenger1'));
-       	//console.log(passenger.first_name);
-
-        var raw_valid_day = localStorage.getItem("valid_day");
-        var valid_day = JSON.parse(raw_valid_day);
-
-        var raw_valid_month = localStorage.getItem("valid_month");
-        var valid_month = JSON.parse(raw_valid_month);
-
-        var raw_valid_year = localStorage.getItem("valid_year");
-        var valid_year = JSON.parse(raw_valid_year);
-
-        var raw_passport_country = localStorage.getItem("passport_country");
-        var passport_country = JSON.parse(raw_passport_country);
-
-        var raw_gender = localStorage.getItem("gender");
-        var gender = JSON.parse(raw_gender);
-
-        var raw_bir_day = localStorage.getItem("bir_day");
-        var bir_day = JSON.parse(raw_bir_day);
-
-        var raw_bir_month = localStorage.getItem("bir_month");
-        var bir_month = JSON.parse(raw_bir_month);
-
-        var raw_bir_year = localStorage.getItem("bir_year");
-        var bir_year = JSON.parse(raw_bir_year);
-
-        var raw_last_name = localStorage.getItem("last_name");
-        var last_name = JSON.parse(raw_last_name);
-
-        var raw_first_name = localStorage.getItem("first_name");
-        var first_name = JSON.parse(raw_first_name);
-
-        var raw_country = localStorage.getItem("country");
-        var country = JSON.parse(raw_country);
-
-        //passenger_info
-        var raw_num_of_adult = localStorage.getItem('num_of_adult');
-        var num_of_adult2 = JSON.parse(raw_num_of_adult);
-        var raw_num_of_child = localStorage.getItem('num_of_child');
-        var num_of_child2 = JSON.parse(raw_num_of_child);
-        var raw_num_of_passenger = localStorage.getItem('num_of_passenger');
-        var num_of_passenger2 = JSON.parse(raw_num_of_passenger);
-
-        console.log(num_of_adult2);
-        console.log(num_of_child2);
-        console.log(num_of_passenger2);
+      
+      var num_of_passenger = JSON.parse(localStorage.getItem('num_of_passenger'));
 
         $(document).ready(function() {
             if ($.cookie('memberName') === undefined) {
@@ -657,7 +610,7 @@
                                                                 <i class="fas fa-female fa-2x"></i>
                                                             </div>
                                                             <div class="griditem1">
-                                                                <span>成人</span><br>
+                                                                <span><div class="salutation" id="salutation" style="display:inline"></div></span><br>
                                                                 <h3>
                                                                     <div class="first_name" id="first_name" style="display:inline"></div>
                                                                     <div class="last_name" id="last_name" style="display:inline"></div>&ensp;
@@ -680,6 +633,15 @@
                                                         </div>
                                                     </li>
                                                     <script>
+                                                    if((JSON.parse(localStorage.getItem("passenger1")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger1")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger1")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation").innerHTML = "嬰兒";
+                                                    
                                                         document.getElementById("first_name").innerHTML = JSON.parse(localStorage.getItem('passenger1')).first_name;
                                                         document.getElementById("last_name").innerHTML = JSON.parse(localStorage.getItem('passenger1')).last_name;
                                                         if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
@@ -702,14 +664,6 @@
                                                             document.getElementById("seat_class").innerHTML = "經濟艙";
 
                                                         //座位部分
-                                                        const seat_id = {
-                                                            pas1: "11A",
-                                                            pas2: "12A",
-                                                            pas3: "13A",
-                                                            pas4: "14A",
-                                                        }
-                                                        window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
-
                                                         document.getElementById("seat_id").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas1;
                                                     </script>
 
@@ -719,7 +673,7 @@
                                                                 <i class="fas fa-female fa-2x"></i>
                                                             </div>
                                                             <div class="griditem1">
-                                                                <span>成人</span><br>
+                                                                <span><div class="salutation2" id="salutation2" style="display:inline"></div></span><br>
                                                                 <h3>
                                                                     <div class="first_name2" id="first_name2" style="display:inline"></div>
                                                                     <div class="last_name2" id="last_name2" style="display:inline"></div>&ensp;
@@ -742,7 +696,16 @@
                                                         </div>
                                                     </li>
                                                     <script>
-                                                        document.getElementById("first_name2").innerHTML = JSON.parse(localStorage.getItem('passenger2')).first_name;
+                                                    if((JSON.parse(localStorage.getItem("passenger2")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation2").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger2")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation2").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger2")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation2").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation2").innerHTML = "嬰兒";  	
+                                                        
+                                                    document.getElementById("first_name2").innerHTML = JSON.parse(localStorage.getItem('passenger2')).first_name;
                                                         document.getElementById("last_name2").innerHTML = JSON.parse(localStorage.getItem('passenger2')).last_name;
                                                         if (JSON.parse(localStorage.getItem('passenger2')).gender == "female")
                                                             document.getElementById("gender02").innerHTML = "女士";
@@ -764,7 +727,7 @@
                                                             document.getElementById("seat_class2").innerHTML = "經濟艙";
 
                                                         //座位部分
-                                                        window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                                                        //window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
                                                         document.getElementById("seat_id2").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas2;
                                                     </script>
 
@@ -774,7 +737,7 @@
                                                                 <i class="fas fa-female fa-2x"></i>
                                                             </div>
                                                             <div class="griditem1">
-                                                                <span>成人</span><br>
+                                                                <span><div class="salutation3" id="salutation3" style="display:inline"></div></span><br>
                                                                 <h3>
                                                                     <div class="first_name3" id="first_name3" style="display:inline"></div>
                                                                     <div class="last_name3" id="last_name3" style="display:inline"></div>&ensp;
@@ -798,6 +761,15 @@
                                                     </li>
 
                                                     <script>
+                                                    if((JSON.parse(localStorage.getItem("passenger3")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation3").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger3")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation3").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger3")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation3").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation3").innerHTML = "嬰兒";
+                                                    
                                                         document.getElementById("first_name3").innerHTML = JSON.parse(localStorage.getItem('passenger3')).first_name;
                                                         document.getElementById("last_name3").innerHTML = JSON.parse(localStorage.getItem('passenger3')).last_name;
                                                         if (JSON.parse(localStorage.getItem('passenger3')).gender == "female")
@@ -820,7 +792,7 @@
                                                             document.getElementById("seat_class3").innerHTML = "經濟艙";
 
                                                         //座位部分
-                                                        window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                                                       // window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
                                                         document.getElementById("seat_id3").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas3;
                                                     </script>
 
@@ -830,7 +802,7 @@
                                                                 <i class="fas fa-female fa-2x"></i>
                                                             </div>
                                                             <div class="griditem1">
-                                                                <span>成人</span><br>
+                                                                <span><div class="salutation4" id="salutation4" style="display:inline"></div></span><br>
                                                                 <h3>
                                                                     <div class="first_name4" id="first_name4" style="display:inline"></div>
                                                                     <div class="last_name4" id="last_name4" style="display:inline"></div>&ensp;
@@ -854,7 +826,16 @@
                                                     </li>
 
                                                     <script>
-                                                        document.getElementById("first_name4").innerHTML = JSON.parse(localStorage.getItem('passenger4')).first_name;
+                                                    if((JSON.parse(localStorage.getItem("passenger4")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation4").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger4")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation4").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger4")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation4").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation4").innerHTML = "嬰兒";
+                                                    
+                                                    	document.getElementById("first_name4").innerHTML = JSON.parse(localStorage.getItem('passenger4')).first_name;
                                                         document.getElementById("last_name4").innerHTML = JSON.parse(localStorage.getItem('passenger4')).last_name;
                                                         if (JSON.parse(localStorage.getItem('passenger4')).gender == "female")
                                                             document.getElementById("gender04").innerHTML = "女士";
@@ -876,7 +857,7 @@
                                                             document.getElementById("seat_class4").innerHTML = "經濟艙";
 
                                                         //座位部分
-                                                        window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                                                       // window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
                                                         document.getElementById("seat_id4").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas4;
                                                     </script>
 
@@ -888,17 +869,23 @@
                             </div>
                         </div>
                         <script type="text/javascript">
-                            if (num_of_passenger2 > 1) {
+                        if (num_of_passenger > 0) {
+                            $("#pas1").show();
+                            $("#pas2").hide();
+                            $("#pas3").hide();
+                            $("#pas4").hide();
+                        }
+                            if (num_of_passenger > 1) {
                                 $("#pas2").show();
                                 $("#pas3").hide();
                                 $("#pas4").hide();
                             }
-                            if (num_of_passenger2 > 2) {
+                            if (num_of_passenger > 2) {
                                 $("#pas2").show();
                                 $("#pas3").show();
                                 $("#pas4").hide();
                             }
-                            if (num_of_passenger2 > 3) {
+                            if (num_of_passenger > 3) {
                                 $("#pas2").show();
                                 $("#pas3").show();
                                 $("#pas4").show();
@@ -982,32 +969,36 @@
                                 document.getElementById("seat_class04").innerHTML = "經濟艙";
                             
                           //價錢部分
-                            var price = "25842"
-                            localStorage.setItem('price', price);
                             document.getElementById("price").innerHTML = localStorage.getItem("price");
                             document.getElementById("price2").innerHTML = localStorage.getItem("price");
                             document.getElementById("price3").innerHTML = localStorage.getItem("price");
                             document.getElementById("price4").innerHTML = localStorage.getItem("price");
-                            if (num_of_passenger2 > 3) 
+                            if (num_of_passenger > 3) 
                             	document.getElementById("price5").innerHTML = localStorage.getItem("price")*4;
-                            else if (num_of_passenger2 > 2) 
+                            else if (num_of_passenger > 2) 
                             	document.getElementById("price5").innerHTML = localStorage.getItem("price")*3;
-                            else if (num_of_passenger2 > 1) 
+                            else if (num_of_passenger > 1) 
                             	document.getElementById("price5").innerHTML = localStorage.getItem("price")*2;
                             else
                             	document.getElementById("price5").innerHTML = localStorage.getItem("price");
 
-                            if (num_of_passenger2 > 1) {
+                            if (num_of_passenger > 0) {
+                                $("#seat1").show();
+                                $("#seat2").hide();
+                                $("#seat3").hide();
+                                $("#seat4").hide();
+                            }
+                            if (num_of_passenger > 1) {
                                 $("#seat2").show();
                                 $("#seat3").hide();
                                 $("#seat4").hide();
                             }
-                            if (num_of_passenger2 > 2) {
+                            if (num_of_passenger > 2) {
                                 $("#seat2").show();
                                 $("#seat3").show();
                                 $("#seat4").hide();
                             }
-                            if (num_of_passenger2 > 3) {
+                            if (num_of_passenger > 3) {
                                 $("#seat2").show();
                                 $("#seat3").show();
                                 $("#seat4").show();
