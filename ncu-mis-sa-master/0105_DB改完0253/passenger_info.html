@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Information</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/01a332431c.js" crossorigin="anonymous"></script>
+    <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+    <script type="text/javascript">
+        var plane_no = 'BR375';
+        var num_of_adult = 1;
+        var num_of_child = 2;
+        var num_of_passenger = 2;
+        localStorage.setItem('plane_no', plane_no);
+        localStorage.setItem('num_of_adult', num_of_adult);
+        localStorage.setItem('num_of_child', num_of_child);
+        localStorage.setItem('num_of_passenger', num_of_passenger);
+
+        var raw_num_of_adult = localStorage.getItem('num_of_adult');
+        var num_of_adult2 = JSON.parse(raw_num_of_adult);
+        var raw_num_of_child = localStorage.getItem('num_of_child');
+        var num_of_child2 = JSON.parse(raw_num_of_child);
+        var raw_num_of_passenger = localStorage.getItem('num_of_passenger');
+        var num_of_passenger2 = JSON.parse(raw_num_of_passenger);
+
+        $(document).ready(
+            function() {
+                if ($.cookie('memberName') === undefined) {
+                    // 尚未登入
+
+                    $('#message').hide();
+                    $('#login-form').show();
+                    $('#logout-button').hide();
+                    $('#logout-message').show();
+                } else {
+                    // 已登入
+
+                    $('#message').show();
+                    $('#login-form').hide();
+                    $('#logout-button').show();
+                    $('#logout-message').hide();
+
+                    showWelcomeMessage($.cookie('memberName'), $
+                        .cookie('memberIsAdmin') === "1")
+                }
+
+                function showWelcomeMessage(name, isAdmin) {
+                    $('#message').text(
+                        '歡迎回來！' + (isAdmin ? "管理員" : "會員") + " " + name);
+                }
+                $('#logout-button').click(function() {
+                    $.removeCookie('memberName', {
+                        path: '/'
+                    });
+                    $.removeCookie('memberEmail', {
+                        path: '/'
+                    });
+                    $.removeCookie('memberIsAdmin', {
+                        path: '/'
+                    });
+                    $.removeCookie('memberName', {
+                        path: '/NCU_MIS_SA'
+                    });
+                    $.removeCookie('memberEmail', {
+                        path: '/NCU_MIS_SA'
+                    });
+                    $.removeCookie('memberIsAdmin', {
+                        path: '/NCU_MIS_SA'
+                    });
+
+                    alert('已登出');
+                    location.reload();
+                })
+            });
+    </script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .button .back {
+            position: absolute;
+            top: 470px;
+            left: 200px;
+            opacity: 100% !important;
+        }
+        
+        .button .next {
+            position: absolute;
+            top: 470px;
+            left: 1250px;
+            opacity: 100% !important;
+        }
+        
+        .button .btn,
+        .button .btn:active,
+        .button .btn:visited {
+            background-color: white;
+            border-radius: 15px;
+            outline: none;
+            -webkit-box-shadow: none !important;
+            box-shadow: none;
+            font-family: sans-serif;
+            font-size: 0.8em;
+            font-weight: 2000;
+        }
+        
+        .button .btn:active:focus,
+        .button .btn:hover {
+            background-color: #f68f00;
+            color: white !important;
+            border-radius: 15px;
+        }
+        
+        .banner {
+            height: 100vh;
+            background: url(statics/img/NEWS-272-1.jpg) center top/cover;
+        }
+        
+        .welcome {
+            display: block;
+        }
+        
+        .welcome h1 {
+            opacity: 90%;
+            color: #FFF;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+        
+        .welcome button {
+            text-decoration: none;
+            opacity: 50%;
+            padding: 8px 28px;
+            border-radius: 40px;
+            color: black;
+            border-color: #FFF;
+        }
+        
+        .welcome button:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color: white;
+            background-color: grey;
+            border-color: grey;
+        }
+        
+        .form-inline .btn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color: white;
+            background-color: grey;
+            border-color: grey;
+        }
+        
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        body {
+            background-color: #FFF;
+        }
+        
+        .top {
+            margin-top: 15px;
+            height: 10vh;
+        }
+        
+        .title {
+            height: 3vh;
+            display: flex;
+            text-align: center;
+            color: white;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 200;
+            font-size: 20px;
+            letter-spacing: 1px;
+            font-family: Segoe UI;
+        }
+        
+        .inform {
+            text-align: center;
+            color: #c0c5bf;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 200;
+            font-size: 16px;
+            letter-spacing: 5px;
+            font-family: Segoe UI;
+        }
+        
+        .big-container {
+            position: relative;
+            height: 80vh;
+            width: 97vw;
+            align-items: center;
+        }
+        /* new */
+        
+        .wrapper {
+            margin-left: 75px;
+            margin-top: 60px;
+            width: 180px;
+            height: 230px;
+            cursor: pointer;
+            position: absolute;
+            left: 20%;
+            top: 10%;
+            overflow: hidden;
+            transform: translate(-50%, -50%);
+            transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+            transition: transform 375ms, width 275ms 100ms, height 375ms;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pas2 {
+            margin-left: 335px;
+        }
+        
+        .pas3 {
+            margin-left: 595px;
+        }
+        
+        .pas4 {
+            margin-left: 850px;
+        }
+        
+        div.content {
+            font-family: Segoe UI;
+            position: absolute;
+            margin: auto;
+            left: -9999px;
+            right: -9999px;
+            transform-origin: top;
+            width: 330px;
+            transform: scale(0.62);
+            height: 400px;
+            border-radius: 0;
+            background: linear-gradient(30deg, #c8ecf3, #0e9eb4);
+            overflow: hidden;
+            transition: transform 375ms cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .modal-content {
+            background: none;
+            border: 0px;
+        }
+        
+        .quarter-div {
+            width: 50%;
+            height: 50%;
+            float: left;
+        }
+        
+        .left {
+            background: linear-gradient(30deg, #c8ecf3, #0e9eb4);
+            height: 570px;
+        }
+        
+        .right {
+            background: white;
+            height: 570px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 50%, 50%;
+            grid-template-rows: 100%;
+            grid-template-areas: "passport passengerInfo";
+            grid-auto-flow: dense;
+            position: relative;
+        }
+        
+        .griditem1 {
+            grid-area: passport;
+            width: 23vw;
+            font-size: 20px;
+            line-height: 35px;
+            padding: 40px 0px 50px 55px;
+            color: white;
+        }
+        
+        .griditem2 {
+            grid-area: passengerInfo;
+            width: 23vw;
+            font-size: 18px;
+            line-height: 35px;
+            padding: 40px 0px 40px 52px;
+            color: #444444;
+        }
+        
+        .griditem2 .text-center {
+            font-size: 26px;
+            letter-spacing: 5px;
+        }
+        
+        input {
+            outline: 0;
+            border-width: 0 0 1px;
+            border-color: white;
+            background: none;
+        }
+        
+        input:focus {
+            border-color: #46add6;
+        }
+        
+        .passport_info input {
+            padding: -20px;
+            color: #6e6e6e;
+            font-family: Microsoft JhengHei;
+            font-size: 15px;
+            vertical-align: top;
+        }
+        
+        .passport_info label {
+            padding-top: 20px;
+        }
+        
+        .passport_info {
+            margin-top: 30px;
+            font-size: 18px;
+            letter-spacing: 3px;
+        }
+        
+        .passenger_info select {
+            border-color: #444444;
+            padding: -20px;
+            color: #6e6e6e;
+            font-family: Microsoft JhengHei;
+            font-size: 15px;
+            border: 0px solid transparent;
+        }
+        
+        .passenger_info .select-selected:after {
+            border: 0px solid transparent;
+        }
+        
+        .passenger_info input {
+            border-color: #444444;
+            padding: -20px;
+            color: #6e6e6e;
+            font-family: Microsoft JhengHei;
+            font-size: 15px;
+            padding-top: -20px;
+        }
+        
+        .passenger_info label {
+            padding-top: 17px;
+        }
+        
+        .passenger_info {
+            margin-top: 30px;
+            letter-spacing: 3px;
+            font-size: 16px;
+        }
+        
+        .passenger_info .btn-block {
+            position: absolute;
+            width: 70px;
+            top: 540px;
+            left: 660px;
+            opacity: 100% !important;
+        }
+        
+        .passenger_info .btn-block,
+        .passenger_info .btn-block:active,
+        .passenger_info .btn-block:visited {
+            background-color: white;
+            border-radius: 15px;
+            outline: none;
+            -webkit-box-shadow: none !important;
+            box-shadow: none;
+            font-family: sans-serif;
+            font-size: 0.8em;
+            font-weight: 2000;
+        }
+        
+        .passenger_info .btn-block:focus,
+        .passenger_info .btn-block:hover,
+        .passenger_info .btn-block:active {
+            background-color: #13A9C1;
+            border: 1px #13A9C1 !important;
+            color: white !important;
+            border-radius: 15px;
+        }
+        
+        .text {
+            font-family: Segoe UI;
+            text-align: center;
+            padding-top: 90px;
+            color: white;
+        }
+        
+        .text .line {
+            text-align: center;
+            margin-top: 33px;
+            font-size: 40px;
+            font-weight: 200;
+        }
+        
+        .text .btn-block {
+            position: absolute;
+            background: none;
+            border-color: white;
+            border: 20px salid white;
+            border-radius: 20px;
+            width: 85px;
+            top: 300px;
+            left: 120px;
+            opacity: 100% !important;
+        }
+        
+        .text .btn-block,
+        .text .btn-block:visited {
+            background-color: 0;
+            border-radius: 15px;
+            outline: none;
+            -webkit-box-shadow: none !important;
+            box-shadow: none;
+            font-family: sans-serif;
+            font-size: 23px;
+            letter-spacing: 4px;
+            font-weight: 600;
+        }
+        
+        .text .btn-block:hover,
+        .text .btn-block:active {
+            background-color: white !important;
+            color: #13A9C1 !important;
+            border-color: white !important;
+        }
+        
+        .main-footer {
+            padding: 30px 0 0 0;
+            background: #627885;
+        }
+        
+        .main-footer .container2 {
+            display: flex;
+            width: 80%;
+            margin: 0 20px;
+        }
+        
+        .footer-contact {
+            display: block;
+            line-height: 24px;
+            padding: 0 200px 0 0;
+        }
+        
+        .footer-contact .linker {
+            width: 200px;
+            margin: 20px;
+            letter-spacing: 5px;
+            color: #FFF;
+        }
+        
+        .footer-contact .linker:hover {
+            color: #fa0;
+        }
+        
+        .footer-contact .ti {
+            margin: 0 0 40px;
+        }
+        
+        .footer-contact .s {
+            color: #fa0;
+            margin-bottom: 10px;
+        }
+        
+        .footer-contact .a {
+            color: gainsboro;
+            margin-bottom: .5em;
+        }
+        
+        .footer-contact .c {
+            color: #fFF;
+            margin-bottom: .5em;
+        }
+        
+        .footer-contact h4 {
+            color: rgb(206, 206, 206);
+            margin-bottom: .5em;
+        }
+        
+        .footer-item {
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        
+        .footer-item h4 {
+            font-size: 24px;
+            color: #fa0;
+            border-bottom: 1px dotted #fff;
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+        
+        .footer-item nav {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-item nav a {
+            color: #fff;
+            line-height: 1.4;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+        
+        .footer-item nav a:hover {
+            color: #fa0;
+        }
+        
+        .copyright {
+            text-align: right;
+            padding: 10px 200px;
+            color: rgb(206, 206, 206);
+        }
+        
+        .context-container {
+            height: 300vh;
+            margin: auto;
+        }
+        
+        .carousel-inner {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            height: 500px;
+            border-radius: 50px;
+        }
+        
+        .carousel-caption h1 {
+            padding: 200px 0 0px 0;
+            color: #425c6b;
+            letter-spacing: 3px;
+        }
+        
+        .carousel-caption p {
+            color: #627885;
+            letter-spacing: 2px;
+        }
+        
+        .c1 h1 {
+            padding: 200px 0 0px 0;
+            color: #FFF;
+            letter-spacing: 3px;
+        }
+        
+        .c1 p {
+            color: #FFf;
+            letter-spacing: 2px;
+        }
+        
+        .container3 {
+            height: 80vh;
+            width: 90%;
+            margin: auto;
+        }
+        
+        .container3 h1 {
+            margin-bottom: 20px;
+            color: #13A9C1;
+        }
+        
+        .container3 hr {
+            border-top: 1px solid #13A9C1;
+            margin-bottom: 20px;
+        }
+        
+        .news-cards {
+            display: flex;
+        }
+        
+        .card {
+            flex-grow: 1;
+            margin: 0 20px;
+            border-radius: 24px;
+        }
+        
+        .card-title {
+            color: #425c6b;
+            font-family: Arial, Helvetica, sans-serif;
+            border-bottom: 1px solid #425c6b;
+        }
+        
+        .container4 {
+            display: flex;
+            height: 40vh;
+            width: 93%;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .image-holder {
+            margin-left: 7%;
+            margin-right: 50px;
+            margin-top: 0px;
+        }
+        
+        .image-holder img {
+            width: 30vw;
+            height: 35vh;
+            border-radius: 20px;
+        }
+        
+        .about {
+            width: 70%;
+        }
+        
+        .about h1 {
+            color: #13A9C1;
+        }
+        
+        .about hr {
+            border-top: 1px solid #13A9C1;
+        }
+        
+        .about h5 {
+            color: #425c6b;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="banner">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
+            <a class="navbar-brand" href="#">Super Airline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="index.html">首頁 <span class="sr-only">(current)</span></a></li>
+                    <li class="nav-item active"><a class="nav-link" href="member_home.html">會員專區</a></li>
+                    <li class="nav-item active"><a class="nav-link " href="#">最新消息</a>
+                    </li>
+                    <li class="nav-item active"><a class="nav-link " href="search.html">查詢班機</a></li>
+                </ul>
+                <span id="logout-message" class="navbar-text mr-sm-2"> 訪客，你好！
+				</span> <span id="message" class="navbar-text mr-sm-2"> </span>
+                <button id="login-form" class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
+                <button id="logout-button" class="btn btn-outline-light my-2 my-sm-0">登出</button>
+            </div>
+        </nav>
+
+        <div class="top">
+            <div class="title">
+                <HR width=290 SIZE=3 color=white> &emsp;乘客資料填寫&emsp;
+                <HR width=290 SIZE=3 color=white>
+                </br>
+            </div>
+            <div class="inform">&nbsp;information</div>
+        </div>
+        <div class="big-container">
+            <!-- pas1 -->
+            <div class="wrapper pas1" id="pas1" data-toggle="modal" data-target="#exampleModal">
+                <div class="content">
+                    <div class="text">
+                        <i class="fas fa-male fa-4x"></i>
+                        <div class="line title">乘客 1</div>
+                        <button type="reset" class="btn btn-primary btn-block mb-4" style="color: white; font-weight: 400;">編輯</button>
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
+                    </div>
+                </div>
+            </div>
+            <!-- pas2 -->
+            <div class="wrapper pas2" id="pas2" data-toggle="modal" data-target="#exampleModal2">
+                <div class="content">
+                    <div class="text">
+                        <i class="fas fa-male fa-4x"></i>
+                        <div class="line title">乘客 2</div>
+                        <button type="reset" class="btn btn-primary btn-block mb-4" style="color: white; font-weight: 400;">編輯</button>
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
+                    </div>
+                </div>
+            </div>
+            <!-- pas3 -->
+            <div class="wrapper pas3" id="pas3" data-toggle="modal" data-target="#exampleModal3">
+                <div class="content">
+                    <div class="text">
+                        <i class="fas fa-male fa-4x"></i>
+                        <div class="line title">乘客 3</div>
+                        <button type="reset" class="btn btn-primary btn-block mb-4" style="color: white; font-weight: 400;">編輯</button>
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
+                    </div>
+                </div>
+            </div>
+            <!-- pas4 -->
+            <div class="wrapper pas4" id="pas4" data-toggle="modal" data-target="#exampleModal4">
+                <div class="content">
+                    <div class="text">
+                        <i class="fas fa-male fa-4x"></i>
+                        <div class="line title">乘客 4</div>
+                        <button type="reset" class="btn btn-primary btn-block mb-4" style="color: white; font-weight: 400;">編輯</button>
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Open modal for @mdo</button> -->
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                if (num_of_passenger2 > 1) {
+                    $("#pas2").show();
+                    $("#pas3").hide();
+                    $("#pas4").hide();
+                }
+                if (num_of_passenger2 > 2) {
+                    $("#pas2").show();
+                    $("#pas3").show();
+                    $("#pas4").hide();
+                }
+                if (num_of_passenger2 > 3) {
+                    $("#pas2").show();
+                    $("#pas3").show();
+                    $("#pas4").show();
+                }
+            </script>
+            <!-- pas1 -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body p-4">
+                            <div class="grid0">
+                                <div class="quarter-div left">
+                                    <div class="griditem1">
+
+                                        <div class="text-center mb-3" style="margin-left: -12px;">
+                                            <i class="fas fa-male fa-2x"></i>
+                                            <p class="text-center" style="margin-top: 15px; padding-top: 5px;">
+                                                成人<br>護照資料
+                                            </p>
+                                        </div>
+                                        <!-- Passport information-->
+                                        <div class="passport_info">
+                                            <form name="passport_info" action="" method="post">
+                                                <label class="form-label" for="passport" style="margin-left: 0px;">護照編號</label> <br>
+                                                <input type="text" class="input-area" id="passport" name="passport" maxlength="9" style="width: 240px;" /> <br>
+                                                <label class="form-label" for="valid_day" style="margin-left: 0px;">證件效期</label> <br>
+                                                <input type="text" class="input-area" id="valid_day" name="valid_day" maxlength="2" style="width: 40px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="valid_month" name="valid_month" maxlength="2" style="width: 40px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="valid_year" name="valid_year" maxlength="4" style="width: 50px; text-align: center;" />&ensp;年
+                                                <label class="form-label" for="passport_country" style="margin-left: 0px;">簽發國家/地區</label> <br>
+                                                <input type="text" class="input-area" id="passport_country" name="passport_country" style="width: 240px;" />
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class=" quarter-div right">
+                                    <div class="griditem2">
+                                        <!-- <form action="" method="post"> -->
+                                        <div class="text-center mb-3" style="margin-left: -20px;">
+                                            <p class="text-center">個人資訊</p>
+                                        </div>
+                                        <!-- Passenger information-->
+                                        <div class="passenger_info">
+                                            <form name="passenger_info" action="" method="post">
+                                                <label class="form-label" for="gender" style="margin-left: 0px;">性別&ensp;</label>
+                                                <select id="gender" name="gender" value="none">
+														<option value="male">男</option>
+														<option value="female">女</option>
+                                                </select><br>
+                                                <label class="form-label" for="bir_day" style="margin-left: 0px; padding-top: 5px;">生日&ensp;</label>
+                                                <input type="text" class="input-area" id="bir_day" name="bir_day" maxlength="2" style="width: 30px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="bir_month" name="bir_month" maxlength="2" style="width: 30px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="bir_year" name="bir_year" maxlength="4" style="width: 40px; text-align: center;" />&ensp;年
+                                                <br> <label class="form-label" for="last_name" style="margin-left: 0px;">姓氏(請輸入護照上的英文姓氏)</label> <br>
+                                                <input type="text" class="input-area" id="last_name" name="last_name" maxlength="30" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="first_name" style="margin-left: 0px;">名字(請輸入護照上的英文名字)</label> <br>
+                                                <input type="text" class="input-area" id="first_name" name="first_name" maxlength="50" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="country" style="margin-left: 0px;">國籍/地區</label>
+                                                <br> <input type="text" class="input-area" id="country" name="country" style="width: 260px;" />
+                                                <button type="submit" data-action="submit" id="pas1Finish" class="btn btn-primary btn-block mb-4" data-dismiss="modal" style="color: #13A9C1;">完成</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                const submitBtn = document.querySelector('[data-action="submit"]');
+                submitBtn.addEventListener("click", processFormData);
+
+                function processFormData(e) {
+                    //取得表單元素
+                    //取得 name 屬性為 passenger_info 的表單
+                    const form = document.forms['passport_info'];
+                    //取 elements 集合中 name 屬性為 passport 的值
+                    //const passport = form.elements.passport.value;
+
+                    const passport = {
+                        passport: form.elements.passport.value,
+                        valid_day: form.elements.valid_day.value,
+                        valid_month: form.elements.valid_month.value,
+                        valid_year: form.elements.valid_year.value,
+                        passport_country: form.elements.passport_country.value,
+                    }
+                    window.localStorage.setItem('passport1', JSON.stringify(passport));
+
+                    const form2 = document.forms['passenger_info'];
+
+                    const passenger = {
+                        gender: form2.elements.gender.value,
+                        bir_day: form2.elements.bir_day.value,
+                        bir_month: form2.elements.bir_month.value,
+                        bir_year: form2.elements.bir_year.value,
+                        last_name: form2.elements.last_name.value,
+                        first_name: form2.elements.first_name.value,
+                        country: form2.elements.country.value,
+                    }
+                    window.localStorage.setItem('passenger1', JSON.stringify(passenger));
+
+                }
+                // $('#pas1Finish').click(function() {
+                //     passport = $('#passport').val(),
+                //         valid_day = $('#valid_day').val(),
+                //         valid_month = $('#valid_month').val(),
+                //         valid_year = $('#valid_year').val(),
+                //         passport_country = $('#passport_country').val(),
+                //         gender = $('#gender').val(),
+                //         bir_day = $('#bir_day').val(),
+                //         bir_month = $('#bir_month').val(),
+                //         bir_year = $('#bir_year').val(),
+                //         last_name = $('#last_name').val(),
+                //         first_name = $('#first_name').val(),
+                //         country = $('#country').val();
+
+                //     jsonObj = [];
+                //     item = {}
+                //     item['role'] = 'passenger';
+                //     item["passport"] = passport;
+                //     item["valid_day"] = valid_day;
+                //     item["valid_month"] = valid_month;
+                //     item["valid_year"] = valid_year;
+                //     item["passport_country"] = passport_country;
+                //     item["gender"] = gender;
+                //     item["bir_day"] = bir_day;
+                //     item["bir_month"] = bir_month;
+                //     item["last_name"] = last_name;
+                //     item["first_name"] = first_name;
+                //     item["country"] = country;
+
+                //     jsonObj.push(item); //將item傳入jsonObj裡面
+
+                //     $('#name').val(JSON.stringify(jsonObj)); //將JSON值塞入name欄位中，當送出表單時也會一併被存到資料庫
+
+                //     $('#result').html(JSON.stringify(jsonObj)); //前端呈現送到資料庫的結果
+
+
+                // });
+            </script>
+
+            <!-- pas2 -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body p-4">
+                            <div class="grid0">
+                                <div class="quarter-div left">
+                                    <div class="griditem1">
+
+                                        <div class="text-center mb-3" style="margin-left: -12px;">
+                                            <i class="fas fa-male fa-2x"></i>
+                                            <p class="text-center" style="margin-top: 15px; padding-top: 5px;">
+                                                成人<br>護照資料
+                                            </p>
+                                        </div>
+                                        <!-- Passport information-->
+                                        <div class="passport_info">
+                                            <form name="passport_info2" action="" method="post">
+                                                <label class="form-label" for="passport" style="margin-left: 0px;">護照編號</label> <br>
+                                                <input type="text" class="input-area" id="passport" name="passport" maxlength="9" style="width: 240px;" /> <br>
+                                                <label class="form-label" for="valid_day" style="margin-left: 0px;">證件效期</label> <br>
+                                                <input type="text" class="input-area" id="valid_day" name="valid_day" maxlength="2" style="width: 40px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="valid_month" name="valid_month" maxlength="2" style="width: 40px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="valid_year" name="valid_year" maxlength="4" style="width: 50px; text-align: center;" />&ensp;年
+                                                <label class="form-label" for="passport_country" style="margin-left: 0px;">簽發國家/地區</label> <br>
+                                                <input type="text" class="input-area" id="passport_country" name="passport_country" style="width: 240px;" />
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class=" quarter-div right">
+                                    <div class="griditem2">
+                                        <!-- <form action="" method="post"> -->
+                                        <div class="text-center mb-3" style="margin-left: -20px;">
+                                            <p class="text-center">個人資訊</p>
+                                        </div>
+                                        <!-- Passenger information-->
+                                        <div class="passenger_info">
+                                            <form name="passenger_info2" action="" method="post">
+                                                <label class="form-label" for="gender" style="margin-left: 0px;">性別&ensp;</label>
+                                                <select id="gender" name="gender" value="none">
+														<option value="male">男</option>
+														<option value="female">女</option>
+                                                </select><br>
+                                                <label class="form-label" for="bir_day" style="margin-left: 0px; padding-top: 5px;">生日&ensp;</label>
+                                                <input type="text" class="input-area" id="bir_day" name="bir_day" maxlength="2" style="width: 30px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="bir_month" name="bir_month" maxlength="2" style="width: 30px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="bir_year" name="bir_year" maxlength="4" style="width: 40px; text-align: center;" />&ensp;年
+                                                <br> <label class="form-label" for="last_name" style="margin-left: 0px;">姓氏(請輸入護照上的英文姓氏)</label> <br>
+                                                <input type="text" class="input-area" id="last_name" name="last_name" maxlength="30" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="first_name" style="margin-left: 0px;">名字(請輸入護照上的英文名字)</label> <br>
+                                                <input type="text" class="input-area" id="first_name" name="first_name" maxlength="50" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="country" style="margin-left: 0px;">國籍/地區</label>
+                                                <br> <input type="text" class="input-area" id="country" name="country" style="width: 260px;" />
+                                                <button type="submit" data-action="submit2" id="pas1Finish" class="btn btn-primary btn-block mb-4" data-dismiss="modal" style="color: #13A9C1;">完成</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                const submitBtn2 = document.querySelector('[data-action="submit2"]');
+                submitBtn2.addEventListener("click", processFormData2);
+
+                function processFormData2(e) {
+
+                    const form3 = document.forms['passport_info2'];
+                    const passport2 = {
+                        passport: form3.elements.passport.value,
+                        valid_day: form3.elements.valid_day.value,
+                        valid_month: form3.elements.valid_month.value,
+                        valid_year: form3.elements.valid_year.value,
+                        passport_country: form3.elements.passport_country.value,
+                    }
+                    window.localStorage.setItem('passport2', JSON.stringify(passport2));
+
+                    const form4 = document.forms['passenger_info2'];
+
+                    const passenger2 = {
+                        gender: form4.elements.gender.value,
+                        bir_day: form4.elements.bir_day.value,
+                        bir_month: form4.elements.bir_month.value,
+                        bir_year: form4.elements.bir_year.value,
+                        last_name: form4.elements.last_name.value,
+                        first_name: form4.elements.first_name.value,
+                        country: form4.elements.country.value,
+                    }
+                    window.localStorage.setItem('passenger2', JSON.stringify(passenger2));
+
+                }
+            </script>
+
+            <!-- pas3 -->
+            <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body p-4">
+                            <div class="grid0">
+                                <div class="quarter-div left">
+                                    <div class="griditem1">
+
+                                        <div class="text-center mb-3" style="margin-left: -12px;">
+                                            <i class="fas fa-male fa-2x"></i>
+                                            <p class="text-center" style="margin-top: 15px; padding-top: 5px;">
+                                                成人<br>護照資料
+                                            </p>
+                                        </div>
+                                        <!-- Passport information-->
+                                        <div class="passport_info">
+                                            <form name="passport_info3" action="" method="post">
+                                                <label class="form-label" for="passport" style="margin-left: 0px;">護照編號</label> <br>
+                                                <input type="text" class="input-area" id="passport" name="passport" maxlength="9" style="width: 240px;" /> <br>
+                                                <label class="form-label" for="valid_day" style="margin-left: 0px;">證件效期</label> <br>
+                                                <input type="text" class="input-area" id="valid_day" name="valid_day" maxlength="2" style="width: 40px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="valid_month" name="valid_month" maxlength="2" style="width: 40px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="valid_year" name="valid_year" maxlength="4" style="width: 50px; text-align: center;" />&ensp;年
+                                                <label class="form-label" for="passport_country" style="margin-left: 0px;">簽發國家/地區</label> <br>
+                                                <input type="text" class="input-area" id="passport_country" name="passport_country" style="width: 240px;" />
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class=" quarter-div right">
+                                    <div class="griditem2">
+                                        <!-- <form action="" method="post"> -->
+                                        <div class="text-center mb-3" style="margin-left: -20px;">
+                                            <p class="text-center">個人資訊</p>
+                                        </div>
+                                        <!-- Passenger information-->
+                                        <div class="passenger_info">
+                                            <form name="passenger_info3" action="" method="post">
+                                                <label class="form-label" for="gender" style="margin-left: 0px;">性別&ensp;</label>
+                                                <select id="gender" name="gender" value="none">
+														<option value="male">男</option>
+														<option value="female">女</option>
+                                                </select><br>
+                                                <label class="form-label" for="bir_day" style="margin-left: 0px; padding-top: 5px;">生日&ensp;</label>
+                                                <input type="text" class="input-area" id="bir_day" name="bir_day" maxlength="2" style="width: 30px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="bir_month" name="bir_month" maxlength="2" style="width: 30px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="bir_year" name="bir_year" maxlength="4" style="width: 40px; text-align: center;" />&ensp;年
+                                                <br> <label class="form-label" for="last_name" style="margin-left: 0px;">姓氏(請輸入護照上的英文姓氏)</label> <br>
+                                                <input type="text" class="input-area" id="last_name" name="last_name" maxlength="30" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="first_name" style="margin-left: 0px;">名字(請輸入護照上的英文名字)</label> <br>
+                                                <input type="text" class="input-area" id="first_name" name="first_name" maxlength="50" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="country" style="margin-left: 0px;">國籍/地區</label>
+                                                <br> <input type="text" class="input-area" id="country" name="country" style="width: 260px;" />
+                                                <button type="submit" data-action="submit3" id="pas1Finish" class="btn btn-primary btn-block mb-4" data-dismiss="modal" style="color: #13A9C1;">完成</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                const submitBtn3 = document.querySelector('[data-action="submit3"]');
+                submitBtn3.addEventListener("click", processFormData3);
+
+                function processFormData3(e) {
+
+                    const form5 = document.forms['passport_info3'];
+                    
+                    const passport3 = {
+                        passport: form5.elements.passport.value,
+                        valid_day: form5.elements.valid_day.value,
+                        valid_month: form5.elements.valid_month.value,
+                        valid_year: form5.elements.valid_year.value,
+                        passport_country: form5.elements.passport_country.value,
+                    }
+                    window.localStorage.setItem('passport3', JSON.stringify(passport3));
+
+                    const form6 = document.forms['passenger_info3'];
+
+                    const passenger3 = {
+                        gender: form6.elements.gender.value,
+                        bir_day: form6.elements.bir_day.value,
+                        bir_month: form6.elements.bir_month.value,
+                        bir_year: form6.elements.bir_year.value,
+                        last_name: form6.elements.last_name.value,
+                        first_name: form6.elements.first_name.value,
+                        country: form6.elements.country.value,
+                    }
+                    window.localStorage.setItem('passenger3', JSON.stringify(passenger3));
+                }
+            </script>
+
+            <!-- pas4 -->
+            <div class="modal fade" id="exampleModal4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-body p-4">
+                            <div class="grid0">
+                                <div class="quarter-div left">
+                                    <div class="griditem1">
+
+                                        <div class="text-center mb-3" style="margin-left: -12px;">
+                                            <i class="fas fa-male fa-2x"></i>
+                                            <p class="text-center" style="margin-top: 15px; padding-top: 5px;">
+                                                成人<br>護照資料
+                                            </p>
+                                        </div>
+                                        <!-- Passport information-->
+                                        <div class="passport_info">
+                                            <form name="passport_info4" action="" method="post">
+                                                <label class="form-label" for="passport" style="margin-left: 0px;">護照編號</label> <br>
+                                                <input type="text" class="input-area" id="passport" name="passport" maxlength="9" style="width: 240px;" /> <br>
+                                                <label class="form-label" for="valid_day" style="margin-left: 0px;">證件效期</label> <br>
+                                                <input type="text" class="input-area" id="valid_day" name="valid_day" maxlength="2" style="width: 40px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="valid_month" name="valid_month" maxlength="2" style="width: 40px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="valid_year" name="valid_year" maxlength="4" style="width: 50px; text-align: center;" />&ensp;年
+                                                <label class="form-label" for="passport_country" style="margin-left: 0px;">簽發國家/地區</label> <br>
+                                                <input type="text" class="input-area" id="passport_country" name="passport_country" style="width: 240px;" />
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class=" quarter-div right">
+                                    <div class="griditem2">
+                                        <!-- <form action="" method="post"> -->
+                                        <div class="text-center mb-3" style="margin-left: -20px;">
+                                            <p class="text-center">個人資訊</p>
+                                        </div>
+                                        <!-- Passenger information-->
+                                        <div class="passenger_info">
+                                            <form name="passenger_info4" action="" method="post">
+                                                <label class="form-label" for="gender" style="margin-left: 0px;">性別&ensp;</label>
+                                                <select id="gender" name="gender" value="none">
+														<option value="male">男</option>
+														<option value="female">女</option>
+                                                </select><br>
+                                                <label class="form-label" for="bir_day" style="margin-left: 0px; padding-top: 5px;">生日&ensp;</label>
+                                                <input type="text" class="input-area" id="bir_day" name="bir_day" maxlength="2" style="width: 30px; text-align: center;" />&ensp;日
+                                                <input type="text" class="input-area" id="bir_month" name="bir_month" maxlength="2" style="width: 30px; text-align: center;" />&ensp;月
+                                                <input type="text" class="input-area" id="bir_year" name="bir_year" maxlength="4" style="width: 40px; text-align: center;" />&ensp;年
+                                                <br> <label class="form-label" for="last_name" style="margin-left: 0px;">姓氏(請輸入護照上的英文姓氏)</label> <br>
+                                                <input type="text" class="input-area" id="last_name" name="last_name" maxlength="30" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="first_name" style="margin-left: 0px;">名字(請輸入護照上的英文名字)</label> <br>
+                                                <input type="text" class="input-area" id="first_name" name="first_name" maxlength="50" style="width: 260px;" /> <br>
+                                                <label class="form-label" for="country" style="margin-left: 0px;">國籍/地區</label>
+                                                <br> <input type="text" class="input-area" id="country" name="country" style="width: 260px;" />
+                                                <button type="submit" data-action="submit4" id="pas1Finish" class="btn btn-primary btn-block mb-4" data-dismiss="modal" style="color: #13A9C1;">完成</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script type="text/javascript">
+                const submitBtn4 = document.querySelector('[data-action="submit4"]');
+                submitBtn4.addEventListener("click", processFormData4);
+
+                function processFormData4(e) {
+
+                    const form7 = document.forms['passport_info4'];
+                    const passport4 = {
+                        passport: form7.elements.passport.value,
+                        valid_day: form7.elements.valid_day.value,
+                        valid_month: form7.elements.valid_month.value,
+                        valid_year: form7.elements.valid_year.value,
+                        passport_country: form7.elements.passport_country.value,
+                    }
+                    window.localStorage.setItem('passport4', JSON.stringify(passport4));
+
+                    const form8 = document.forms['passenger_info4'];
+
+                    const passenger4 = {
+                        gender: form8.elements.gender.value,
+                        bir_day: form8.elements.bir_day.value,
+                        bir_month: form8.elements.bir_month.value,
+                        bir_year: form8.elements.bir_year.value,
+                        last_name: form8.elements.last_name.value,
+                        first_name: form8.elements.first_name.value,
+                        country: form8.elements.country.value,
+                    }
+                    window.localStorage.setItem('passenger4', JSON.stringify(passenger4));
+                }
+            </script>
+            <script type="text/javascript ">
+                $('#exampleModal').on('show.bs.modal', function(event) {
+
+                    // var button = $(event.relatedTarget) // Button that triggered the modal
+                    // var recipient = button.data('whatever') // Extract info from data-* attributes
+                    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+                    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + recipient)
+                    modal.find('.modal-body input').val(recipient)
+                })
+                $('#exampleModal2').on('show.bs.modal', function(event) {
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + recipient)
+                    modal.find('.modal-body input').val(recipient)
+                })
+                $('#exampleModal3').on('show.bs.modal', function(event) {
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + recipient)
+                    modal.find('.modal-body input').val(recipient)
+                })
+                $('#exampleModal4').on('show.bs.modal', function(event) {
+                    var modal = $(this)
+                    modal.find('.modal-title').text('New message to ' + recipient)
+                    modal.find('.modal-body input').val(recipient)
+                })
+            </script>
+
+
+
+
+            <div class="button ">
+                <div class="back ">
+                    <button class="btn " id="back" style="color: #f68f00">
+						<i class="fas fa-chevron-circle-left "></i>&nbsp;上一步
+					</button>
+                </div>
+                <div class="next ">
+                    <button class="btn " id="next" style="color: #f68f00">
+						下一步&nbsp;<i class="fas fa-chevron-circle-right "></i>
+					</button>
+                </div>
+            </div>
+            <script type="text/javascript">
+                $(document)
+                    .ready(
+                        function() {
+
+                            // 下一步
+                            $('#next')
+                                .click(
+                                    function() {
+
+                                        let request = {
+                                            'passport': $(
+                                                    '#passport')
+                                                .val(),
+                                            'valid_day': $(
+                                                    '#valid_day')
+                                                .val(),
+                                            'valid_month': $(
+                                                    '#valid_month')
+                                                .val(),
+                                            'valid_year': $(
+                                                    '#valid_year')
+                                                .val(),
+                                            'passport_country': $(
+                                                    '#passport_country')
+                                                .val(),
+                                            'gender': $(
+                                                    '#gender')
+                                                .val(),
+                                            'bir_day': $(
+                                                    '#bir_day')
+                                                .val(),
+                                            'bir_month': $(
+                                                    '#bir_month')
+                                                .val(),
+                                            'bir_year': $(
+                                                    '#bir_year')
+                                                .val(),
+                                            'last_name': $(
+                                                    '#last_name')
+                                                .val(),
+                                            'first_name': $(
+                                                    '#first_name')
+                                                .val(),
+                                            'country': $(
+                                                    '#country')
+                                                .val(),
+                                        };
+
+                                        let data_string = JSON
+                                            .stringify(request);
+                                        $
+                                            .ajax({
+                                                type: "POST",
+                                                url: "api/Loginout.do", /////////////
+                                                crossDomain: true,
+                                                data: data_string,
+                                                cache: false,
+                                                dataType: 'json',
+                                                timeout: 5000,
+                                                success: function(
+                                                    response) {
+                                                    if (response.status == 200) {
+                                                        alert('儲存成功');
+                                                        location
+                                                            .reload();
+                                                    } else if (response.status = 401) {
+                                                        alert('輸入格式錯誤');
+                                                    }
+                                                    console
+                                                        .log(response);
+                                                    window.location
+                                                        .replace("order_confirm.html");
+                                                },
+                                                error: function(
+                                                    jqXHR,
+                                                    exception) {
+                                                    var msg = '';
+                                                    if (jqXHR.status === 0) {
+                                                        msg = 'Not connect.\n Verify Network.';
+                                                    } else if (jqXHR.status == 404) {
+                                                        msg = 'Requested page not found. [404]';
+                                                    } else if (jqXHR.status == 500) {
+                                                        msg = 'Internal Server Error [500].';
+                                                    } else if (exception === 'parsererror') {
+                                                        msg = 'Requested JSON parse failed.';
+                                                    } else if (exception === 'timeout') {
+                                                        msg = 'Time out error.';
+                                                    } else if (exception === 'abort') {
+                                                        msg = 'Ajax request aborted.';
+                                                    } else {
+                                                        msg = 'Uncaught Error.\n' +
+                                                            jqXHR.responseText;
+                                                    }
+                                                    alert(msg);
+                                                },
+                                            });
+                                    })
+
+                        });
+            </script>
+
+        </div>
+        <div class="main-footer ">
+            <div class="container2 ">
+                <div class="footer-contact ">
+                    <div class="ti ">
+                        <h1 style="display: inline;" class="s ">Super</h1>
+                        <h1 style="display: inline;" class="a ">Air</h1>
+                        <h1 style="display: inline;" class="c ">開發團隊</h1>
+                    </div>
+
+                    <h4>連絡電話: 09-12852254</h4>
+                    <h4>E-mail: superair@gmail.com</h4>
+                    <div class="linker ">
+                        <i class="fa fa-facebook-square fa-2x " aria-hidden="true "></i> <i class="fa fa-instagram fa-2x " aria-hidden="true "></i> <i class="fa fa-google fa-2x " aria-hidden="true "></i> <i class="fa fa-linkedin-square fa-2x " aria-hidden="true "></i>
+                    </div>
+                    <div class="headerDivider "></div>
+                </div>
+                <div class="footer-item ">
+                    <h4>會員</h4>
+                    <nav>
+                        <a href="# ">會員專區</a> <a href="# ">會員登入</a>
+
+                    </nav>
+                </div>
+                <div class="footer-item ">
+                    <h4>訂票</h4>
+
+                    <nav>
+                        <a href="# ">查詢班機</a> <a href="# ">搜尋班機</a>
+
+                    </nav>
+                </div>
+                <div class="footer-item ">
+                    <h4>資訊</h4>
+                    <nav>
+                        <a href="# ">最新消息</a>
+                    </nav>
+                </div>
+
+            </div>
+            <div class="copyright ">Copyright &copy; 2020 superairline開發團隊 All Rights Reserved. 隱私權政策 使用條款</div>
+        </div>
+</body>
+
+</html>
