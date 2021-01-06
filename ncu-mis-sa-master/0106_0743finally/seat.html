@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="statics/css/seat.css">
+	<script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <link href="statics/css/bootstrap.min.css" rel="stylesheet">
+    <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"crossorigin="anonymous"></script>
+     
+<script type="text/javascript">
+$(document).ready(function () {
+ if ($.cookie('memberName')===undefined) {
+                // 尚未登入
+              
+                $('#message').hide();
+                $('#login-form').show();
+                $('#logout-button').hide();
+                $('#logout-message').show();
+            } else {
+                // 已登入
+               
+                $('#message').show();
+                $('#login-form').hide();
+                $('#logout-button').show();
+                $('#logout-message').hide();
+
+                showWelcomeMessage($.cookie('memberName'), $.cookie('memberIsAdmin') === "1")
+            }
+	function showWelcomeMessage(name, isAdmin) {
+                $('#message').text('歡迎回來！' + (isAdmin ? "管理員" : "會員") + " " + name);
+            }
+	$('#logout-button').click(function () {
+		$.removeCookie('memberName', { path: '/' });
+		$.removeCookie('memberEmail', { path: '/' });
+		$.removeCookie('memberIsAdmin', { path: '/' });
+		$.removeCookie('memberName', { path: '/NCU_MIS_SA' });
+		$.removeCookie('memberEmail', { path: '/NCU_MIS_SA' });
+		$.removeCookie('memberIsAdmin', { path: '/NCU_MIS_SA' });
+
+        alert('已登出');
+        location.reload();
+    })
+ });
+ </script >
+<link rel="stylesheet" type="text/css" href="statics/css/jquery.seat-charts.css">
+
+  <style>
+body {
+	font-family: 'Roboto', sans-serif;
+  background-color:#fafafa;
+}
+a {
+	color: #b71a4c;
+}
+.detail{
+	height: 250px;
+}
+.front-indicator {
+	width: 145px;
+	margin: 5px 32px 15px 32px;
+	background-color: #f6f6f6;	
+	color: #adadad;
+	text-align: center;
+	padding: 3px;
+	border-radius: 5px;
+}
+.wrapper {
+	width: 100%;
+	text-align: center;
+  margin-top:0px;
+}
+
+.booking-details {
+	width: 700px;
+	display: block;
+
+
+	margin-left: 35px;
+	font-size: 12px;
+
+
+}
+.navbar-trans{
+    background:rgba(255, 255, 255, 0.0);
+    }
+.booking-details h2 {
+	margin: 25px 0 20px 0;
+	font-size: 17px;
+}
+.booking-details h3 {
+	margin: 5px 5px 0 0;
+	font-size: 14px;
+}
+div.seatCharts-cell {
+	color: #182C4E;
+	height: 29px;
+	width: 29px;
+	line-height: 29px;
+	
+}
+div.seatCharts-seat {
+	color: #FFFFFF;
+	cursor: pointer;	
+}
+div.seatCharts-row {
+	height: 35px;
+}
+div.seatCharts-seat.available.economy-class {
+	background-color: #ffb414;
+
+}
+div.seatCharts-seat.available.first-class {
+/* 	background: url(vip.png); */
+	background-color: #3a78c3;
+}
+div.seatCharts-seat.available.business-class {
+/* 	background: url(vip.png); */
+	background-color: #7ed5eb;
+}
+div.seatCharts-seat.focused {
+	background-color: #ff67f2;
+}
+div.seatCharts-seat.selected {
+	background-color: #ff2f00;
+}
+div.seatCharts-seat.unavailable {
+	background-color: #472B34;
+}
+div.seatCharts-container {
+	min-width: 1300px;
+}
+div.seatCharts-container {
+	margin-left:10%;
+
+	width: 500px;
+	padding: 20px;
+
+}
+div.seatCharts-legend {
+	padding-left: 0px;
+
+	bottom: 16px;
+}
+ul.seatCharts-legendList {
+	padding-left: 0px;
+}
+span.seatCharts-legendDescription {
+	margin-left: 5px;
+	line-height: 30px;
+}
+.checkout-button {
+	display: block;
+	margin: 10px 0;
+	font-size: 14px;
+}
+#selected-seats {
+	max-height: 90px;
+	overflow-y: scroll;
+	overflow-x: none;
+	width: 170px;
+}
+.btn-org{
+	color:#fff;
+	background:gray;
+	border :0px;
+}
+.btn-org:hover{
+	background:yellow;
+}
+.btn-org:active ,.btn-org.active,.btn-org:focus,.open{
+	background:orange;}
+	.black1{
+	background:rgba(0,0,0,0.5);
+	position: absolute;
+	height: 350px;
+	width: 207px;
+	top: 38%;
+  left: 19.5%;
+}
+
+	.black2{
+	background:rgba(0,0,0,0.5);
+	position: absolute;
+	height: 350px;
+	width: 280px;
+	top: 38%;
+  left: 35.5%;
+}
+
+
+
+	.black3{
+	background:rgba(0,0,0,0.5);
+	position: absolute;
+	height: 350px;
+	width: 383px;
+	top: 38%;
+  left: 56.5%;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light navbar-trans">
+            <a class="navbar-brand" href="#">Super Airline</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="index.html">首頁</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="member_home.html">會員專區</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link " href="#">最新消息</a>
+                  </li>
+                <li class="nav-item active mr-8">
+                    <a class="nav-link " href="search.html">查詢班機</a>
+                  </li>
+                
+              </ul>
+              
+                <span id="logout-message"class="navbar-text  ms-auto">
+                    訪客，你好！
+                  </span>
+                  <span id="message"  class="navbar-text  ms-auto">
+                   
+                  </span>
+                <button id="login-form" class="btn btn-outline-info  my-sm-0" onclick="location.href='login.html';">登入</button>
+                <button id="logout-button" class="btn btn-outline-info my-2 my-sm-0" >登出</button>
+                
+              
+            </div>
+          </nav>
+ <div id="qq3" class="loading" >
+	
+	<div id="qq" class="spinner-border" style= "width: 3rem; height: 3rem;" role="status">
+		
+</div>	
+<div id="b1" class="black1"></div>
+		<div id="b2" class="black2"></div>
+		<div id="b3" class="black3"></div>
+<span id="qq2" class="ssss">Loading...</span>
+  <div class="title-container">
+    <hr>
+    <div class="title-w">
+        <h3>選擇座位</h3>
+        <h5>select seat</h5>
+    </div>
+    <hr>
+</div>
+<form action="">
+	<div class="chooser-area">       
+	 <label id="s1" class="btn btn-org btn-s">
+            <input type="radio" name="options" id="seat1" style="display:none;"  value="seat1"><span id="r1"> </span><span id="msg1"> </span>
+        </label>
+        <label id="s2" class="btn btn-org btn-s ">
+           <input type="radio" name="options" id="seat2" style="display:none;"  checked="checked" value="seat2"><span id="r2"> </span><span id="msg2"> </span>
+        </label>
+        <label id="s3" class="btn btn-org btn-s">
+            <input type="radio" name="options" id="seat3" style="display:none;"  value="seat3"><span id="r3"> </span><span id="msg3"> </span>
+        </label>
+        <label id="s4" class="btn btn-org btn-s">
+            <input type="radio" name="options"id="seat4" style="display:none;"  value="seat4" ><span id="r4"> </span><span id="msg4"> </span>
+		</label>
+</div>
+        <div class="wrapper">
+  <div class="container">
+    <div id="seat-map">
+    </div>
+  </div>
+</div> 
+<div class="buts">
+	<button type="button" id="bef" class="before-but">
+                        <span>上一步</span>
+                    </button>
+	<button type="button" id="next" class="next-but">
+                        <span>下一步</span>
+                    </button>
+	</div>
+
+	</form>
+ </div> 
+</body>
+
+
+
+<script src="statics/js/jquery.seat-charts.js"></script> 
+<script>
+			var firstSeatLabel = 1;
+			
+			$(document).ready(function() {
+				var pasNum = localStorage.getItem('num_of_passenger');
+				
+				if (pasNum==="1"){
+					$('#s2').hide();
+					$('#s3').hide();
+					$('#s4').hide();
+					
+                   
+                    if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
+                    	{
+                    	
+                    	
+                    	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"女士");
+                    	}
+                    	
+                    	
+                    	
+                    else
+						{
+                    	
+                    
+                    	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"先生");
+                    	}
+					
+				}
+				else if (pasNum==="2"){
+					
+					$('#s3').hide();
+					$('#s4').hide();
+					if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
+                	{
+                	
+                	
+                	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"女士");
+                	}
+                	
+                	
+                	
+                else
+					{
+                	
+                	
+                	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"先生");
+                	}
+					if (JSON.parse(localStorage.getItem('passenger2')).gender == "female")
+                    	$('#r2').text( JSON.parse(localStorage.getItem('passenger2')).first_name+" "+JSON.parse(localStorage.getItem('passenger2')).last_name+"女士");
+                    else
+                    	$('#r2').text( JSON.parse(localStorage.getItem('passenger2')).first_name+" "+JSON.parse(localStorage.getItem('passenger2')).last_name+"先生");
+					
+				}
+				else if (pasNum==="3"){
+					
+					
+					$('#s4').hide();
+					if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
+                    	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"女士");
+                    else
+                    	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"先生");
+					if (JSON.parse(localStorage.getItem('passenger2')).gender == "female")
+                    	$('#r2').text( JSON.parse(localStorage.getItem('passenger2')).first_name+" "+JSON.parse(localStorage.getItem('passenger2')).last_name+"女士");
+                    else
+                    	$('#r2').text( JSON.parse(localStorage.getItem('passenger2')).first_name+" "+JSON.parse(localStorage.getItem('passenger2')).last_name+"先生");
+					if (JSON.parse(localStorage.getItem('passenger3')).gender == "female")
+                    	$('#r3').text( JSON.parse(localStorage.getItem('passenger3')).first_name+" "+JSON.parse(localStorage.getItem('passenger3')).last_name+"女士");
+                    else
+                    	$('#r3').text( JSON.parse(localStorage.getItem('passenger3')).first_name+" "+JSON.parse(localStorage.getItem('passenger3')).last_name+"先生");
+				
+				}
+				else if (pasNum==="4"){
+					if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
+                    	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"女士");
+                    else
+                    	$('#r1').text( JSON.parse(localStorage.getItem('passenger1')).first_name+" "+JSON.parse(localStorage.getItem('passenger1')).last_name+"先生");
+					if (JSON.parse(localStorage.getItem('passenger2')).gender == "female")
+                    	$('#r2').text( JSON.parse(localStorage.getItem('passenger2')).first_name+" "+JSON.parse(localStorage.getItem('passenger2')).last_name+"女士");
+                    else
+                    	$('#r2').text( JSON.parse(localStorage.getItem('passenger2')).first_name+" "+JSON.parse(localStorage.getItem('passenger2')).last_name+"先生");
+					if (JSON.parse(localStorage.getItem('passenger3')).gender == "female")
+                    	$('#r3').text( JSON.parse(localStorage.getItem('passenger3')).first_name+" "+JSON.parse(localStorage.getItem('passenger3')).last_name+"女士");
+                    else
+                    	$('#r3').text( JSON.parse(localStorage.getItem('passenger3')).first_name+" "+JSON.parse(localStorage.getItem('passenger3')).last_name+"先生");
+					if (JSON.parse(localStorage.getItem('passenger4')).gender == "female")
+                    	$('#r4').text( JSON.parse(localStorage.getItem('passenger4')).first_name+" "+JSON.parse(localStorage.getItem('passenger4')).last_name+"女士");
+                    else
+                    	$('#r4').text( JSON.parse(localStorage.getItem('passenger4')).first_name+" "+JSON.parse(localStorage.getItem('passenger4')).last_name+"先生");
+				}
+
+				
+				
+				var pas1,pas2,pas3,pas4;
+				var chooser;
+				getAllMember();
+				$('input[type=radio][name=options]').change(function() {
+			        if (this.value == 'seat1') {
+			            
+			            chooser='seat1';
+						$('#s1').addClass('active');
+						$('#s2').removeClass('active');
+						$('#s3').removeClass('active');
+						$('#s4').removeClass('active');
+			        }
+			        else if (this.value == 'seat2') {
+			            
+						chooser='seat2';
+						$('#s2').addClass('active');
+						$('#s1').removeClass('active');
+						$('#s3').removeClass('active');
+						$('#s4').removeClass('active');
+			        }
+			        else if (this.value == 'seat3') {
+			           
+						chooser='seat3';
+						$('#s3').addClass('active');
+						$('#s2').removeClass('active');
+						$('#s1').removeClass('active');
+						$('#s4').removeClass('active');
+			        }
+			        else if (this.value == 'seat4') {
+			            
+						chooser='seat4';
+						$('#s4').addClass('active');
+						$('#s2').removeClass('active');
+						$('#s3').removeClass('active');
+						$('#s1').removeClass('active');
+			        }
+			        
+			    });
+				var p1Choose,p2Choose,p3Choose,p4Choose;
+
+				var $cart = $('#selected-seats'),
+					$seat1 = $('#seat1'),
+					$seat2 = $('#seat2'),
+					$seat3 = $('#seat3'),
+					$seat4 = $('#seat4'),
+					$counter = $('#counter'),
+					$total = $('#total'),
+					sc = $('#seat-map').seatCharts({
+					map: [
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'___________________________',
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'___________________________',
+						'ffffff_bbbbbbbb_eeeeeeeeeee',
+						'ffffff_bbbbbbbb_eeeeeeeeeee'
+						
+					],
+					seats: {
+						f: {
+							price   : 100,
+							classes : 'first-class', //your custom CSS class
+							category: 'First Class'
+						},
+						b: {
+							price   : 100,
+							classes : 'business-class', //your custom CSS class
+							category: 'Business Class'
+						},
+						e: {
+							price   : 40,
+							classes : 'economy-class', //your custom CSS class
+							category: 'Economy Class'
+						}					
+					
+					},
+					naming : {
+						top : true,
+						rows: ['A', 'B', ' ','C', 'D', 'E', 'F', ' ', 'G', 'H'],
+						columns: ['1', '2', '3', '4', '5', '6', ' ', '7', '8', '9', '10', '11', '12', '13', '14', ' ', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25'],
+						getLabel : function (character, row, column) {
+							return row+column;
+						},
+					},
+					legend : {
+						node : $('#legend'),
+					    items : [
+							[ 'f', 'available',   'First Class' ],
+							[ 'b', 'available',   'Business Class' ],
+							[ 'e', 'available',   'Economy Class'],
+
+					    ]					
+					},
+					click: function () {
+						if (this.status() == 'available') {
+							if(chooser=='seat1'){
+								if(p1Choose!=null){
+									$(p1Choose).addClass("available");
+									$(p1Choose).removeClass("selected");
+								}
+								$('#msg1').text('('+this.settings.label+')')
+								p1Choose='#'+this.settings.id;
+								pas1=this.settings.id;
+							}
+							else if(chooser=='seat2'){
+								if(p2Choose!=null)
+								{
+									$(p2Choose).addClass("available");
+									$(p2Choose).removeClass("selected");
+								}
+								
+								$('#msg2').text('('+this.settings.label+')');
+								p2Choose='#'+this.settings.id;
+								pas2=this.settings.id;
+							}
+							else if(chooser=='seat3'){
+								if(p3Choose!=null)
+								{
+									$(p3Choose).addClass("available");
+									$(p3Choose).removeClass("selected");
+								}
+								
+							$('#msg3').text('('+this.settings.label+')');
+							p3Choose='#'+this.settings.id;
+							pas3=this.settings.id;
+								}
+							else if(chooser=='seat4'){
+								if(p4Choose!=null)
+								{
+									$(p4Choose).addClass("available");
+									$(p4Choose).removeClass("selected");
+								}
+								
+								$('#msg4').text('('+this.settings.label+')');
+								p4Choose='#'+this.settings.id;
+								pas4=this.settings.id;
+								
+					}
+							/*
+							 * Lets update the counter and total
+							 *
+							 * .find function will not find the current seat, because it will change its stauts only after return
+							 * 'selected'. This is why we have to add 1 to the length and the current seat price to the total.
+							 */
+
+							
+							return 'selected';
+						} else if (this.status() == 'selected') {
+							//update the counter
+							$counter.text(sc.find('selected').length-1);
+							//and total
+
+						
+							//remove the item from our cart
+							$('#cart-item-'+this.settings.id).remove();
+						
+							//seat has been vacated
+							return 'available';
+						} else if (this.status() == 'unavailable') {
+							//seat has been already booked
+							return 'unavailable';
+						} else {
+							return this.style();
+						}
+					}
+				});
+
+				//this will handle "[cancel]" link clicks
+				function getAllMember() {
+					var planeNum = localStorage.getItem('plane_no');
+					var request = {"plane_no":planeNum};
+                    var data_string = JSON.stringify(request);
+                    // 發出POST的GET請求取得所有會員列表
+                    $.ajax({
+                            type: "POST",
+                            url: "api/seat.do",
+                            crossDomain: true,
+                            data: data_string,
+                            cache: false,
+                            dataType: 'json',
+                            timeout: 5000,
+                            success: function (response) {
+                                if(response.status == 200){
+									updateTable(response.response.data);
+									$('#qq').hide();
+									$('#qq2').hide();
+									
+                                }
+                                console.log(response);
+                            },
+                            error: function () {
+								alert("無法連線到伺服器！");
+								$('#qq').hide();
+									$('#qq2').hide();
+									
+                            }
+                    });
+                }
+                function updateTable(data) {
+                	var seat_class = localStorage.getItem('seat_class');
+                    sc.get(data).status('unavailable');
+                    var seat_class = localStorage.getItem('seat_class');
+    				if(seat_class=="1")
+                	{
+    					$('#b1').hide();
+            
+                	}
+                else if(seat_class=="2")
+            	{
+                	$('#b2').hide();
+            	}
+                if(seat_class=="3")
+            	{
+                	$('#b3').hide();
+            	}
+                    	
+                }
+				//let's pretend some seats have already been booked
+				
+                $('#next').click(function() {
+                	
+                	const seat_id = {
+                            pas1: pas1,
+                            pas2: pas2,
+                            pas3: pas3,
+                            pas4: pas4
+                        }
+                        window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                	location.replace("order_confirm.html");
+                });
+				
+		
+		});
+		
+
+		
+		</script>
+</html>

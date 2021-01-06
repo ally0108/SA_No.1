@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Confirmation</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/01a332431c.js" crossorigin="anonymous"></script>
+    <script src="statics/js/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <script src="statics/js/carhartl-jquery-cookie-92b7715/jquery.cookie.js"></script>
+    <script type="text/javascript">
+      
+      var num_of_passenger = JSON.parse(localStorage.getItem('num_of_passenger'));
+
+        $(document).ready(function() {
+            if ($.cookie('memberName') === undefined) {
+                // 尚未登入
+
+                $('#message').hide();
+                $('#login-form').show();
+                $('#logout-button').hide();
+                $('#logout-message').show();
+            } else {
+                // 已登入
+
+                $('#message').show();
+                $('#login-form').hide();
+                $('#logout-button').show();
+                $('#logout-message').hide();
+
+                showWelcomeMessage($.cookie('memberName'), $.cookie('memberIsAdmin') === "1")
+            }
+
+            function showWelcomeMessage(name, isAdmin) {
+                $('#message').text('歡迎回來！' + (isAdmin ? "管理員" : "會員") + " " + name);
+            }
+            $('#logout-button').click(function() {
+                $.removeCookie('memberName', {
+                    path: '/'
+                });
+                $.removeCookie('memberEmail', {
+                    path: '/'
+                });
+                $.removeCookie('memberIsAdmin', {
+                    path: '/'
+                });
+                $.removeCookie('memberName', {
+                    path: '/NCU_MIS_SA'
+                });
+                $.removeCookie('memberEmail', {
+                    path: '/NCU_MIS_SA'
+                });
+                $.removeCookie('memberIsAdmin', {
+                    path: '/NCU_MIS_SA'
+                });
+
+                alert('已登出');
+                location.reload();
+            })
+        });
+    </script>
+
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        .button .back {
+            position: absolute;
+            top: 450px;
+            left: 95px;
+            font-size: 20px;
+            font-weight: 580;
+        }
+        
+        .button .next {
+            position: absolute;
+            top: 450px;
+            left: 150px;
+            font-size: 20px;
+            font-weight: 580;
+        }
+        
+        .button .btn,
+        .button .btn:active,
+        .button .btn:visited {
+            border-radius: 15px;
+            outline: none;
+            -webkit-box-shadow: none !important;
+            box-shadow: none;
+            font-family: sans-serif;
+        }
+        
+        .button .btn:active:focus,
+        .button .btn:hover {
+            font-weight: 630;
+        }
+        
+        .banner {
+            height: 100vh;
+            background: url(statics/img/NEWS-272-1.jpg)center top / cover;
+        }
+        
+        .welcome {
+            display: block;
+        }
+        
+        .welcome h1 {
+            opacity: 90%;
+            color: #FFF;
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+        
+        .welcome button {
+            text-decoration: none;
+            opacity: 50%;
+            padding: 8px 28px;
+            border-radius: 40px;
+            color: black;
+            border-color: #FFF;
+        }
+        
+        .welcome button:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color: white;
+            background-color: grey;
+            border-color: grey;
+        }
+        
+        .form-inline .btn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color: white;
+            background-color: grey;
+            border-color: grey;
+        }
+        
+        @import url("https://fonts.googleapis.com/css?family=Noto+Sans+TC:100,300,400,500,700,900&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        body {
+            background-color: #FFF;
+        }
+        
+        .top {
+            margin-top: 15px;
+            height: 10vh;
+        }
+        
+        .top .title {
+            height: 3vh;
+            display: flex;
+            text-align: center;
+            color: white;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 200;
+            font-size: 20px;
+            letter-spacing: 1px;
+            font-family: Segoe UI;
+        }
+        
+        .confirm {
+            text-align: center;
+            color: #c0c5bf;
+            justify-content: center;
+            margin: 0 auto;
+            font-weight: 200;
+            font-size: 16px;
+            letter-spacing: 5px;
+            font-family: Segoe UI;
+        }
+        
+        .carousel,
+        .slide,
+        .carousel .carousel-inner,
+        .carousel .carousel-item,
+        .carousel .carousel-control {
+            border-radius: 0;
+        }
+        
+        .carousel.slide.carousel-fade {
+            height: 55vh;
+            width: 54vw;
+            margin-top: -40px;
+            margin-left: 200px;
+            margin-right: auto;
+        }
+        
+        .title {
+            font-size: 37px;
+            font-weight: 600;
+            color: #627885;
+            margin-top: 0;
+            margin-left: 60px;
+        }
+        
+        .detail {
+            font-size: 18px;
+            color: #425C6B;
+            font-family: Segoe UI;
+            margin-left: 80px;
+            margin-top: 10px;
+            line-height: 40px;
+        }
+        
+        .detail span {
+            font-weight: 680;
+        }
+        
+        .list-group {
+            max-height: 300px;
+            border-color: white;
+            margin-bottom: 10px;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 0px;
+        }
+        
+        .list-group li {
+            background-color: #FFB754;
+            border-radius: 0px;
+            border-color: white;
+            margin-top: 5px;
+            margin-right: 30px;
+            margin-bottom: 5px;
+        }
+        
+        [class^="griditem"] {
+            text-align: center;
+            font-size: 1.1rem;
+            font-weight: 400;
+            font-family: Segoe UI;
+            letter-spacing: 1px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: 4%, 38%, 28%, 28%;
+            grid-template-rows: 48px;
+            grid-template-areas: "icon name inform1 inform2";
+            margin-left: 0;
+        }
+        
+        .griditem0 {
+            grid-area: icon;
+            margin-top: 10px;
+            margin-left: -12px;
+        }
+        
+        .griditem1,
+        .griditem2,
+        .griditem3 {
+            color: white;
+            font-size: 12px;
+            font-weight: 400;
+            margin-top: 6px;
+            text-align: left;
+            line-height: 20px;
+        }
+        
+        .griditem1 span,
+        .griditem2 span,
+        .griditem3 span {
+            font-weight: 220;
+            color: #0a3961;
+        }
+        
+        .griditem1 h3 {
+            font-size: 16px;
+        }
+        
+        .griditem1 {
+            grid-area: name;
+            margin-left: -12px;
+            margin-top: 4px;
+        }
+        
+        .griditem2 {
+            grid-area: inform1;
+        }
+        
+        .griditem3 {
+            grid-area: inform2;
+        }
+        
+        .header-text {
+            position: absolute;
+            top: 10%;
+            left: 1.8%;
+            right: auto;
+            width: 96.66666666666666%;
+        }
+        
+        .second.carousel.slide.carousel-fade {
+            height: 55vh;
+            width: 18vw;
+            margin-top: -447px;
+            margin-left: 1000px;
+            margin-right: auto;
+        }
+        
+        .second .title {
+            font-size: 30px;
+            font-weight: 200;
+            color: #425C6B;
+            margin-top: 5px;
+            margin-left: 28px;
+        }
+        
+        .second .detail {
+            font-size: 19spx;
+            color: #425C6B;
+            font-family: Segoe UI;
+            margin-left: 35px;
+            margin-top: 30px;
+            line-height: 40px;
+        }
+        
+        .second .detail .seat {
+            margin-top: -5px;
+            margin-left: 15px;
+        }
+        
+        .second .detail h3 {
+            color: #FFB754;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .second .detail span {
+            color: #FFB754;
+            font-weight: 200;
+        }
+        
+        .second .detail h2 {
+            margin-top: 5px;
+            margin-left: 15px;
+            font-size: 27px;
+            font-weight: 100;
+        }
+        
+        .main-footer {
+            padding: 30px 0 0 0;
+            background: #627885;
+        }
+        
+        .main-footer .container2 {
+            display: flex;
+            width: 80%;
+            margin: 0 20px;
+        }
+        
+        .footer-contact {
+            display: block;
+            line-height: 24px;
+            padding: 0 200px 0 0;
+        }
+        
+        .footer-contact .linker {
+            width: 200px;
+            margin: 20px;
+            letter-spacing: 5px;
+            color: #FFF;
+        }
+        
+        .footer-contact .linker:hover {
+            color: #fa0;
+        }
+        
+        .footer-contact .ti {
+            margin: 0 0 40px;
+        }
+        
+        .footer-contact .s {
+            color: #fa0;
+            margin-bottom: 10px;
+        }
+        
+        .footer-contact .a {
+            color: gainsboro;
+            margin-bottom: .5em;
+        }
+        
+        .footer-contact .c {
+            color: #fFF;
+            margin-bottom: .5em;
+        }
+        
+        .footer-contact h4 {
+            color: rgb(206, 206, 206);
+            margin-bottom: .5em;
+        }
+        
+        .footer-item {
+            width: 0;
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        
+        .footer-item h4 {
+            font-size: 24px;
+            color: #fa0;
+            border-bottom: 1px dotted #fff;
+            margin-bottom: .5em;
+            padding-bottom: .5em;
+        }
+        
+        .footer-item nav {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .footer-item nav a {
+            color: #fff;
+            line-height: 1.4;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+        
+        .footer-item nav a:hover {
+            color: #fa0;
+        }
+        
+        .copyright {
+            text-align: right;
+            padding: 10px 200px;
+            color: rgb(206, 206, 206);
+        }
+        
+        .context-container {
+            height: 300vh;
+            margin: auto;
+        }
+        
+        .carousel-inner {
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            height: 500px;
+            border-radius: 50px;
+        }
+        
+        .c1 h1 {
+            padding: 200px 0 0px 0;
+            color: #FFF;
+            letter-spacing: 3px;
+        }
+        
+        .c1 p {
+            color: #FFf;
+            letter-spacing: 2px;
+        }
+        
+        .container3 {
+            height: 80vh;
+            width: 90%;
+            margin: auto;
+        }
+        
+        .container3 h1 {
+            margin-bottom: 20px;
+            color: #13A9C1;
+        }
+        
+        .container3 hr {
+            border-top: 1px solid #13A9C1;
+            margin-bottom: 20px;
+        }
+        
+        .news-cards {
+            display: flex;
+        }
+        
+        .card {
+            flex-grow: 1;
+            margin: 0 20px;
+            border-radius: 24px;
+        }
+        
+        .card-title {
+            color: #425c6b;
+            font-family: Arial, Helvetica, sans-serif;
+            border-bottom: 1px solid #425c6b;
+        }
+        
+        .container4 {
+            display: flex;
+            height: 40vh;
+            width: 93%;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .image-holder {
+            margin-left: 7%;
+            margin-right: 50px;
+            margin-top: 0px;
+        }
+        
+        .image-holder img {
+            width: 30vw;
+            height: 35vh;
+            border-radius: 20px;
+        }
+        
+        .about {
+            width: 70%;
+        }
+        
+        .about h1 {
+            color: #13A9C1;
+        }
+        
+        .about hr {
+            border-top: 1px solid #13A9C1;
+        }
+        
+        .about h5 {
+            color: #425c6b;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="banner">
+        <div id="navbar">
+            <nav class="navbar navbar-expand-lg navbar-dark navbar-trans">
+                <a class="navbar-brand" href="#">Super Airline</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">首頁 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="member_home.html">會員專區</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="#">最新消息</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link " href="search.html">查詢班機</a>
+                        </li>
+
+                    </ul>
+
+                    <span id="logout-message" class="navbar-text mr-sm-2">
+                    訪客，你好！
+                  </span>
+                    <span id="message" class="navbar-text mr-sm-2">
+                   
+                  </span>
+                    <button id="login-form" class="btn btn-outline-light my-2 my-sm-0" onclick="location.href='login.html';">登入</button>
+                    <button id="logout-button" class="btn btn-outline-light my-2 my-sm-0">登出</button>
+
+
+                </div>
+            </nav>
+        </div>
+
+
+        <div class="top">
+            <div class="title">
+                <HR width=290 SIZE=3 color=white> &emsp;&emsp;確認訂單&emsp;&emsp;
+                <HR width=290 SIZE=3 color=white>
+                </br>
+            </div>
+            <div class="confirm">&nbsp;confirmation</div>
+        </div>
+        <div class="big-container">
+            <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="view">
+                            <img class="d-block w-140" src="statics/img/Rectangle.png" alt="First slide">
+                            <div class="mask rgba-black-light"></div>
+
+                            <div class="header-text hidden-xs">
+                                <div class="title">
+                                    <i class="fas fa-user-circle"></i>&nbsp; 旅客確認
+                                </div>
+                                <div class="detail">
+                                    <div class="panel panel-primary" id="result_panel">
+                                        <div class="panel-body">
+                                            <div class="overflow-auto">
+                                                <ul class="list-group">
+                                                    <li class="list-group-item" id="pas1">
+                                                        <div class="grid">
+                                                            <div class="griditem0">
+                                                                <i class="fas fa-female fa-2x"></i>
+                                                            </div>
+                                                            <div class="griditem1">
+                                                                <span><div class="salutation" id="salutation" style="display:inline"></div></span><br>
+                                                                <h3>
+                                                                    <div class="first_name" id="first_name" style="display:inline"></div>
+                                                                    <div class="last_name" id="last_name" style="display:inline"></div>&ensp;
+                                                                    <div class="gender" id="gender" style="display:inline"></div>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="griditem2">
+                                                                <span>生日</span>&thinsp;
+                                                                <div class="birthday" id="birthday" style="display:inline"></div><br>
+                                                                <span>性別</span>&thinsp;
+                                                                <div class="gender2" id="gender2" style="display:inline"></div>
+                                                            </div>
+                                                            <div class="griditem3">
+                                                                <span>護照編碼</span>&thinsp;
+                                                                <div class="passport" id="passport" style="display:inline"></div><br>
+                                                                <span>座位資訊</span>&thinsp;
+                                                                <div class="seat_class" id="seat_class" style="display:inline"></div>
+                                                                <div class="seat_id" id="seat_id" style="display:inline"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <script>
+                                                    if((JSON.parse(localStorage.getItem("passenger1")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger1")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger1")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation").innerHTML = "嬰兒";
+                                                    
+                                                        document.getElementById("first_name").innerHTML = JSON.parse(localStorage.getItem('passenger1')).first_name;
+                                                        document.getElementById("last_name").innerHTML = JSON.parse(localStorage.getItem('passenger1')).last_name;
+                                                        if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
+                                                            document.getElementById("gender").innerHTML = "女士";
+                                                        else
+                                                            document.getElementById("gender").innerHTML = "先生";
+                                                        document.getElementById("birthday").innerHTML = JSON.parse(localStorage.getItem('passenger1')).bir_year + "年" + JSON.parse(localStorage.getItem('passenger1')).bir_month + "月" + JSON.parse(localStorage.getItem('passenger1')).bir_day + "日";
+
+                                                        if (JSON.parse(localStorage.getItem('passenger1')).gender == "female")
+                                                            document.getElementById("gender2").innerHTML = "女";
+                                                        else
+                                                            document.getElementById("gender2").innerHTML = "男";
+                                                        document.getElementById("passport").innerHTML = JSON.parse(localStorage.getItem('passport1')).passport;
+
+                                                        if (localStorage.getItem("seat_class") == 1)
+                                                            document.getElementById("seat_class").innerHTML = "頭等艙";
+                                                        else if (localStorage.getItem("seat_class") == 2)
+                                                            document.getElementById("seat_class").innerHTML = "商務艙";
+                                                        else
+                                                            document.getElementById("seat_class").innerHTML = "經濟艙";
+
+                                                        //座位部分
+                                                        document.getElementById("seat_id").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas1;
+                                                    </script>
+
+                                                    <li class="list-group-item" id="pas2">
+                                                        <div class="grid">
+                                                            <div class="griditem0">
+                                                                <i class="fas fa-female fa-2x"></i>
+                                                            </div>
+                                                            <div class="griditem1">
+                                                                <span><div class="salutation2" id="salutation2" style="display:inline"></div></span><br>
+                                                                <h3>
+                                                                    <div class="first_name2" id="first_name2" style="display:inline"></div>
+                                                                    <div class="last_name2" id="last_name2" style="display:inline"></div>&ensp;
+                                                                    <div class="gender02" id="gender02" style="display:inline"></div>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="griditem2">
+                                                                <span>生日</span>&thinsp;
+                                                                <div class="birthday2" id="birthday2" style="display:inline"></div><br>
+                                                                <span>性別</span>&thinsp;
+                                                                <div class="gender22" id="gender22" style="display:inline"></div>
+                                                            </div>
+                                                            <div class="griditem3">
+                                                                <span>護照編碼</span>&thinsp;
+                                                                <div class="passport2" id="passport2" style="display:inline"></div><br>
+                                                                <span>座位資訊</span>&thinsp;
+                                                                <div class="seat_class2" id="seat_class2" style="display:inline"></div>
+                                                                <div class="seat_id2" id="seat_id2" style="display:inline"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <script>
+                                                    if((JSON.parse(localStorage.getItem("passenger2")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation2").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger2")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation2").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger2")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation2").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation2").innerHTML = "嬰兒";  	
+                                                        
+                                                    document.getElementById("first_name2").innerHTML = JSON.parse(localStorage.getItem('passenger2')).first_name;
+                                                        document.getElementById("last_name2").innerHTML = JSON.parse(localStorage.getItem('passenger2')).last_name;
+                                                        if (JSON.parse(localStorage.getItem('passenger2')).gender == "female")
+                                                            document.getElementById("gender02").innerHTML = "女士";
+                                                        else
+                                                            document.getElementById("gender02").innerHTML = "先生";
+                                                        document.getElementById("birthday2").innerHTML = JSON.parse(localStorage.getItem('passenger2')).bir_year + "年" + JSON.parse(localStorage.getItem('passenger2')).bir_month + "月" + JSON.parse(localStorage.getItem('passenger2')).bir_day + "日";
+
+                                                        if (JSON.parse(localStorage.getItem('passenger2')).gender == "female")
+                                                            document.getElementById("gender22").innerHTML = "女";
+                                                        else
+                                                            document.getElementById("gender22").innerHTML = "男";
+                                                        document.getElementById("passport2").innerHTML = JSON.parse(localStorage.getItem('passport2')).passport;
+
+                                                        if (localStorage.getItem("seat_class") == 1)
+                                                            document.getElementById("seat_class2").innerHTML = "頭等艙";
+                                                        else if (localStorage.getItem("seat_class") == 2)
+                                                            document.getElementById("seat_class2").innerHTML = "商務艙";
+                                                        else
+                                                            document.getElementById("seat_class2").innerHTML = "經濟艙";
+
+                                                        //座位部分
+                                                        //window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                                                        document.getElementById("seat_id2").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas2;
+                                                    </script>
+
+                                                    <li class="list-group-item" id="pas3">
+                                                        <div class="grid">
+                                                            <div class="griditem0">
+                                                                <i class="fas fa-female fa-2x"></i>
+                                                            </div>
+                                                            <div class="griditem1">
+                                                                <span><div class="salutation3" id="salutation3" style="display:inline"></div></span><br>
+                                                                <h3>
+                                                                    <div class="first_name3" id="first_name3" style="display:inline"></div>
+                                                                    <div class="last_name3" id="last_name3" style="display:inline"></div>&ensp;
+                                                                    <div class="gender03" id="gender03" style="display:inline"></div>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="griditem2">
+                                                                <span>生日</span>&thinsp;
+                                                                <div class="birthday3" id="birthday3" style="display:inline"></div><br>
+                                                                <span>性別</span>&thinsp;
+                                                                <div class="gender23" id="gender23" style="display:inline"></div>
+                                                            </div>
+                                                            <div class="griditem3">
+                                                                <span>護照編碼</span>&thinsp;
+                                                                <div class="passport3" id="passport3" style="display:inline"></div><br>
+                                                                <span>座位資訊</span>&thinsp;
+                                                                <div class="seat_class3" id="seat_class3" style="display:inline"></div>
+                                                                <div class="seat_id3" id="seat_id3" style="display:inline"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <script>
+                                                    if((JSON.parse(localStorage.getItem("passenger3")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation3").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger3")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation3").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger3")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation3").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation3").innerHTML = "嬰兒";
+                                                    
+                                                        document.getElementById("first_name3").innerHTML = JSON.parse(localStorage.getItem('passenger3')).first_name;
+                                                        document.getElementById("last_name3").innerHTML = JSON.parse(localStorage.getItem('passenger3')).last_name;
+                                                        if (JSON.parse(localStorage.getItem('passenger3')).gender == "female")
+                                                            document.getElementById("gender03").innerHTML = "女士";
+                                                        else
+                                                            document.getElementById("gender03").innerHTML = "先生";
+                                                        document.getElementById("birthday3").innerHTML = JSON.parse(localStorage.getItem('passenger3')).bir_year + "年" + JSON.parse(localStorage.getItem('passenger3')).bir_month + "月" + JSON.parse(localStorage.getItem('passenger3')).bir_day + "日";
+
+                                                        if (JSON.parse(localStorage.getItem('passenger3')).gender == "female")
+                                                            document.getElementById("gender23").innerHTML = "女";
+                                                        else
+                                                            document.getElementById("gender23").innerHTML = "男";
+                                                        document.getElementById("passport3").innerHTML = JSON.parse(localStorage.getItem('passport3')).passport;
+
+                                                        if (localStorage.getItem("seat_class") == 1)
+                                                            document.getElementById("seat_class3").innerHTML = "頭等艙";
+                                                        else if (localStorage.getItem("seat_class") == 2)
+                                                            document.getElementById("seat_class3").innerHTML = "商務艙";
+                                                        else
+                                                            document.getElementById("seat_class3").innerHTML = "經濟艙";
+
+                                                        //座位部分
+                                                       // window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                                                        document.getElementById("seat_id3").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas3;
+                                                    </script>
+
+                                                    <li class="list-group-item" id="pas4">
+                                                        <div class="grid">
+                                                            <div class="griditem0">
+                                                                <i class="fas fa-female fa-2x"></i>
+                                                            </div>
+                                                            <div class="griditem1">
+                                                                <span><div class="salutation4" id="salutation4" style="display:inline"></div></span><br>
+                                                                <h3>
+                                                                    <div class="first_name4" id="first_name4" style="display:inline"></div>
+                                                                    <div class="last_name4" id="last_name4" style="display:inline"></div>&ensp;
+                                                                    <div class="gender04" id="gender04" style="display:inline"></div>
+                                                                </h3>
+                                                            </div>
+                                                            <div class="griditem2">
+                                                                <span>生日</span>&thinsp;
+                                                                <div class="birthday4" id="birthday4" style="display:inline"></div><br>
+                                                                <span>性別</span>&thinsp;
+                                                                <div class="gender24" id="gender24" style="display:inline"></div>
+                                                            </div>
+                                                            <div class="griditem3">
+                                                                <span>護照編碼</span>&thinsp;
+                                                                <div class="passport4" id="passport4" style="display:inline"></div><br>
+                                                                <span>座位資訊</span>&thinsp;
+                                                                <div class="seat_class4" id="seat_class4" style="display:inline"></div>
+                                                                <div class="seat_id4" id="seat_id4" style="display:inline"></div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+
+                                                    <script>
+                                                    if((JSON.parse(localStorage.getItem("passenger4")).bir_year-2020)>=18)
+                                                    	document.getElementById("salutation4").innerHTML = "成人"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger4")).bir_year-2020)>12)
+                                                    	document.getElementById("salutation4").innerHTML = "青年"; 
+                                                    else if((JSON.parse(localStorage.getItem("passenger4")).bir_year-2020)>2)
+                                                    	document.getElementById("salutation4").innerHTML = "兒童"; 
+                                                    else
+                                                    	document.getElementById("salutation4").innerHTML = "嬰兒";
+                                                    
+                                                    	document.getElementById("first_name4").innerHTML = JSON.parse(localStorage.getItem('passenger4')).first_name;
+                                                        document.getElementById("last_name4").innerHTML = JSON.parse(localStorage.getItem('passenger4')).last_name;
+                                                        if (JSON.parse(localStorage.getItem('passenger4')).gender == "female")
+                                                            document.getElementById("gender04").innerHTML = "女士";
+                                                        else
+                                                            document.getElementById("gender04").innerHTML = "先生";
+                                                        document.getElementById("birthday4").innerHTML = JSON.parse(localStorage.getItem('passenger4')).bir_year + "年" + JSON.parse(localStorage.getItem('passenger4')).bir_month + "月" + JSON.parse(localStorage.getItem('passenger4')).bir_day + "日";
+
+                                                        if (JSON.parse(localStorage.getItem('passenger4')).gender == "female")
+                                                            document.getElementById("gender24").innerHTML = "女";
+                                                        else
+                                                            document.getElementById("gender24").innerHTML = "男";
+                                                        document.getElementById("passport4").innerHTML = JSON.parse(localStorage.getItem('passport4')).passport;
+
+                                                        if (localStorage.getItem("seat_class") == 1)
+                                                            document.getElementById("seat_class4").innerHTML = "頭等艙";
+                                                        else if (localStorage.getItem("seat_class") == 2)
+                                                            document.getElementById("seat_class4").innerHTML = "商務艙";
+                                                        else
+                                                            document.getElementById("seat_class4").innerHTML = "經濟艙";
+
+                                                        //座位部分
+                                                       // window.localStorage.setItem('seat_id', JSON.stringify(seat_id));
+                                                        document.getElementById("seat_id4").innerHTML = JSON.parse(localStorage.getItem('seat_id')).pas4;
+                                                    </script>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                        if (num_of_passenger > 0) {
+                            $("#pas1").show();
+                            $("#pas2").hide();
+                            $("#pas3").hide();
+                            $("#pas4").hide();
+                        }
+                            if (num_of_passenger > 1) {
+                                $("#pas2").show();
+                                $("#pas3").hide();
+                                $("#pas4").hide();
+                            }
+                            if (num_of_passenger > 2) {
+                                $("#pas2").show();
+                                $("#pas3").show();
+                                $("#pas4").hide();
+                            }
+                            if (num_of_passenger > 3) {
+                                $("#pas2").show();
+                                $("#pas3").show();
+                                $("#pas4").show();
+                            }
+                        </script>
+                        <div class="button">
+                            <div class="back">
+                                <button class="btn" onclick="location.href='order_confirm.html';" style="color:#f68f00">
+                                <i class="fas fa-chevron-circle-left"></i>&nbsp;行程確認 </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="carousel-example-2" class="second carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="view">
+                            <img class="d-block w-140" src="statics/img/Rectangle.png" alt="First slide">
+                            <div class="mask rgba-black-light"></div>
+
+                            <div class="header-text hidden-xs">
+                                <div class="title">
+                                    訂單金額
+                                </div>
+                                
+                                <div class="detail">
+                                    <h3>
+                                        <div class="dep_city" id="dep_city" style="display:inline"></div> -
+                                        <div class="arr_city" id="arr_city" style="display:inline"></div>
+                                    </h3>
+                                    <div class="seat">
+                                        <div id="seat1">
+                                            <div class="seat_class01" id="seat_class01" style="display:inline"></div>&nbsp;
+                                            <span>NTD <div class="price" id="price" style="display:inline"></div></span><br></div>
+                                        <div id="seat2">
+                                            <div class="seat_class02" id="seat_class02" style="display:inline"></div>&nbsp;
+                                            <span>NTD <div class="price2" id="price2" style="display:inline"></div></span><br></div>
+                                        <div id="seat3">
+                                            <div class="seat_class03" id="seat_class03" style="display:inline"></div>&nbsp;
+                                            <span>NTD <div class="price3" id="price3" style="display:inline"></div></span><br></div>
+                                        <div id="seat4">
+                                            <div class="seat_class04" id="seat_class04" style="display:inline"></div>&nbsp;
+                                            <span>NTD <div class="price4" id="price4" style="display:inline"></div></span></div>
+                                    </div>
+                                    <h3><br>合計</h3>
+                                    <h2>NTD <div class="price5" id="price5" style="display:inline"></div></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            document.getElementById("dep_city").innerHTML = localStorage.getItem("dep_city");
+                            document.getElementById("arr_city").innerHTML = localStorage.getItem("arr_city");
+                            if (localStorage.getItem("seat_class") == 1)
+                                document.getElementById("seat_class01").innerHTML = "頭等艙";
+                            else if (localStorage.getItem("seat_class") == 2)
+                                document.getElementById("seat_class01").innerHTML = "商務艙";
+                            else
+                                document.getElementById("seat_class01").innerHTML = "經濟艙";
+
+                            if (localStorage.getItem("seat_class") == 1)
+                                document.getElementById("seat_class02").innerHTML = "頭等艙";
+                            else if (localStorage.getItem("seat_class") == 2)
+                                document.getElementById("seat_class02").innerHTML = "商務艙";
+                            else
+                                document.getElementById("seat_class02").innerHTML = "經濟艙";
+
+                            if (localStorage.getItem("seat_class") == 1)
+                                document.getElementById("seat_class03").innerHTML = "頭等艙";
+                            else if (localStorage.getItem("seat_class") == 2)
+                                document.getElementById("seat_class03").innerHTML = "商務艙";
+                            else
+                                document.getElementById("seat_class03").innerHTML = "經濟艙";
+
+                            if (localStorage.getItem("seat_class") == 1)
+                                document.getElementById("seat_class04").innerHTML = "頭等艙";
+                            else if (localStorage.getItem("seat_class") == 2)
+                                document.getElementById("seat_class04").innerHTML = "商務艙";
+                            else
+                                document.getElementById("seat_class04").innerHTML = "經濟艙";
+                            
+                          //價錢部分
+                            document.getElementById("price").innerHTML = localStorage.getItem("price");
+                            document.getElementById("price2").innerHTML = localStorage.getItem("price");
+                            document.getElementById("price3").innerHTML = localStorage.getItem("price");
+                            document.getElementById("price4").innerHTML = localStorage.getItem("price");
+                            if (num_of_passenger > 3) 
+                            	document.getElementById("price5").innerHTML = localStorage.getItem("price")*4;
+                            else if (num_of_passenger > 2) 
+                            	document.getElementById("price5").innerHTML = localStorage.getItem("price")*3;
+                            else if (num_of_passenger > 1) 
+                            	document.getElementById("price5").innerHTML = localStorage.getItem("price")*2;
+                            else
+                            	document.getElementById("price5").innerHTML = localStorage.getItem("price");
+
+                            if (num_of_passenger > 0) {
+                                $("#seat1").show();
+                                $("#seat2").hide();
+                                $("#seat3").hide();
+                                $("#seat4").hide();
+                            }
+                            if (num_of_passenger > 1) {
+                                $("#seat2").show();
+                                $("#seat3").hide();
+                                $("#seat4").hide();
+                            }
+                            if (num_of_passenger > 2) {
+                                $("#seat2").show();
+                                $("#seat3").show();
+                                $("#seat4").hide();
+                            }
+                            if (num_of_passenger > 3) {
+                                $("#seat2").show();
+                                $("#seat3").show();
+                                $("#seat4").show();
+                            }
+                        </script>
+
+
+
+                        <div class="button">
+                            <div class="next">
+                                <button class="btn" onclick="location.href='pay.html';" style="color:#f68f00">&nbsp;繼續&nbsp;&nbsp;<i class="fas fa-chevron-circle-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-footer">
+        <div class="container2">
+            <div class="footer-contact">
+                <div class="ti">
+                    <h1 style="display:inline;" class="s">Super</h1>
+                    <h1 style="display:inline;" class="a">Air</h1>
+                    <h1 style="display:inline;" class="c">開發團隊</h1>
+                </div>
+                <h4>連絡電話: 09-12852254</h4>
+                <h4>E-mail: superair@gmail.com</h4>
+                <div class="linker">
+                    <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-google fa-2x" aria-hidden="true"></i>
+                    <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="footer-item">
+                <h4>會員</h4>
+                <nav>
+                    <a href="#">會員專區</a>
+                    <a href="#">會員登入</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>訂票</h4>
+                <nav>
+                    <a href="#">查詢班機</a>
+                    <a href="#">搜尋班機</a>
+                </nav>
+            </div>
+            <div class="footer-item">
+                <h4>資訊</h4>
+                <nav>
+                    <a href="#">最新消息</a>
+                </nav>
+            </div>
+        </div>
+        <div class="copyright">
+            Copyright &copy; 2020 superairline開發團隊 All Rights Reserved. 隱私權政策 使用條款
+        </div>
+    </div>
+</body>
+
+</html>

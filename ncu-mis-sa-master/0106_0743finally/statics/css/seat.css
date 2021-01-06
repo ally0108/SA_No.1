@@ -1,0 +1,383 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+.main-navbar {
+  /* background: linear-gradient(-20deg,#3f5494,#08c7a5); */
+  background: #445B6B;
+}
+.chooser-area{
+display: flex;
+justify-content: center;
+margin-bottom: 0px;
+}
+.btn-s{
+  width: 250px;
+  margin-right: 10px;
+}
+.title-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin: auto;
+  margin-top: 50px;
+  
+}
+.title-container hr{
+  border-top: 3px solid #445B6B;
+  width:40%;
+  
+}
+.title-w{
+  text-align: center;
+  color: #425c6b;
+}
+.main-navbar .container2 {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
+.navbar-trans {
+  background:rgba(68, 108, 139, 0.7);
+}
+
+.main-navbar .container2 .title {
+  color: gainsboro;
+  text-align: center;
+  margin: auto;
+  padding: 0 5px 0 0;
+}
+
+.main-navbar a {
+  color: gainsboro;
+}
+
+.main-navbar .container2 .title .s {
+  font-size: 32px;
+  letter-spacing: 5px;
+}
+
+.main-navbar .container2 .title .a {
+  font-size: 20px;
+  letter-spacing: 3px;
+}
+
+.main-navbar .wrap {
+  display: flex;
+}
+
+.main-navbar .container3 {
+  position: relative;
+  height: 40px;
+  margin: auto;
+  display: flex;
+}
+
+.main-navbar .item {
+  position: relative;
+  right: 30px;
+  margin-top: 5px;
+  margin-left: 60px;
+}
+
+.main-navbar .item hr {
+  margin-top: 0;
+  border-color: #fa0;
+  border-width: 0.3rem;
+}
+
+.navbar-contact {
+  display: block;
+  line-height: 24px;
+  margin: 5px;
+  padding: 10px 50px 0 0;
+}
+
+.navbar-contact .ti {
+  margin: 0 0 35px;
+}
+
+.navbar-contact .s {
+  color: #fa0;
+  margin-bottom: 10px;
+}
+
+.navbar-contact .a {
+  color: gainsboro;
+  margin-bottom: .5em;
+}
+
+.navbar-user .a1 {
+  color: gainsboro;
+  float: right;
+  margin: 20px;
+}
+
+.navbar-user i {
+  margin: 10px;
+}
+html {
+  font-size: 16px;
+}
+
+
+body{
+  background: url(../img/Effiel\ Tower\ -\ Paris\ Highlights.jpg ) center top / cover ;
+ 
+}
+
+
+.container{
+	margin-top:0px;
+  padding: 0 15px 15px 15px;
+display: block;
+width: max-content;
+height: 450px;
+justify-content: center;
+align-items: center;
+background:rgba(255,255,255,0.7)
+
+
+}
+
+.fuselage {
+  border-right: 5px solid #d8d8d8;
+  border-left: 5px solid #d8d8d8;
+}
+
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seats {
+  display: flex;
+  flex-direction: row;
+margin: auto;
+  justify-content: left;
+}
+
+.seat {
+ 
+padding: 5px;
+
+}
+.seat:nth-child(6) {
+  margin-right: 30px;
+}
+.seat:nth-child(10) {
+  margin-right: 30px;
+}
+.seat:nth-child(14) {
+  margin-right: 30px;
+}
+.seat:nth-child(6) {
+  margin-right: 30px;
+}
+.seat input[type=checkbox] {
+  position: absolute;
+  width: 50px;
+  opacity: 0;
+}
+.AAA input[type=checkbox]:checked + label {
+  background: #425c6b;
+  color: #FFF;
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+
+.BBB input[type=checkbox]:checked + label {
+  background: #13A9C1;
+  color: #FFF;
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+
+.CCC input[type=checkbox]:checked + label {
+  background: orange;
+  color: #FFF;
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+}
+.seat input[type=checkbox]:disabled + label {
+  background: #dddddd;
+  text-indent: -9999px;
+  overflow: hidden;
+}
+.seat input[type=checkbox]:disabled + label:after {
+  content: "X";
+  text-indent: 0;
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+.seat input[type=checkbox]:disabled + label:hover {
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.seat label {
+  display: block;
+  position: relative;
+  width: 30px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.2rem;
+  padding: 4px 0;
+  border-radius: 5px;
+  animation-duration: 300ms;
+  animation-fill-mode: both;
+  
+}
+
+.AAA label:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0px 2px #425c6b;
+}
+
+.AAA label{
+  color: #425c6b;
+  background-color: #FFF;
+  border: #425c6b 2px solid;
+}
+
+.BBB label:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0px 2px #13A9C1;
+}
+
+.BBB label{
+  color: #13A9C1;
+  background-color: #FFF;
+  border: #13A9C1 2px solid;
+}
+
+.CCC label:hover {
+  cursor: pointer;
+  box-shadow: 0 0 0px 2px orange;
+}
+
+.CCC label{
+  color:orange;
+  background-color: #FFF;
+  border: orange 2px solid;
+}
+.blank{
+  height: 1.2rem;
+}
+@-webkit-keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+@keyframes rubberBand {
+  0% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(1.25, 0.75, 1);
+    transform: scale3d(1.25, 0.75, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(0.75, 1.25, 1);
+    transform: scale3d(0.75, 1.25, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(1.15, 0.85, 1);
+    transform: scale3d(1.15, 0.85, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+}
+.rubberBand {
+  -webkit-animation-name: rubberBand;
+  animation-name: rubberBand;
+}
+.buts{
+  width: 80%;
+  margin: 0 auto 0 auto;
+ 
+}
+.before-but{
+  margin-top: 5px;
+margin-right: 80%;
+margin-bottom: 20px;
+height: 40px;
+width: 100px;
+color: #Fa0;
+background: rgba(255, 255, 255, 0.9) ;
+border: 2px #fa0 solid;
+
+}
+.next-but{
+ 
+    margin-top: 5px;
+
+  height: 40px;
+  width: 100px;
+  color: #FFF;
+  background: rgba(255, 153, 0, 0.9) ;
+  border: 2px #FFF solid;
+  
+}
+
+
+.spinner-border{
+  color: #fa0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+}
+.ssss{
+  position: absolute;
+  top: 60%;
+  left: 50%;
+}
+/*# sourceMappingURL=seat.css.map */
